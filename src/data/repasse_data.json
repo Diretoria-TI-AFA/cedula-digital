@@ -1,0 +1,177 @@
+[
+  {
+    "id": "rep_2",
+    "clubName": "COMAFA UIRAÇU",
+    "amount": 46625.55,
+    "billingPeriod": "2026-08",
+    "category": "Diretoria / Esquadrão"
+  },
+  {
+    "id": "rep_3",
+    "clubName": "COMAFA PERSEU",
+    "amount": 42475,
+    "billingPeriod": "2026-08",
+    "category": "Diretoria / Esquadrão"
+  },
+  {
+    "id": "rep_4",
+    "clubName": "SCAER",
+    "amount": 39778.51,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_5",
+    "clubName": "CONSUMO COMERCIAL",
+    "amount": 26890.36,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_6",
+    "clubName": "COMAFA DRAKON",
+    "amount": 22827.09,
+    "billingPeriod": "2026-08",
+    "category": "Diretoria / Esquadrão"
+  },
+  {
+    "id": "rep_7",
+    "clubName": "MUSCULAÇÃO",
+    "amount": 8660,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_8",
+    "clubName": "EVV",
+    "amount": 6287.5,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_9",
+    "clubName": "JIU-JITSU",
+    "amount": 5461.42,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_10",
+    "clubName": "LITERATURA",
+    "amount": 2970,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_11",
+    "clubName": "CTNN",
+    "amount": 2670,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_12",
+    "clubName": "GERAES",
+    "amount": 2280,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_13",
+    "clubName": "COMAFA",
+    "amount": 1865.88,
+    "billingPeriod": "2026-08",
+    "category": "Diretoria / Esquadrão"
+  },
+  {
+    "id": "rep_14",
+    "clubName": "CSAV",
+    "amount": 1320,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_15",
+    "clubName": "CTG",
+    "amount": 1245,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_16",
+    "clubName": "GRUPO CATÓLICO",
+    "amount": 1065,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_17",
+    "clubName": "LAVANDERIA",
+    "amount": 917,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_18",
+    "clubName": "ESCALADA",
+    "amount": 525,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_19",
+    "clubName": "AIRSOFT",
+    "amount": 360,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_20",
+    "clubName": "NEAG",
+    "amount": 330,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_21",
+    "clubName": "COCAFA",
+    "amount": 300,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_22",
+    "clubName": "INVESTIMENTO",
+    "amount": 300,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_23",
+    "clubName": "FACILIDADES",
+    "amount": 294,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_24",
+    "clubName": "MÚSICA",
+    "amount": 280,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_25",
+    "clubName": "ACC",
+    "amount": 225,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  },
+  {
+    "id": "rep_26",
+    "clubName": "NEGEC",
+    "amount": 77,
+    "billingPeriod": "2026-08",
+    "category": "Clube / Serviço"
+  }
+]

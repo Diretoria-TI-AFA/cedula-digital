@@ -1,0 +1,166 @@
+[
+  {
+    "id": "users_system_coll",
+    "name": "users",
+    "type": "auth",
+    "system": false,
+    "schema": [
+      {
+        "id": "usr_warname",
+        "name": "warName",
+        "type": "text",
+        "required": false,
+        "presentable": true
+      },
+      {
+        "id": "usr_cadetnumber",
+        "name": "cadetNumber",
+        "type": "text",
+        "required": false,
+        "presentable": true
+      },
+      {
+        "id": "usr_squadron",
+        "name": "squadron",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": "usr_role",
+        "name": "role",
+        "type": "select",
+        "required": false,
+        "options": {
+          "maxSelect": 1,
+          "values": ["cadete", "scaer", "diretor"]
+        }
+      },
+      {
+        "id": "usr_clubid",
+        "name": "clubId",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": "usr_cpf",
+        "name": "cpf",
+        "type": "text",
+        "required": false
+      },
+      {
+        "id": "usr_phone",
+        "name": "phone",
+        "type": "text",
+        "required": false
+      }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": ""
+  },
+  {
+    "id": "clubs_coll_id",
+    "name": "clubs",
+    "type": "base",
+    "system": false,
+    "schema": [
+      { "id": "clb_name", "name": "name", "type": "text", "required": true, "presentable": true },
+      { "id": "clb_code", "name": "code", "type": "text", "required": false },
+      { "id": "clb_desc", "name": "description", "type": "text", "required": false },
+      { "id": "clb_icon", "name": "icon", "type": "text", "required": false },
+      { "id": "clb_fee", "name": "monthlyFee", "type": "number", "required": false },
+      { "id": "clb_cat", "name": "category", "type": "text", "required": false },
+      { "id": "clb_status", "name": "status", "type": "text", "required": false },
+      { "id": "clb_mgr_id", "name": "managerId", "type": "text", "required": false },
+      { "id": "clb_mgr_name", "name": "managerName", "type": "text", "required": false },
+      { "id": "clb_count", "name": "memberCount", "type": "number", "required": false }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": ""
+  },
+  {
+    "id": "memberships_coll_id",
+    "name": "club_memberships",
+    "type": "base",
+    "system": false,
+    "schema": [
+      { "id": "mem_user_id", "name": "userId", "type": "text", "required": true },
+      { "id": "mem_user_name", "name": "userName", "type": "text", "required": false },
+      { "id": "mem_cadet_num", "name": "cadetNumber", "type": "text", "required": false },
+      { "id": "mem_squadron", "name": "squadron", "type": "text", "required": false },
+      { "id": "mem_club_id", "name": "clubId", "type": "text", "required": true },
+      { "id": "mem_club_name", "name": "clubName", "type": "text", "required": false },
+      { "id": "mem_status", "name": "status", "type": "text", "required": false },
+      { "id": "mem_req_at", "name": "requestedAt", "type": "text", "required": false },
+      { "id": "mem_app_at", "name": "approvedAt", "type": "text", "required": false },
+      { "id": "mem_notes", "name": "notes", "type": "text", "required": false }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": ""
+  },
+  {
+    "id": "expenses_coll_id",
+    "name": "expenses",
+    "type": "base",
+    "system": false,
+    "schema": [
+      { "id": "exp_user_id", "name": "userId", "type": "text", "required": true },
+      { "id": "exp_user_name", "name": "userName", "type": "text", "required": false },
+      { "id": "exp_cadet_num", "name": "cadetNumber", "type": "text", "required": false },
+      { "id": "exp_club_id", "name": "clubId", "type": "text", "required": false },
+      { "id": "exp_club_name", "name": "clubName", "type": "text", "required": false },
+      { "id": "exp_desc", "name": "description", "type": "text", "required": true },
+      { "id": "exp_amount", "name": "amount", "type": "number", "required": true },
+      { "id": "exp_cat", "name": "category", "type": "text", "required": false },
+      { "id": "exp_period", "name": "billingPeriod", "type": "text", "required": true },
+      { "id": "exp_launch_type", "name": "launchType", "type": "text", "required": false },
+      { "id": "exp_created_by", "name": "createdBy", "type": "text", "required": false },
+      { "id": "exp_created_name", "name": "createdByName", "type": "text", "required": false },
+      { "id": "exp_created_at", "name": "createdAt", "type": "text", "required": false },
+      { "id": "exp_status", "name": "status", "type": "text", "required": false },
+      { "id": "exp_non_member", "name": "isNonMemberEvent", "type": "bool", "required": false }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": ""
+  },
+  {
+    "id": "reports_coll_id",
+    "name": "director_reports",
+    "type": "base",
+    "system": false,
+    "schema": [
+      { "id": "rep_title", "name": "title", "type": "text", "required": true },
+      { "id": "rep_period", "name": "period", "type": "text", "required": true },
+      { "id": "rep_type", "name": "reportType", "type": "text", "required": false },
+      { "id": "rep_amount", "name": "totalAmount", "type": "number", "required": false },
+      { "id": "rep_launches", "name": "totalLaunches", "type": "number", "required": false },
+      { "id": "rep_cadets", "name": "totalCadets", "type": "number", "required": false },
+      { "id": "rep_hash", "name": "verificationHash", "type": "text", "required": false },
+      { "id": "rep_issued_at", "name": "issuedAt", "type": "text", "required": false },
+      { "id": "rep_issued_by", "name": "issuedBy", "type": "text", "required": false },
+      { "id": "rep_dir_name", "name": "directorName", "type": "text", "required": false },
+      { "id": "rep_pdf_url", "name": "pdfUrl", "type": "text", "required": false }
+    ],
+    "indexes": [],
+    "listRule": "",
+    "viewRule": "",
+    "createRule": "",
+    "updateRule": "",
+    "deleteRule": ""
+  }
+]

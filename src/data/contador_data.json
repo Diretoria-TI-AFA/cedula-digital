@@ -1,0 +1,5555 @@
+[
+  {
+    "id": "cnt_1",
+    "number": "23/001",
+    "warName": "MORO",
+    "fullName": "Lucas Moro Bof",
+    "cpf": "173.367.937-54",
+    "totalAmount": 139,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_2",
+    "number": "23/002",
+    "warName": "RESENDE",
+    "fullName": "Renato Almeida Resende",
+    "cpf": "095.510.256-10",
+    "totalAmount": 100.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_3",
+    "number": "23/003",
+    "warName": "KALIL",
+    "fullName": "Kalil Lopes dos Santos",
+    "cpf": "125.525.494-70",
+    "totalAmount": 111.39,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_4",
+    "number": "23/005",
+    "warName": "MAGAN",
+    "fullName": "Maria Eduarda Magan Dal Monte",
+    "cpf": "484.353.458-74",
+    "totalAmount": 89.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_5",
+    "number": "23/006",
+    "warName": "HERNANDES",
+    "fullName": "João Victor Engel Hernandes",
+    "cpf": "702.572.716-43",
+    "totalAmount": 154.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_6",
+    "number": "23/007",
+    "warName": "JÚLIA",
+    "fullName": "Júlia de Ferreira e Rodrigues",
+    "cpf": "118.777.656-43",
+    "totalAmount": 210.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_7",
+    "number": "23/008",
+    "warName": "VALIM",
+    "fullName": "Thomas Levi Alves Valim",
+    "cpf": "441.631.798-01",
+    "totalAmount": 72.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_8",
+    "number": "23/009",
+    "warName": "SQUERDO",
+    "fullName": "Arthur Squerdo Nascimento",
+    "cpf": "344.212.808-01",
+    "totalAmount": 166.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_9",
+    "number": "23/010",
+    "warName": "FABER",
+    "fullName": "Rogério Faber Júnior",
+    "cpf": "515.596.798-83",
+    "totalAmount": 150.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_10",
+    "number": "23/011",
+    "warName": "RAFAEL TAQUES",
+    "fullName": "Carlos Rafael Pires Taques Leite de Almeida",
+    "cpf": "978.520.072-87",
+    "totalAmount": 95.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_11",
+    "number": "23/012",
+    "warName": "CARVALHO",
+    "fullName": "Pedro Henrique de Carvalho dos Reis",
+    "cpf": "182.785.727-71",
+    "totalAmount": 71.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_12",
+    "number": "23/013",
+    "warName": "THEO",
+    "fullName": "Theo Furtado de Andrade Macedo Gomes",
+    "cpf": "114.886.476-82",
+    "totalAmount": 265.32,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_13",
+    "number": "23/014",
+    "warName": "AFFONSO",
+    "fullName": "Gabriel Affonso de Souza",
+    "cpf": "142.370.827-09",
+    "totalAmount": 308.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_14",
+    "number": "23/015",
+    "warName": "ROHEM",
+    "fullName": "Arthur Rohem Marconi",
+    "cpf": "148.987.857-27",
+    "totalAmount": 248.07,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_15",
+    "number": "23/016",
+    "warName": "RIBEIRO",
+    "fullName": "Rafael Ribeiro da Fonseca",
+    "cpf": "135.997.886-00",
+    "totalAmount": 291.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_16",
+    "number": "23/018",
+    "warName": "MEL MAGUETTA",
+    "fullName": "Mel Maguetta Arduini",
+    "cpf": "476.772.008-77",
+    "totalAmount": 217.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_17",
+    "number": "23/019",
+    "warName": "KEFLER",
+    "fullName": "André Nascimento Kefler",
+    "cpf": "060.486.742-52",
+    "totalAmount": 308.83,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_18",
+    "number": "23/020",
+    "warName": "DOEGE",
+    "fullName": "Bruno Felipe Doege",
+    "cpf": "069.027.939-64",
+    "totalAmount": 188.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_19",
+    "number": "23/021",
+    "warName": "MOTA",
+    "fullName": "Arnom de Souza Mota",
+    "cpf": "192.385.467-46",
+    "totalAmount": 138.34,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_20",
+    "number": "23/022",
+    "warName": "JANILSON",
+    "fullName": "Janilson Henrique Rosa de Carvalho",
+    "cpf": "023.318.406-60",
+    "totalAmount": 53,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_21",
+    "number": "23/023",
+    "warName": "ALVES",
+    "fullName": "Gustavo Henrique Alves de Oliveira",
+    "cpf": "460.754.288-10",
+    "totalAmount": 122.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_22",
+    "number": "23/024",
+    "warName": "MATHEUS",
+    "fullName": "Matheus Barboza Cavalcante dos Santos",
+    "cpf": "180.585.937-45",
+    "totalAmount": 403.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_23",
+    "number": "23/025",
+    "warName": "LOPES",
+    "fullName": "Gustavo Pires Lopes Pinto",
+    "cpf": "458.535.998-28",
+    "totalAmount": 75.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_24",
+    "number": "23/029",
+    "warName": "MEDEIROS",
+    "fullName": "Igor Costa de Medeiros",
+    "cpf": "016.635.284-54",
+    "totalAmount": 107.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_25",
+    "number": "23/031",
+    "warName": "ARAUJO",
+    "fullName": "Lucas de Oliveira Araujo",
+    "cpf": "198.022.867-10",
+    "totalAmount": 127.15,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_26",
+    "number": "23/032",
+    "warName": "MIRANDA",
+    "fullName": "Gustavo Resende Miranda Freitas",
+    "cpf": "128.751.456-14",
+    "totalAmount": 118.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_27",
+    "number": "23/033",
+    "warName": "AGUIAR",
+    "fullName": "Danilo dos Santos Sá Aguiar",
+    "cpf": "177.312.557-51",
+    "totalAmount": 275.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_28",
+    "number": "23/034",
+    "warName": "LORENZO",
+    "fullName": "Lorenzo Lattanzi Folly",
+    "cpf": "130.977.937-63",
+    "totalAmount": 190.63,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_29",
+    "number": "23/035",
+    "warName": "VASCONCELOS",
+    "fullName": "Jônatas Rocha de Vasconcelos",
+    "cpf": "712.660.984-10",
+    "totalAmount": 146.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_30",
+    "number": "23/039",
+    "warName": "CONTESINI",
+    "fullName": "Guilherme Nicolau Contesini",
+    "cpf": "528.906.758-23",
+    "totalAmount": 181.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_31",
+    "number": "23/040",
+    "warName": "VARGAS",
+    "fullName": "Vinicius dos Santos Vargas",
+    "cpf": "198.741.567-16",
+    "totalAmount": 121.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_32",
+    "number": "23/041",
+    "warName": "ROBERTO",
+    "fullName": "Lucas Roberto da Silva",
+    "cpf": "187.034.647-50",
+    "totalAmount": 125,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_33",
+    "number": "23/042",
+    "warName": "SAMUEL",
+    "fullName": "Samuel Filipe Santana dos Santos",
+    "cpf": "052.457.762-51",
+    "totalAmount": 96.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_34",
+    "number": "23/044",
+    "warName": "LIPORACE",
+    "fullName": "Miguel Liporace Marques",
+    "cpf": "187.034.907-50",
+    "totalAmount": 97.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_35",
+    "number": "23/045",
+    "warName": "MEDICI",
+    "fullName": "Pedro Henrique de Britto Medici",
+    "cpf": "192.535.097-59",
+    "totalAmount": 189.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_36",
+    "number": "23/046",
+    "warName": "SOUZA",
+    "fullName": "Guilherme Vieira de Souza",
+    "cpf": "136.625.366-33",
+    "totalAmount": 100,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_37",
+    "number": "23/047",
+    "warName": "PANISSA",
+    "fullName": "Fernanda Gonçalves Panissa",
+    "cpf": "157.361.797-09",
+    "totalAmount": 118.08,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_38",
+    "number": "23/048",
+    "warName": "PENA",
+    "fullName": "Davi Piazza Pena",
+    "cpf": "508.919.238-37",
+    "totalAmount": 68.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_39",
+    "number": "23/049",
+    "warName": "ANDRIELLY",
+    "fullName": "Andrielly Beatriz Vargas",
+    "cpf": "704.378.591-00",
+    "totalAmount": 164.1,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_40",
+    "number": "23/050",
+    "warName": "RAFAEL",
+    "fullName": "Rafael Santos Maurício da Rocha",
+    "cpf": "195.188.687-94",
+    "totalAmount": 109.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_41",
+    "number": "23/051",
+    "warName": "ANA VIDAL",
+    "fullName": "Ana Flávia Vidal Correia de Oliveira",
+    "cpf": "201.260.047-65",
+    "totalAmount": 139.32,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_42",
+    "number": "23/054",
+    "warName": "LESSA",
+    "fullName": "Marcella Silva Lessa",
+    "cpf": "162.528.747-01",
+    "totalAmount": 221.34,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_43",
+    "number": "23/056",
+    "warName": "ANDREI",
+    "fullName": "Andrei RIbeiro Santos",
+    "cpf": "458.174.798-85",
+    "totalAmount": 94.6,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_44",
+    "number": "23/057",
+    "warName": "DIVINO",
+    "fullName": "Caio da Silva do Amôr Divino",
+    "cpf": "184.342.427-45",
+    "totalAmount": 348.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_45",
+    "number": "23/059",
+    "warName": "RUVIARO",
+    "fullName": "Andre Luiz Ruviaro Almeida",
+    "cpf": "098.848.089-10",
+    "totalAmount": 67.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_46",
+    "number": "23/061",
+    "warName": "MENEZES",
+    "fullName": "Lucas Gabriel de Menezes Araújo",
+    "cpf": "149.378.446-36",
+    "totalAmount": 58.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_47",
+    "number": "23/063",
+    "warName": "ANTONELLI",
+    "fullName": "Victor Antonelli Marques Francisco",
+    "cpf": "140.213.067-81",
+    "totalAmount": 172.78,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_48",
+    "number": "23/064",
+    "warName": "ERICK",
+    "fullName": "Erick Lima dos Reis",
+    "cpf": "198.564.837-78",
+    "totalAmount": 121.43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_49",
+    "number": "23/065",
+    "warName": "ESTEVES",
+    "fullName": "Kaio Menezes Esteves",
+    "cpf": "145.906.076-89",
+    "totalAmount": 182.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_50",
+    "number": "23/066",
+    "warName": "GABRIELA ROCHA",
+    "fullName": "Gabriela Oliveira Rocha",
+    "cpf": "198.664.867-29",
+    "totalAmount": 173.56,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_51",
+    "number": "23/067",
+    "warName": "AMANCIO",
+    "fullName": "Jonas Frederico Amancio",
+    "cpf": "506.546.628-94",
+    "totalAmount": 241.83,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_52",
+    "number": "23/069",
+    "warName": "NASCIMENTO",
+    "fullName": "Daniel Teodoro Nascimento",
+    "cpf": "198.498.257-58",
+    "totalAmount": 128.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_53",
+    "number": "23/071",
+    "warName": "PABLO",
+    "fullName": "Pablo Bezerril de Souza Carvalho",
+    "cpf": "122.268.734-81",
+    "totalAmount": 159.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_54",
+    "number": "23/072",
+    "warName": "CAPUA",
+    "fullName": "Kayky Pinheiro Capua",
+    "cpf": "187.635.407-03",
+    "totalAmount": 146.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_55",
+    "number": "23/073",
+    "warName": "LEAL",
+    "fullName": "Yaman Leal Rodrigues",
+    "cpf": "523.205.998-00",
+    "totalAmount": 394.83,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_56",
+    "number": "23/074",
+    "warName": "QUARESMA",
+    "fullName": "Vitor Hugo Quaresma Baptista",
+    "cpf": "178.372.647-46",
+    "totalAmount": 154.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_57",
+    "number": "23/077",
+    "warName": "TACONI",
+    "fullName": "João Pedro Paraizo Taconi",
+    "cpf": "201.743.427-21",
+    "totalAmount": 336.86,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_58",
+    "number": "23/078",
+    "warName": "ASSIS",
+    "fullName": "João Vitor Assis Oliveira",
+    "cpf": "701.444.696-77",
+    "totalAmount": 201.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_59",
+    "number": "23/081",
+    "warName": "DIOGO",
+    "fullName": "Diogo Silva de Deus",
+    "cpf": "159.130.037-13",
+    "totalAmount": 476.64,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_60",
+    "number": "23/088",
+    "warName": "RODOLFO",
+    "fullName": "Rodolfo Vacelico do Couto",
+    "cpf": "183.598.547-50",
+    "totalAmount": 273.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_61",
+    "number": "23/090",
+    "warName": "SOMENSI",
+    "fullName": "Daniel Somensi",
+    "cpf": "490.700.328-56",
+    "totalAmount": 105,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_62",
+    "number": "23/092",
+    "warName": "MARINHO",
+    "fullName": "Diordan Lucas Marques Marinho",
+    "cpf": "175.538.597-88",
+    "totalAmount": 178.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_63",
+    "number": "23/093",
+    "warName": "ALEIXO",
+    "fullName": "Pedro Vitor Bento Aleixo",
+    "cpf": "058.758.437-80",
+    "totalAmount": 335.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_64",
+    "number": "23/094",
+    "warName": "ATHAYDE",
+    "fullName": "Miguel Alexander Athayde Ferreira",
+    "cpf": "156.803.287-04",
+    "totalAmount": 212.36,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_65",
+    "number": "23/096",
+    "warName": "VIEIRA",
+    "fullName": "Suzana Aparecida Vieira Cordeiro",
+    "cpf": "122.701.707-33",
+    "totalAmount": 88.64,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_66",
+    "number": "23/103",
+    "warName": "MELO",
+    "fullName": "Gustavo Melo Cardoso da Silva",
+    "cpf": "168.451.907-12",
+    "totalAmount": 140.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_67",
+    "number": "23/105",
+    "warName": "CUSTÓDIO",
+    "fullName": "Maurício Araújo Custódio",
+    "cpf": "187.821.417-97",
+    "totalAmount": 96.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_68",
+    "number": "23/106",
+    "warName": "ÁLEFE",
+    "fullName": "Thiago Álefe de Oliveira",
+    "cpf": "161.750.016-05",
+    "totalAmount": 132.17,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_69",
+    "number": "23/108",
+    "warName": "TELES",
+    "fullName": "José Eduardo Teles Ribeiro Machado",
+    "cpf": "052.570.849-96",
+    "totalAmount": 241.52,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_70",
+    "number": "23/110",
+    "warName": "EDUARDO",
+    "fullName": "Eduardo Guilherme de Oliveira Souza",
+    "cpf": "184.802.167-43",
+    "totalAmount": 111.36,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_71",
+    "number": "23/112",
+    "warName": "RIGAUD",
+    "fullName": "Rafael de Souza Rigaud",
+    "cpf": "175.540.567-78",
+    "totalAmount": 168.78,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_72",
+    "number": "23/113",
+    "warName": "BLASCO",
+    "fullName": "Lara Fabian Blasco da Silva",
+    "cpf": "179.998.467-24",
+    "totalAmount": 110,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_73",
+    "number": "23/114",
+    "warName": "BARRETO",
+    "fullName": "Breno de Lima Barreto",
+    "cpf": "159.311.167-37",
+    "totalAmount": 217.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_74",
+    "number": "23/115",
+    "warName": "FONTES",
+    "fullName": "Thiago Luiz Fontes",
+    "cpf": "185.520.517-37",
+    "totalAmount": 135.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_75",
+    "number": "23/118",
+    "warName": "BERTELLI",
+    "fullName": "João Pedro Bertelli da Silva",
+    "cpf": "162.329.107-02",
+    "totalAmount": 157.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_76",
+    "number": "23/120",
+    "warName": "PEÇANHA",
+    "fullName": "Lucas Dutra Leal Peçanha",
+    "cpf": "144.422.497-25",
+    "totalAmount": 286.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_77",
+    "number": "23/122",
+    "warName": "MAGALHÃES",
+    "fullName": "Davi de Souza Vicente Magalhães",
+    "cpf": "168.325.037-09",
+    "totalAmount": 287.64,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_78",
+    "number": "23/123",
+    "warName": "JHONATA",
+    "fullName": "Jhonata Panoeiro Silva Fabricio",
+    "cpf": "167.523.557-03",
+    "totalAmount": 194.05,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_79",
+    "number": "23/124",
+    "warName": "SILVA",
+    "fullName": "Tiago Souza Silva",
+    "cpf": "153.167.417-81",
+    "totalAmount": 274.54,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_80",
+    "number": "23/129",
+    "warName": "NEVES",
+    "fullName": "Samuel Mesquita das Neves",
+    "cpf": "192.317.487-85",
+    "totalAmount": 393.29,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_81",
+    "number": "23/141",
+    "warName": "VINICIUS ALVES",
+    "fullName": "VINICIUS DE OLIVEIRA ALVES",
+    "cpf": "136.610.036-07",
+    "totalAmount": 335.07,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_82",
+    "number": "23/142",
+    "warName": "SCHUELER",
+    "fullName": "Vitor Schueler dos Santos",
+    "cpf": "127.420.137-33",
+    "totalAmount": 183,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_83",
+    "number": "23/144",
+    "warName": "ALBUQUERQUE",
+    "fullName": "Oto Nelson de Albuquerque Junior",
+    "cpf": "702.704.824-82",
+    "totalAmount": 230.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_84",
+    "number": "23/148",
+    "warName": "DOS ANJOS",
+    "fullName": "Felipe Fun Dos Anjos Shih",
+    "cpf": "457.063.968-25",
+    "totalAmount": 237.37,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_85",
+    "number": "23/149",
+    "warName": "VITOR ROCHA",
+    "fullName": "Vitor Rocha Daniel",
+    "cpf": "939.487.512-34",
+    "totalAmount": 171.64,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_86",
+    "number": "23/151",
+    "warName": "VICTORIA",
+    "fullName": "Victoria Rios de Souza",
+    "cpf": "133.897.737-70",
+    "totalAmount": 161.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_87",
+    "number": "23/153",
+    "warName": "BRAGA",
+    "fullName": "Arthur Braga Sena",
+    "cpf": "077.248.691-38",
+    "totalAmount": 220.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_88",
+    "number": "23/157",
+    "warName": "HAUBRICHS",
+    "fullName": "Lucas Haubrichs de Freitas Dias",
+    "cpf": "162.024.587-63",
+    "totalAmount": 57.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_89",
+    "number": "23/158",
+    "warName": "CARLOS RIBEIRO",
+    "fullName": "Carlos Eduardo Gomes Ribeiro",
+    "cpf": "970.092.702-44",
+    "totalAmount": 207.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_90",
+    "number": "23/201",
+    "warName": "GABRIELLA",
+    "fullName": "Gabriella Marinho Vasconcelos",
+    "cpf": "110.776.166-27",
+    "totalAmount": 101.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_91",
+    "number": "23/202",
+    "warName": "THALLES",
+    "fullName": "Thalles Fonseca dos Santos",
+    "cpf": "125.098.546-31",
+    "totalAmount": 166.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_92",
+    "number": "23/203",
+    "warName": "CRISTINA",
+    "fullName": "Rafaelly Cristina Lima Costa",
+    "cpf": "126.597.126-97",
+    "totalAmount": 308.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_93",
+    "number": "23/204",
+    "warName": "POURCHET",
+    "fullName": "LUCAS BORGES POURCHET",
+    "cpf": "155.748.247-01",
+    "totalAmount": 231.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_94",
+    "number": "23/205",
+    "warName": "FERNANDO",
+    "fullName": "Pedro Fernando Monteiro dos Santos Júnior",
+    "cpf": "710.001.234-13",
+    "totalAmount": 96.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_95",
+    "number": "23/206",
+    "warName": "ARAGÃO",
+    "fullName": "Caique Alves Aragão",
+    "cpf": "192.185.497-90",
+    "totalAmount": 155.07,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_96",
+    "number": "23/207",
+    "warName": "BORGES",
+    "fullName": "Yago Borges Valente",
+    "cpf": "174.046.617-90",
+    "totalAmount": 50,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_97",
+    "number": "23/211",
+    "warName": "CERULLI",
+    "fullName": "João Victor da Cruz Cerulli",
+    "cpf": "177.127.207-46",
+    "totalAmount": 138.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_98",
+    "number": "23/212",
+    "warName": "JÚLIA BRANDÃO",
+    "fullName": "Júlia Brandão Moreira Teixeira",
+    "cpf": "164.983.407-11",
+    "totalAmount": 136.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_99",
+    "number": "23/213",
+    "warName": "JÚLIA SOUSA",
+    "fullName": "Júlia Teixeira de Sousa",
+    "cpf": "127.962.927-46",
+    "totalAmount": 168.83,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_100",
+    "number": "23/214",
+    "warName": "RUACH",
+    "fullName": "Ruach Câmara Pereira",
+    "cpf": "197.495.687-37",
+    "totalAmount": 128.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_101",
+    "number": "23/215",
+    "warName": "AMANDA",
+    "fullName": "Amanda Alves Pittigliani",
+    "cpf": "165.658.287-25",
+    "totalAmount": 162.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_102",
+    "number": "23/216",
+    "warName": "SANTIAGO",
+    "fullName": "Matheus Santiago Menezes Vieira",
+    "cpf": "077.306.773-69",
+    "totalAmount": 186.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_103",
+    "number": "23/220",
+    "warName": "ANNA AURILIO",
+    "fullName": "Anna Pereira Aurilio",
+    "cpf": "164.588.737-51",
+    "totalAmount": 199.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_104",
+    "number": "23/223",
+    "warName": "ANNA LETÍCIA",
+    "fullName": "Anna Letícia Dantas Monteiro",
+    "cpf": "708.777.164-71",
+    "totalAmount": 144.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_105",
+    "number": "23/224",
+    "warName": "NOVO",
+    "fullName": "Arthur Nascimento Novo",
+    "cpf": "199.271.017-16",
+    "totalAmount": 170.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_106",
+    "number": "23/225",
+    "warName": "PEREIRA",
+    "fullName": "Renato Mateus Pereira de Oliveira",
+    "cpf": "115.438.634-18",
+    "totalAmount": 58,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_107",
+    "number": "23/226",
+    "warName": "BENETTI",
+    "fullName": "DURAN BENETTI CARVALHO DE OLIVEIRA",
+    "cpf": "166.653.997-02",
+    "totalAmount": 143.43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_108",
+    "number": "23/227",
+    "warName": "CAROLINE",
+    "fullName": "Caroline Miguel Alves Soares",
+    "cpf": "122.752.777-22",
+    "totalAmount": 160.64,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_109",
+    "number": "23/229",
+    "warName": "ANDRÉ OLIVEIRA",
+    "fullName": "André Luiz Oliveira Silva",
+    "cpf": "133.151.477-01",
+    "totalAmount": 217.8,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_110",
+    "number": "23/232",
+    "warName": "DOMINGUES",
+    "fullName": "Ruan Domingues",
+    "cpf": "165.555.397-63",
+    "totalAmount": 114.89,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_111",
+    "number": "23/233",
+    "warName": "VICTOR HUGO",
+    "fullName": "Victor Hugo Almeida Nunes",
+    "cpf": "512.426.238-92",
+    "totalAmount": 125.58,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_112",
+    "number": "23/235",
+    "warName": "THAINÁ",
+    "fullName": "Thainá Corrêa de Mello Barreiro",
+    "cpf": "168.738.977-28",
+    "totalAmount": 134.1,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_113",
+    "number": "23/236",
+    "warName": "FELIPE",
+    "fullName": "Luiz Felipe Braga Cesar",
+    "cpf": "199.697.477-70",
+    "totalAmount": 209.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_114",
+    "number": "23/237",
+    "warName": "MARCELO",
+    "fullName": "Marcelo de Carvalho Freire",
+    "cpf": "044.136.983-98",
+    "totalAmount": 128,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_115",
+    "number": "23/238",
+    "warName": "ESTHÉFANY",
+    "fullName": "Esthéfany Barbosa de Castro",
+    "cpf": "132.055.136-06",
+    "totalAmount": 183.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_116",
+    "number": "23/239",
+    "warName": "FARIAS",
+    "fullName": "Yuri Christian Moura de Farias",
+    "cpf": "501.195.098-06",
+    "totalAmount": 59.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_117",
+    "number": "23/240",
+    "warName": "GABRIEL",
+    "fullName": "Gabriel de Araújo Lima",
+    "cpf": "133.005.424-56",
+    "totalAmount": 235.07,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_118",
+    "number": "23/241",
+    "warName": "JOSÉ FELIPE",
+    "fullName": "José Felipe da Silva",
+    "cpf": "604.516.593-41",
+    "totalAmount": 70.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_119",
+    "number": "23/242",
+    "warName": "VICTOR",
+    "fullName": "VICTOR HUGO SILVA SOUSA",
+    "cpf": "165.583.107-08",
+    "totalAmount": 166.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_120",
+    "number": "23/244",
+    "warName": "LAURA TOLEZANO",
+    "fullName": "LAURA TOLEZANO PARDAL GUIMARÃES",
+    "cpf": "190.860.817-03",
+    "totalAmount": 229.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_121",
+    "number": "23/245",
+    "warName": "LAIS",
+    "fullName": "Lais Barroso Sobrinho da Costa",
+    "cpf": "164.306.367-71",
+    "totalAmount": 95.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_122",
+    "number": "23/248",
+    "warName": "SARAH MARTINS",
+    "fullName": "Sarah Martins Botelho",
+    "cpf": "191.235.227-39",
+    "totalAmount": 171,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_123",
+    "number": "23/249",
+    "warName": "ROBERTA LOUZADA",
+    "fullName": "Roberta Fuglino Louzada",
+    "cpf": "179.226.197-74",
+    "totalAmount": 101.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_124",
+    "number": "23/250",
+    "warName": "DUTRA",
+    "fullName": "Pedro Henrique Dutra Soares",
+    "cpf": "131.955.167-05",
+    "totalAmount": 119.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_125",
+    "number": "23/251",
+    "warName": "DELFINO",
+    "fullName": "Italo Delfino Higino Pereira",
+    "cpf": "118.230.184-32",
+    "totalAmount": 156.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_126",
+    "number": "23/252",
+    "warName": "SHELSEA",
+    "fullName": "Shelsea Barcelos Paulino de Macedo",
+    "cpf": "127.017.397-99",
+    "totalAmount": 156.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_127",
+    "number": "23/253",
+    "warName": "JULIANA LIMA",
+    "fullName": "Juliana de Andrade Lima",
+    "cpf": "707.205.204-60",
+    "totalAmount": 298.21,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_128",
+    "number": "23/254",
+    "warName": "GEAMBASTIANE",
+    "fullName": "Ruhan de Oliveira Geambastiane",
+    "cpf": "174.178.267-84",
+    "totalAmount": 109.68,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_129",
+    "number": "23/255",
+    "warName": "HENDRIK",
+    "fullName": "Hendrik Pereira do Nascimento",
+    "cpf": "191.366.037-08",
+    "totalAmount": 91.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_130",
+    "number": "23/256",
+    "warName": "DILIS",
+    "fullName": "Kevin Dilis Rodrigues",
+    "cpf": "166.324.307-75",
+    "totalAmount": 57.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_131",
+    "number": "23/257",
+    "warName": "KAMILA BACKES",
+    "fullName": "Kamila Zimermann Backes",
+    "cpf": "043.205.910-54",
+    "totalAmount": 185.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_132",
+    "number": "23/258",
+    "warName": "VALVERDE",
+    "fullName": "Fernando Valverde Prado Moreira",
+    "cpf": "088.475.145-76",
+    "totalAmount": 85.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_133",
+    "number": "23/260",
+    "warName": "LEMOS",
+    "fullName": "Jorge Augusto Fernandes Lemos.",
+    "cpf": "187.325.097-58",
+    "totalAmount": 189.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_134",
+    "number": "23/301",
+    "warName": "SIMIONATO",
+    "fullName": "Luiz Ricardo Gois Simionato",
+    "cpf": "120.263.666-75",
+    "totalAmount": 230.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_135",
+    "number": "23/302",
+    "warName": "CARDOSO",
+    "fullName": "Allan Willian Cardoso Alves de Souza",
+    "cpf": "451.095.498-00",
+    "totalAmount": 109.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_136",
+    "number": "23/305",
+    "warName": "GRECO",
+    "fullName": "Matheus Greco de Oliveira",
+    "cpf": "061.764.867-00",
+    "totalAmount": 248.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_137",
+    "number": "23/306",
+    "warName": "FRANCO",
+    "fullName": "Gabriel Franco Rodrigues Correia",
+    "cpf": "161.264.547-07",
+    "totalAmount": 324.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_138",
+    "number": "23/307",
+    "warName": "IORDAN",
+    "fullName": "Iordan André Cunha",
+    "cpf": "072.262.351-88",
+    "totalAmount": 122.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_139",
+    "number": "23/309",
+    "warName": "VENANCIO",
+    "fullName": "João Victor Venancio Gonçalves Melo",
+    "cpf": "182.474.337-88",
+    "totalAmount": 298.68,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_140",
+    "number": "23/310",
+    "warName": "ELIAS",
+    "fullName": "Marcos Elias dos Santos Silva",
+    "cpf": "166.794.877-65",
+    "totalAmount": 504.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_141",
+    "number": "23/315",
+    "warName": "PESSOA",
+    "fullName": "Kevin Pessoa Carneiro",
+    "cpf": "109.115.314-08",
+    "totalAmount": 326.15,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_142",
+    "number": "23/316",
+    "warName": "MAGALHÃES RESENDE",
+    "fullName": "Wallace Magalhães Vieira de Resende",
+    "cpf": "140.861.426-00",
+    "totalAmount": 139.09,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_143",
+    "number": "23/318",
+    "warName": "GUSTAVO OLIVEIRA",
+    "fullName": "Gustavo de Oliveira Ferreira",
+    "cpf": "470.598.748-95",
+    "totalAmount": 176.38,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_144",
+    "number": "23/319",
+    "warName": "DAVI",
+    "fullName": "Davi Campos Cavalcante de Oliveira",
+    "cpf": "198.778.457-09",
+    "totalAmount": 171.62,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_145",
+    "number": "23/321",
+    "warName": "TIAGO CARDOSO",
+    "fullName": "TIAGO DA CUNHA PINTO CARDOSO",
+    "cpf": "174.068.487-73",
+    "totalAmount": 102.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_146",
+    "number": "23/322",
+    "warName": "RIPARDO",
+    "fullName": "Rafael Sales Ripardo",
+    "cpf": "143.707.084-19",
+    "totalAmount": 212.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_147",
+    "number": "23/323",
+    "warName": "SALDANHA",
+    "fullName": "Hilquias Leandro Saldanha Toscano",
+    "cpf": "711.834.574-13",
+    "totalAmount": 309.36,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_148",
+    "number": "23/325",
+    "warName": "PONTES",
+    "fullName": "Fellipe Pontes Borges Machado",
+    "cpf": "199.101.647-60",
+    "totalAmount": 207.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_149",
+    "number": "23/326",
+    "warName": "RAFAEL RIBEIRO",
+    "fullName": "Rafael dos Santos Ribeiro",
+    "cpf": "708.809.284-09",
+    "totalAmount": 333.6,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_150",
+    "number": "23/327",
+    "warName": "FURTADO",
+    "fullName": "Pedro Jose Verissimo Furtado",
+    "cpf": "166.086.387-28",
+    "totalAmount": 220.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_151",
+    "number": "23/330",
+    "warName": "LIMA",
+    "fullName": "Gustavo Lima e Silva",
+    "cpf": "109.616.377-22",
+    "totalAmount": 275.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_152",
+    "number": "23/331",
+    "warName": "PIMENTEL",
+    "fullName": "João Pedro Pereira Pimentel Silva",
+    "cpf": "073.467.176-86",
+    "totalAmount": 348.34,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_153",
+    "number": "23/334",
+    "warName": "AQUINO",
+    "fullName": "Gustavo Santos Aquino",
+    "cpf": "182.069.547-67",
+    "totalAmount": 75.8,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_154",
+    "number": "23/335",
+    "warName": "BITENCOURT",
+    "fullName": "Samuel Isaac dos Santos Bitencourt",
+    "cpf": "028.687.612-40",
+    "totalAmount": 185.83,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_155",
+    "number": "23/336",
+    "warName": "GUSTAVO SOUZA",
+    "fullName": "Gustavo Souza dos Santos",
+    "cpf": "172.453.857-85",
+    "totalAmount": 296.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_156",
+    "number": "23/337",
+    "warName": "BARBOSA",
+    "fullName": "Jorge Antonio Barbosa de Souza",
+    "cpf": "106.173.084-03",
+    "totalAmount": 210.89,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_157",
+    "number": "23/338",
+    "warName": "MACHADO",
+    "fullName": "Gabriel Brahm Machado",
+    "cpf": "050.418.710-43",
+    "totalAmount": 170.84,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_158",
+    "number": "23/339",
+    "warName": "YURI",
+    "fullName": "Yuri Zhivago Nunes de Sá",
+    "cpf": "027.035.555-39",
+    "totalAmount": 154.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_159",
+    "number": "23/340",
+    "warName": "PINHEIRO",
+    "fullName": "Emanuel Pinheiro de Almeida",
+    "cpf": "135.896.247-28",
+    "totalAmount": 110.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_160",
+    "number": "23/342",
+    "warName": "MORETTI",
+    "fullName": "João Pedro Leite Moretti",
+    "cpf": "354.008.748-60",
+    "totalAmount": 157.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_161",
+    "number": "23/343",
+    "warName": "CARPANEZ",
+    "fullName": "JOÃO VITOR MORAES CARPANEZ",
+    "cpf": "703.073.656-70",
+    "totalAmount": 290.01,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_162",
+    "number": "23/345",
+    "warName": "PEGORARO",
+    "fullName": "Pietro Pegoraro",
+    "cpf": "077.677.801-39",
+    "totalAmount": 234.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_163",
+    "number": "23/402",
+    "warName": "BISMARK",
+    "fullName": "Bismark Bryan Atahuachi Perez",
+    "cpf": "117.714.791-24",
+    "totalAmount": 112.66,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_164",
+    "number": "24/001",
+    "warName": "ARTHUR",
+    "fullName": "José Arthur Marques de Medeiros",
+    "cpf": "388.181.418-30",
+    "totalAmount": 68,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_165",
+    "number": "24/002",
+    "warName": "DANIEL",
+    "fullName": "Daniel Amaral de Santana",
+    "cpf": "110.473.224-63",
+    "totalAmount": 78.08,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_166",
+    "number": "24/003",
+    "warName": "BECKER",
+    "fullName": "Guilherme Rutsatz Becker",
+    "cpf": "880.906.710-04",
+    "totalAmount": 511.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_167",
+    "number": "24/004",
+    "warName": "MONTENEGRO",
+    "fullName": "Felipe Plaza Montenegro",
+    "cpf": "080.617.034-40",
+    "totalAmount": 309.78,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_168",
+    "number": "24/005",
+    "warName": "RIVERO",
+    "fullName": "Caio Albuquerque Rivero de Freitas",
+    "cpf": "136.700.947-25",
+    "totalAmount": 43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_169",
+    "number": "24/008",
+    "warName": "LEMOS",
+    "fullName": "Nicholas de Lemos",
+    "cpf": "075.688.141-22",
+    "totalAmount": 640.91,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_170",
+    "number": "24/010",
+    "warName": "GREGÓRIO",
+    "fullName": "Ruan Gregório Ferreira Ribeiro",
+    "cpf": "097.306.256-89",
+    "totalAmount": 473,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_171",
+    "number": "24/014",
+    "warName": "GOMES",
+    "fullName": "Wagner Soares Gomes Junior",
+    "cpf": "134.200.044-78",
+    "totalAmount": 53,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_172",
+    "number": "24/015",
+    "warName": "SOLCI",
+    "fullName": "Pedro Fernandes Solci",
+    "cpf": "098.497.244-71",
+    "totalAmount": 637.51,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_173",
+    "number": "24/016",
+    "warName": "RUFINO",
+    "fullName": "Tiago Alceu Rufino",
+    "cpf": "450.498.038-02",
+    "totalAmount": 622.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_174",
+    "number": "24/017",
+    "warName": "OLAVO",
+    "fullName": "Olavo Sachet Braga",
+    "cpf": "066.841.329-88",
+    "totalAmount": 451.4,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_175",
+    "number": "24/018",
+    "warName": "MURAD",
+    "fullName": "Michel Murad dos Santos",
+    "cpf": "145.910.086-73",
+    "totalAmount": 380.1,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_176",
+    "number": "24/019",
+    "warName": "LOUREIRO",
+    "fullName": "Marco Antonio Francelino Aquino Loureiro",
+    "cpf": "517.116.918-79",
+    "totalAmount": 446,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_177",
+    "number": "24/020",
+    "warName": "SEKITA",
+    "fullName": "Felipe Sekita Melo",
+    "cpf": "044.723.232-06",
+    "totalAmount": 527.8,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_178",
+    "number": "24/025",
+    "warName": "JÉSSICA CALLEGARI",
+    "fullName": "Jéssica Callegari Silva de Oliveira",
+    "cpf": "449.395.518-06",
+    "totalAmount": 461.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_179",
+    "number": "24/026",
+    "warName": "FRANKLIN",
+    "fullName": "Robson de Souza Franklin",
+    "cpf": "072.444.155-75",
+    "totalAmount": 155,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_180",
+    "number": "24/027",
+    "warName": "PEDRO AUGUSTO",
+    "fullName": "Pedro Augusto Aldriguetti de Lira",
+    "cpf": "423.840.218-93",
+    "totalAmount": 424.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_181",
+    "number": "24/028",
+    "warName": "DARGAM",
+    "fullName": "Adriel Dargam de Jesus",
+    "cpf": "189.205.927-48",
+    "totalAmount": 428,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_182",
+    "number": "24/029",
+    "warName": "YASMIM",
+    "fullName": "Yasmim Maria Almeida Gonçalves",
+    "cpf": "087.314.344-28",
+    "totalAmount": 450.29,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_183",
+    "number": "24/030",
+    "warName": "FONTOURA",
+    "fullName": "Matheus da Fontoura Oliveira da Silva",
+    "cpf": "188.262.907-84",
+    "totalAmount": 505.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_184",
+    "number": "24/031",
+    "warName": "HENRIQUE",
+    "fullName": "Henrique de Oliveira Silva",
+    "cpf": "178.734.217-40",
+    "totalAmount": 548.86,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_185",
+    "number": "24/033",
+    "warName": "GABRIEL",
+    "fullName": "Gabriel Rodrigues Gomes",
+    "cpf": "424.552.998-99",
+    "totalAmount": 462.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_186",
+    "number": "24/034",
+    "warName": "CÁCERES",
+    "fullName": "Cristhyan Oliveira Cáceres",
+    "cpf": "031.944.311-61",
+    "totalAmount": 475.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_187",
+    "number": "24/035",
+    "warName": "ARAÚJO",
+    "fullName": "Pedro Henrique Araújo Maia",
+    "cpf": "151.202.846-04",
+    "totalAmount": 488.91,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_188",
+    "number": "24/036",
+    "warName": "BYSMARCK",
+    "fullName": "Grégory Bysmarck Frainz de Carvalho",
+    "cpf": "036.961.051-20",
+    "totalAmount": 430.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_189",
+    "number": "24/037",
+    "warName": "VARELA",
+    "fullName": "Gabriel Varela Rego Lima de Medeiros",
+    "cpf": "091.330.274-04",
+    "totalAmount": 562.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_190",
+    "number": "24/038",
+    "warName": "NIZZO",
+    "fullName": "Luan Gabriel Souza Nizzo",
+    "cpf": "153.887.967-01",
+    "totalAmount": 582.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_191",
+    "number": "24/039",
+    "warName": "MEDEIROS",
+    "fullName": "Lucas Ramos de Medeiros",
+    "cpf": "525.327.918-02",
+    "totalAmount": 413.8,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_192",
+    "number": "24/041",
+    "warName": "JARIAN",
+    "fullName": "Jarian Freitag Moreira",
+    "cpf": "023.842.780-37",
+    "totalAmount": 547.51,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_193",
+    "number": "24/042",
+    "warName": "FERNANDES",
+    "fullName": "Davi Fernandes Custodio de Souza",
+    "cpf": "123.220.637-70",
+    "totalAmount": 393,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_194",
+    "number": "24/043",
+    "warName": "PIERRE",
+    "fullName": "Alex Pierre Comodo Filho",
+    "cpf": "139.084.737-30",
+    "totalAmount": 713.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_195",
+    "number": "24/044",
+    "warName": "JONATHAN",
+    "fullName": "JONATHAN FERREIRA DA SILVA",
+    "cpf": "125.562.864-23",
+    "totalAmount": 488.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_196",
+    "number": "24/046",
+    "warName": "FREIRE",
+    "fullName": "Diogo Freire Gomes",
+    "cpf": "164.718.397-90",
+    "totalAmount": 441.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_197",
+    "number": "24/047",
+    "warName": "FIORIN",
+    "fullName": "João Filipe Fiorin Pereira",
+    "cpf": "378.601.908-85",
+    "totalAmount": 555.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_198",
+    "number": "24/048",
+    "warName": "GABRIELLE",
+    "fullName": "Gabrielle Vitória Moreth Loureiro",
+    "cpf": "124.299.487-45",
+    "totalAmount": 454.8,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_199",
+    "number": "24/049",
+    "warName": "SCATOLINI",
+    "fullName": "Samuel Scatolini Alves de Godoy",
+    "cpf": "172.529.647-01",
+    "totalAmount": 581,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_200",
+    "number": "24/050",
+    "warName": "RICARDO",
+    "fullName": "Ricardo Antonio Peixoto Maria",
+    "cpf": "034.300.102-09",
+    "totalAmount": 422.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_201",
+    "number": "24/051",
+    "warName": "FEITOSA",
+    "fullName": "Gabriel Feitosa Ribeiro",
+    "cpf": "192.635.287-48",
+    "totalAmount": 643.62,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_202",
+    "number": "24/053",
+    "warName": "CRUZ",
+    "fullName": "Alan Gabriel Cruz da Silva",
+    "cpf": "168.611.147-90",
+    "totalAmount": 441,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_203",
+    "number": "24/054",
+    "warName": "DE SOUSA",
+    "fullName": "Enzo de Sousa Pereira",
+    "cpf": "182.174.617-16",
+    "totalAmount": 510,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_204",
+    "number": "24/056",
+    "warName": "PÂMELLA",
+    "fullName": "Pâmella Cristina Amaral da Costa",
+    "cpf": "188.720.897-60",
+    "totalAmount": 434.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_205",
+    "number": "24/057",
+    "warName": "MOREIRA",
+    "fullName": "Rafael Antônio Ferreira Moreira",
+    "cpf": "710.587.871-10",
+    "totalAmount": 425,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_206",
+    "number": "24/058",
+    "warName": "HUERGO",
+    "fullName": "THIAGO HUERGO HUERGO",
+    "cpf": "143.706.987-82",
+    "totalAmount": 413,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_207",
+    "number": "24/060",
+    "warName": "OLIVEIRA",
+    "fullName": "Fellipe OLIVEIRA Carmo",
+    "cpf": "083.446.601-57",
+    "totalAmount": 509.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_208",
+    "number": "24/061",
+    "warName": "MAYER",
+    "fullName": "Luis Felipe Alves Mayer",
+    "cpf": "533.143.738-99",
+    "totalAmount": 610.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_209",
+    "number": "24/062",
+    "warName": "MUNARO",
+    "fullName": "João Pedro Dalaqua Munaro",
+    "cpf": "084.202.171-07",
+    "totalAmount": 393,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_210",
+    "number": "24/063",
+    "warName": "PRAXEDES",
+    "fullName": "Pedro Praxedes Linhares",
+    "cpf": "091.240.844-84",
+    "totalAmount": 496.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_211",
+    "number": "24/065",
+    "warName": "JUNIOR",
+    "fullName": "Rogerio Pereira de Souza Junior",
+    "cpf": "148.338.197-83",
+    "totalAmount": 603.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_212",
+    "number": "24/067",
+    "warName": "BARBOSA",
+    "fullName": "Renato Ferreira Barbosa",
+    "cpf": "458.499.078-66",
+    "totalAmount": 454.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_213",
+    "number": "24/068",
+    "warName": "SALDANHA",
+    "fullName": "Rafael Saldanha Galvão",
+    "cpf": "207.076.367-60",
+    "totalAmount": 493,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_214",
+    "number": "24/069",
+    "warName": "RAPHAEL",
+    "fullName": "Kaio Raphael Lemos Leal",
+    "cpf": "199.208.847-07",
+    "totalAmount": 611.91,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_215",
+    "number": "24/071",
+    "warName": "KRONBAUER",
+    "fullName": "Lorenzo da Silveira Kronbauer",
+    "cpf": "048.738.860-74",
+    "totalAmount": 393,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_216",
+    "number": "24/076",
+    "warName": "REIS",
+    "fullName": "João Vitor Ferreira dos Reis",
+    "cpf": "121.603.766-39",
+    "totalAmount": 439.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_217",
+    "number": "24/080",
+    "warName": "ANSELMO",
+    "fullName": "Leonardo Anselmo dos Santos",
+    "cpf": "194.485.287-52",
+    "totalAmount": 418.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_218",
+    "number": "24/082",
+    "warName": "MACHADO",
+    "fullName": "Maurício Machado Barbosa Filho",
+    "cpf": "113.905.156-30",
+    "totalAmount": 557.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_219",
+    "number": "24/084",
+    "warName": "BERGUERAND",
+    "fullName": "Gabriel Berguerand Santos Reis Matheus",
+    "cpf": "191.160.677-89",
+    "totalAmount": 520.39,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_220",
+    "number": "24/086",
+    "warName": "PICCININI",
+    "fullName": "Davi Piccinini",
+    "cpf": "021.878.530-55",
+    "totalAmount": 418,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_221",
+    "number": "24/087",
+    "warName": "COSTA",
+    "fullName": "Lucas da mota olievira costa",
+    "cpf": "199.812.547-54",
+    "totalAmount": 475.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_222",
+    "number": "24/088",
+    "warName": "MARIA EDUARDA",
+    "fullName": "Maria Eduarda Marques de Araujo Soares",
+    "cpf": "167.658.037-93",
+    "totalAmount": 410,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_223",
+    "number": "24/090",
+    "warName": "BITTENCOURT",
+    "fullName": "marcelo porto bittencourt ribeiro",
+    "cpf": "197.864.027-74",
+    "totalAmount": 515.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_224",
+    "number": "24/091",
+    "warName": "LIMA",
+    "fullName": "Enzo Juan Vieira Lima de Souza",
+    "cpf": "526.852.448-83",
+    "totalAmount": 520.11,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_225",
+    "number": "24/094",
+    "warName": "ROCHA",
+    "fullName": "Allan Brito da Rocha",
+    "cpf": "522.940.068-44",
+    "totalAmount": 452.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_226",
+    "number": "24/096",
+    "warName": "BORGES",
+    "fullName": "Gustavo Borges Rego",
+    "cpf": "044.117.411-64",
+    "totalAmount": 569.57,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_227",
+    "number": "24/097",
+    "warName": "GUSTAVO",
+    "fullName": "Pedro Gustavo dos Santos Brandão",
+    "cpf": "158.440.256-36",
+    "totalAmount": 461.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_228",
+    "number": "24/098",
+    "warName": "BARAÇAL",
+    "fullName": "Heitor Baraçal Grande Rezende Barroso",
+    "cpf": "160.339.947-01",
+    "totalAmount": 612.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_229",
+    "number": "24/100",
+    "warName": "DOMINGOS",
+    "fullName": "Victor Domingos dos Santos",
+    "cpf": "154.993.607-74",
+    "totalAmount": 504.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_230",
+    "number": "24/101",
+    "warName": "GARCIA",
+    "fullName": "Gabriel Garcia de Oliveira",
+    "cpf": "180.691.167-14",
+    "totalAmount": 540.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_231",
+    "number": "24/102",
+    "warName": "FALCOEIRAS",
+    "fullName": "Marcos Mateus Falcoeiras",
+    "cpf": "162.609.697-08",
+    "totalAmount": 451,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_232",
+    "number": "24/103",
+    "warName": "SOUSA",
+    "fullName": "Douglas Freire de Sousa",
+    "cpf": "177.909.537-61",
+    "totalAmount": 560.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_233",
+    "number": "24/104",
+    "warName": "NETO",
+    "fullName": "José Carlos Oliveira dos Santos Neto",
+    "cpf": "024.790.565-89",
+    "totalAmount": 419.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_234",
+    "number": "24/105",
+    "warName": "ALVES",
+    "fullName": "Felipe Barreto Ferreira Alves",
+    "cpf": "088.972.903-45",
+    "totalAmount": 447,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_235",
+    "number": "24/106",
+    "warName": "ANA GANDRA",
+    "fullName": "Ana Luiza Sá Feles Gandra da Cunha",
+    "cpf": "184.957.737-40",
+    "totalAmount": 486.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_236",
+    "number": "24/108",
+    "warName": "IZABELA TEIXEIRA",
+    "fullName": "Izabela Teixeira Carvalho Almeida",
+    "cpf": "155.510.626-94",
+    "totalAmount": 565.22,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_237",
+    "number": "24/110",
+    "warName": "CARVALHO",
+    "fullName": "Hugo Magalhães de Carvalho",
+    "cpf": "199.693.577-19",
+    "totalAmount": 543.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_238",
+    "number": "24/111",
+    "warName": "GOIS",
+    "fullName": "Caio Marcos Gois Ferreira",
+    "cpf": "199.112.327-27",
+    "totalAmount": 437.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_239",
+    "number": "24/112",
+    "warName": "GUIDONI",
+    "fullName": "Victor Masetto Guidoni Gonzales",
+    "cpf": "497.659.268-55",
+    "totalAmount": 433.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_240",
+    "number": "24/114",
+    "warName": "ARMOND",
+    "fullName": "Guilherme Armond Ferreira Souza",
+    "cpf": "140.896.806-11",
+    "totalAmount": 420.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_241",
+    "number": "24/117",
+    "warName": "PIMENTEL",
+    "fullName": "João Mateus Pimentel Pereira",
+    "cpf": "194.752.397-07",
+    "totalAmount": 426.84,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_242",
+    "number": "24/119",
+    "warName": "SIMÕES",
+    "fullName": "Lucas Simões Fernandes Gomes",
+    "cpf": "152.818.437-88",
+    "totalAmount": 448.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_243",
+    "number": "24/120",
+    "warName": "FORTUNA",
+    "fullName": "Bruno Fortuna Vieira",
+    "cpf": "176.041.017-98",
+    "totalAmount": 426.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_244",
+    "number": "24/121",
+    "warName": "CALABREZ",
+    "fullName": "LUAN RODRIGUES CALABREZ",
+    "cpf": "126.033.617-40",
+    "totalAmount": 588,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_245",
+    "number": "24/161",
+    "warName": "RUAN BRITO",
+    "fullName": "RUAN ADRIEL OLIVEIRA BRITO",
+    "cpf": "709.113.271-85",
+    "totalAmount": 72.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_246",
+    "number": "24/163",
+    "warName": "SARTOR",
+    "fullName": "Erivelto Ribeiro Sartor",
+    "cpf": "065.646.341-45",
+    "totalAmount": 593.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_247",
+    "number": "24/167",
+    "warName": "ENZO",
+    "fullName": "Enzo Pequeno Oliveira",
+    "cpf": "182.300.047-90",
+    "totalAmount": 428,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_248",
+    "number": "24/171",
+    "warName": "LAINA",
+    "fullName": "Luís Felipe da Silva Laina",
+    "cpf": "124.175.556-62",
+    "totalAmount": 528.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_249",
+    "number": "24/172",
+    "warName": "MARIO",
+    "fullName": "Mario Henrique Silva Loureiro Motta",
+    "cpf": "181.216.737-71",
+    "totalAmount": 484.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_250",
+    "number": "24/202",
+    "warName": "TIBÚRCIO",
+    "fullName": "Matheus Rezende Felix Tibúrcio",
+    "cpf": "180.973.557-28",
+    "totalAmount": 424.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_251",
+    "number": "24/204",
+    "warName": "VICTORIA",
+    "fullName": "Victoria Carrascosa Silva de Santana",
+    "cpf": "167.867.027-83",
+    "totalAmount": 444.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_252",
+    "number": "24/205",
+    "warName": "VITOR",
+    "fullName": "Vitor Lucas Sousa Xavier",
+    "cpf": "078.250.421-31",
+    "totalAmount": 707.65,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_253",
+    "number": "24/231",
+    "warName": "JENIFER",
+    "fullName": "Jenifer Keller Silva do Nascimento",
+    "cpf": "122.470.286-75",
+    "totalAmount": 98.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_254",
+    "number": "24/232",
+    "warName": "GABRIELA",
+    "fullName": "Gabriela Tavares Luchessi",
+    "cpf": "160.853.917-22",
+    "totalAmount": 425,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_255",
+    "number": "24/233",
+    "warName": "ANNA",
+    "fullName": "Anna Julia Carvalho Fayad",
+    "cpf": "166.687.817-05",
+    "totalAmount": 489,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_256",
+    "number": "24/234",
+    "warName": "SOFIA CRIVELLARI",
+    "fullName": "Sofia Crivellari Oliveira dos Santos",
+    "cpf": "135.235.697-02",
+    "totalAmount": 500.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_257",
+    "number": "24/236",
+    "warName": "MARIANE",
+    "fullName": "Mariane Manhães dos Santos Vicente",
+    "cpf": "193.154.257-07",
+    "totalAmount": 115,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_258",
+    "number": "24/237",
+    "warName": "FERREIRA",
+    "fullName": "João Ferreira Martins Neto",
+    "cpf": "127.302.437-04",
+    "totalAmount": 502.53,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_259",
+    "number": "24/246",
+    "warName": "GIOVANELLI",
+    "fullName": "Fellipe Linhares Giovanelli",
+    "cpf": "171.546.677-29",
+    "totalAmount": 460.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_260",
+    "number": "24/247",
+    "warName": "ALEIXO",
+    "fullName": "Lucas da Silveira Duarte Aleixo",
+    "cpf": "189.090.417-14",
+    "totalAmount": 449.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_261",
+    "number": "24/252",
+    "warName": "NILTON",
+    "fullName": "Nilton Gabriel de Oliveira Freires",
+    "cpf": "166.992.027-58",
+    "totalAmount": 537.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_262",
+    "number": "24/261",
+    "warName": "ANA LAURA",
+    "fullName": "Ana Laura Martins de Lima",
+    "cpf": "161.781.177-79",
+    "totalAmount": 498.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_263",
+    "number": "24/262",
+    "warName": "AMANDA TORQUETTI",
+    "fullName": "Amanda do Nascimento Torquetti",
+    "cpf": "147.788.806-33",
+    "totalAmount": 512.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_264",
+    "number": "24/263",
+    "warName": "LUIZA OROSCO",
+    "fullName": "LUIZA OROSCO SILVA",
+    "cpf": "519.955.198-12",
+    "totalAmount": 434.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_265",
+    "number": "24/265",
+    "warName": "EMÍDIO",
+    "fullName": "Douglas Emídio Leão",
+    "cpf": "055.427.961-41",
+    "totalAmount": 435.69,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_266",
+    "number": "24/267",
+    "warName": "KROFF",
+    "fullName": "Weslley KROFF delfino",
+    "cpf": "147.255.947-92",
+    "totalAmount": 458.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_267",
+    "number": "24/270",
+    "warName": "LARYSSA SOUZA",
+    "fullName": "Laryssa Souza Albuquerque de Araújo",
+    "cpf": "135.317.334-86",
+    "totalAmount": 541.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_268",
+    "number": "24/272",
+    "warName": "DALILA",
+    "fullName": "DALILA THEBERGE SAMPAIO VILLA",
+    "cpf": "186.944.587-21",
+    "totalAmount": 497,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_269",
+    "number": "24/274",
+    "warName": "RAFAELA PITTA",
+    "fullName": "Rafaela da Silva Pitta",
+    "cpf": "169.802.517-32",
+    "totalAmount": 309.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_270",
+    "number": "24/275",
+    "warName": "CORREIA",
+    "fullName": "Gabriel Rocha Correia",
+    "cpf": "010.157.083-07",
+    "totalAmount": 428.09,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_271",
+    "number": "24/277",
+    "warName": "LOURENÇO",
+    "fullName": "Pedro Luiz Lourenço",
+    "cpf": "460.345.978-54",
+    "totalAmount": 690.38,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_272",
+    "number": "24/278",
+    "warName": "CONCEIÇÃO",
+    "fullName": "Luiz Guilherme Conceição da Silva",
+    "cpf": "161.287.007-48",
+    "totalAmount": 443,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_273",
+    "number": "24/281",
+    "warName": "YURI",
+    "fullName": "Yuri Alekseyevich de Araújo Batista",
+    "cpf": "056.525.731-55",
+    "totalAmount": 461.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_274",
+    "number": "24/282",
+    "warName": "TONETTI",
+    "fullName": "Paulo Henrique Tonetti",
+    "cpf": "443.991.588-40",
+    "totalAmount": 422.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_275",
+    "number": "24/285",
+    "warName": "L.CRUZ",
+    "fullName": "Luan André de Oliveira Cruz",
+    "cpf": "075.568.821-01",
+    "totalAmount": 507.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_276",
+    "number": "24/287",
+    "warName": "LINCON",
+    "fullName": "Willian Lincon Costa da Silva",
+    "cpf": "186.814.247-77",
+    "totalAmount": 499.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_277",
+    "number": "24/288",
+    "warName": "LIU",
+    "fullName": "SHI JUN ANDRÉ LIU",
+    "cpf": "385.267.168-08",
+    "totalAmount": 434.37,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_278",
+    "number": "24/289",
+    "warName": "BENNONES",
+    "fullName": "Pedro bennones Albano de Lucena",
+    "cpf": "106.226.254-97",
+    "totalAmount": 555.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_279",
+    "number": "24/290",
+    "warName": "CAVALEIRO",
+    "fullName": "Breno Oliveira Cavaleiro",
+    "cpf": "171.956.807-38",
+    "totalAmount": 686.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_280",
+    "number": "24/292",
+    "warName": "SOFIA",
+    "fullName": "Sofia Cortes",
+    "cpf": "502.885.218-97",
+    "totalAmount": 413,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_281",
+    "number": "24/301",
+    "warName": "J. MOREIRA",
+    "fullName": "PATRIK JOSÉ DO NASCIMENTO MOREIRA",
+    "cpf": "119.352.556-06",
+    "totalAmount": 616.13,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_282",
+    "number": "24/303",
+    "warName": "BELMONTE",
+    "fullName": "Fabricio Belmonte Menezes Cunha",
+    "cpf": "166.332.267-80",
+    "totalAmount": 568.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_283",
+    "number": "24/304",
+    "warName": "THIAGO",
+    "fullName": "THIAGO LOPES DOS SANTOS",
+    "cpf": "177.510.187-80",
+    "totalAmount": 595.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_284",
+    "number": "24/306",
+    "warName": "PARANHOS",
+    "fullName": "Rafael Ferreira Paranhos da Silva",
+    "cpf": "181.291.137-83",
+    "totalAmount": 591.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_285",
+    "number": "24/307",
+    "warName": "MENDES",
+    "fullName": "Gabriel Mendes de Oliveira e Souza",
+    "cpf": "119.233.877-40",
+    "totalAmount": 619.4,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_286",
+    "number": "24/309",
+    "warName": "R. COSTA",
+    "fullName": "Rafael Carvalho Costa",
+    "cpf": "109.055.407-94",
+    "totalAmount": 696.17,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_287",
+    "number": "24/310",
+    "warName": "SAMPAIO",
+    "fullName": "Matthews Lopes Sampaio",
+    "cpf": "060.600.761-06",
+    "totalAmount": 596.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_288",
+    "number": "24/311",
+    "warName": "AMORIM",
+    "fullName": "Anthonny Davy de Sá Machado Amorim",
+    "cpf": "159.319.237-13",
+    "totalAmount": 677.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_289",
+    "number": "24/312",
+    "warName": "MESQUITA",
+    "fullName": "Matheus de Matos Mesquita",
+    "cpf": "168.992.727-50",
+    "totalAmount": 549.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_290",
+    "number": "24/313",
+    "warName": "L. ROCHA",
+    "fullName": "Arthur Lima Rocha da Costa",
+    "cpf": "170.462.357-08",
+    "totalAmount": 490.58,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_291",
+    "number": "24/335",
+    "warName": "SILVEIRA",
+    "fullName": "Luis Carlos Silveira Rosa",
+    "cpf": "039.126.582-26",
+    "totalAmount": 558.65,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_292",
+    "number": "24/336",
+    "warName": "LUIS",
+    "fullName": "Luis Henrique da Silva Meses",
+    "cpf": "199.284.687-10",
+    "totalAmount": 653.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_293",
+    "number": "24/337",
+    "warName": "VELOSO",
+    "fullName": "Gabriel Veloso Marchese dos Santos",
+    "cpf": "199.922.867-76",
+    "totalAmount": 763.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_294",
+    "number": "24/339",
+    "warName": "OLEGÁRIO",
+    "fullName": "Nicson Alexandre Olegário dos santos",
+    "cpf": "199.241.837-38",
+    "totalAmount": 582.66,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_295",
+    "number": "24/362",
+    "warName": "DE LIMA",
+    "fullName": "Keven Nicholas Pimentel de Lima",
+    "cpf": "176.400.647-08",
+    "totalAmount": 235.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_296",
+    "number": "24/363",
+    "warName": "RIGAUD",
+    "fullName": "Leonardo Brito Rigaud",
+    "cpf": "514.421.188-73",
+    "totalAmount": 427.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_297",
+    "number": "24/365",
+    "warName": "RAFAEL SILVA",
+    "fullName": "Rafael Lucas da Silva Nascimento",
+    "cpf": "185.874.567-50",
+    "totalAmount": 524.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_298",
+    "number": "24/380",
+    "warName": "KASSTEN",
+    "fullName": "Victor Sacramento Kassten de Moraes",
+    "cpf": "014.644.472-84",
+    "totalAmount": 494.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_299",
+    "number": "24/381",
+    "warName": "DANIEL SOUZA",
+    "fullName": "DANIEL SILVA SOUZA",
+    "cpf": "175.996.237-60",
+    "totalAmount": 575.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_300",
+    "number": "24/382",
+    "warName": "FONTANA",
+    "fullName": "Gustavo Fontana Fonseca",
+    "cpf": "130.334.246-43",
+    "totalAmount": 493.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_301",
+    "number": "24/383",
+    "warName": "MARQUES",
+    "fullName": "João Pedro Pires Marques",
+    "cpf": "076.899.151-08",
+    "totalAmount": 423.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_302",
+    "number": "24/384",
+    "warName": "SANTOS",
+    "fullName": "João Victor da Silva Santos",
+    "cpf": "182.839.017-88",
+    "totalAmount": 548.01,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_303",
+    "number": "24/385",
+    "warName": "NICOLAS",
+    "fullName": "Nicolas Oliveira Lopes",
+    "cpf": "078.473.376-73",
+    "totalAmount": 516.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_304",
+    "number": "24/386",
+    "warName": "ALESSANDRO",
+    "fullName": "Marcelo Alessandro Sampaio Leite",
+    "cpf": "168.882.647-50",
+    "totalAmount": 595.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_305",
+    "number": "24/387",
+    "warName": "VALLE",
+    "fullName": "Gustavo Ribeiro do Valle",
+    "cpf": "082.786.691-71",
+    "totalAmount": 646.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_306",
+    "number": "24/402",
+    "warName": "MOUHAMED",
+    "fullName": "Mouhamed Sene",
+    "cpf": "110.363.311-21",
+    "totalAmount": 113,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_307",
+    "number": "25/001",
+    "warName": "PEDRO RENÓ",
+    "fullName": "Pedro Renó Pintos",
+    "cpf": "398.595.858-06",
+    "totalAmount": 385.1,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_308",
+    "number": "25/002",
+    "warName": "ANDRADE",
+    "fullName": "Enzo Andrade Souza",
+    "cpf": "143.733.897-64",
+    "totalAmount": 462.86,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_309",
+    "number": "25/003",
+    "warName": "MARTINS",
+    "fullName": "Eduarda Fraga Martins",
+    "cpf": "176.399.447-32",
+    "totalAmount": 312.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_310",
+    "number": "25/004",
+    "warName": "SCHETTINI",
+    "fullName": "Matheus Schettini Corrêa",
+    "cpf": "198.314.907-11",
+    "totalAmount": 500.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_311",
+    "number": "25/005",
+    "warName": "DEL-VECCHIO",
+    "fullName": "Bernardo Del-Vecchio Costa",
+    "cpf": "176.876.377-12",
+    "totalAmount": 425.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_312",
+    "number": "25/006",
+    "warName": "BACELAR",
+    "fullName": "Lorenzo de Lucca Macêdo Bacelar",
+    "cpf": "045.428.872-78",
+    "totalAmount": 546.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_313",
+    "number": "25/007",
+    "warName": "VIDAL",
+    "fullName": "Maria Eduarda Sobrinho Vidal",
+    "cpf": "188.113.977-82",
+    "totalAmount": 382.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_314",
+    "number": "25/009",
+    "warName": "OLIVEIRA",
+    "fullName": "André Henrique Martins de Oliveira",
+    "cpf": "710.377.881-76",
+    "totalAmount": 389.86,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_315",
+    "number": "25/010",
+    "warName": "ALICE",
+    "fullName": "Maria Alice Andrade Daniel",
+    "cpf": "161.011.997-54",
+    "totalAmount": 514.15,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_316",
+    "number": "25/011",
+    "warName": "BEATRIZ",
+    "fullName": "Clara Beatriz da Silva de Lima",
+    "cpf": "179.880.657-69",
+    "totalAmount": 420.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_317",
+    "number": "25/012",
+    "warName": "LIMA",
+    "fullName": "Mateus Emanuel da Mota Lima",
+    "cpf": "055.228.305-30",
+    "totalAmount": 582.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_318",
+    "number": "25/013",
+    "warName": "RAIMUNDO",
+    "fullName": "Weslley Emanuel Raimundo Gomes Tavares",
+    "cpf": "182.193.797-07",
+    "totalAmount": 473.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_319",
+    "number": "25/015",
+    "warName": "TAVARES",
+    "fullName": "Bernardo José Tavares de Oliveira",
+    "cpf": "193.963.107-60",
+    "totalAmount": 525.65,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_320",
+    "number": "25/016",
+    "warName": "FERNANDO",
+    "fullName": "Mauro Fernando Martins Souto",
+    "cpf": "093.897.036-46",
+    "totalAmount": 474.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_321",
+    "number": "25/017",
+    "warName": "CARVALHO",
+    "fullName": "João Pedro Oliveira de Carvalho",
+    "cpf": "432.299.538-19",
+    "totalAmount": 518.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_322",
+    "number": "25/018",
+    "warName": "ACIOLY",
+    "fullName": "Emmanuel Edson Luz Acioly Santos de Oliveira",
+    "cpf": "150.403.877-09",
+    "totalAmount": 355.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_323",
+    "number": "25/019",
+    "warName": "SIQUEIRA",
+    "fullName": "Maria Eduarda Siqueira Costa",
+    "cpf": "129.103.786-16",
+    "totalAmount": 477.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_324",
+    "number": "25/020",
+    "warName": "LUIZA",
+    "fullName": "Luiza Rocha Pereira",
+    "cpf": "187.286.737-51",
+    "totalAmount": 634.63,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_325",
+    "number": "25/021",
+    "warName": "PADILHA",
+    "fullName": "João Pedro Padilha de Queiroz",
+    "cpf": "049.690.241-54",
+    "totalAmount": 413.01,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_326",
+    "number": "25/022",
+    "warName": "MUSSATO",
+    "fullName": "Vítor Mussato Lopes",
+    "cpf": "007.139.982-88",
+    "totalAmount": 528.55,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_327",
+    "number": "25/023",
+    "warName": "CIMINO",
+    "fullName": "Arthur Carvalho Cimino",
+    "cpf": "021.119.766-10",
+    "totalAmount": 439.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_328",
+    "number": "25/024",
+    "warName": "SMITH",
+    "fullName": "Jhonys Smith Ladislau de Andrade",
+    "cpf": "467.024.208-38",
+    "totalAmount": 413.72,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_329",
+    "number": "25/025",
+    "warName": "MANUELA",
+    "fullName": "Manuela Ferreira de Carvalho Rodrigues",
+    "cpf": "703.425.166-55",
+    "totalAmount": 456.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_330",
+    "number": "25/026",
+    "warName": "ALBANO",
+    "fullName": "Jefferson Albano Oliveira",
+    "cpf": "153.757.396-90",
+    "totalAmount": 389.51,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_331",
+    "number": "25/027",
+    "warName": "EMANUEL",
+    "fullName": "João Emanuel Oliveira Sales",
+    "cpf": "134.744.956-66",
+    "totalAmount": 466.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_332",
+    "number": "25/028",
+    "warName": "PIRES",
+    "fullName": "Arthur Roberto da Silva Pires",
+    "cpf": "022.863.072-02",
+    "totalAmount": 512.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_333",
+    "number": "25/029",
+    "warName": "COELHO",
+    "fullName": "Miguel Costa Coelho",
+    "cpf": "162.078.467-02",
+    "totalAmount": 700.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_334",
+    "number": "25/030",
+    "warName": "ROCHA",
+    "fullName": "Heitor Rocha Daniel",
+    "cpf": "993.341.942-00",
+    "totalAmount": 478.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_335",
+    "number": "25/031",
+    "warName": "REZENDE",
+    "fullName": "Lucas Rezende Moreira de Amorim",
+    "cpf": "185.938.157-07",
+    "totalAmount": 443.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_336",
+    "number": "25/032",
+    "warName": "MEDEIROS",
+    "fullName": "Pedro Henrique de Castro Medeiros",
+    "cpf": "470.947.908-99",
+    "totalAmount": 434.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_337",
+    "number": "25/033",
+    "warName": "MOURA",
+    "fullName": "Luize Victória Siqueira de Moura",
+    "cpf": "168.315.807-50",
+    "totalAmount": 488.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_338",
+    "number": "25/034",
+    "warName": "CASTRO",
+    "fullName": "Gustavo da Costa Castro",
+    "cpf": "161.376.626-24",
+    "totalAmount": 526.45,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_339",
+    "number": "25/036",
+    "warName": "DE LIMA",
+    "fullName": "Nicholas Felix de Lima",
+    "cpf": "196.294.757-23",
+    "totalAmount": 415.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_340",
+    "number": "25/037",
+    "warName": "SERBER",
+    "fullName": "Victor Serber Almeida Tavares",
+    "cpf": "191.705.947-75",
+    "totalAmount": 463.66,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_341",
+    "number": "25/038",
+    "warName": "HORÁCIO",
+    "fullName": "Nícolas Oliveira Horácio da Costa Freitas",
+    "cpf": "175.759.127-38",
+    "totalAmount": 617.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_342",
+    "number": "25/039",
+    "warName": "HOLZ",
+    "fullName": "Cassiano Holz de Oliveira",
+    "cpf": "043.052.190-18",
+    "totalAmount": 385.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_343",
+    "number": "25/040",
+    "warName": "FERRAZ",
+    "fullName": "HENDRYO BERNARDINO FERRAZ",
+    "cpf": "023.943.021-27",
+    "totalAmount": 484.73,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_344",
+    "number": "25/041",
+    "warName": "HAAG",
+    "fullName": "Alexandre Maidana Haag",
+    "cpf": "052.638.391-70",
+    "totalAmount": 512.21,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_345",
+    "number": "25/042",
+    "warName": "DE MORAIS",
+    "fullName": "Pedro Sousa de Morais",
+    "cpf": "447.921.178-01",
+    "totalAmount": 408.62,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_346",
+    "number": "25/043",
+    "warName": "RANGEL",
+    "fullName": "Leonardo Natal Marreiro Rangel",
+    "cpf": "528.838.658-76",
+    "totalAmount": 485.51,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_347",
+    "number": "25/044",
+    "warName": "LAVÍNIA",
+    "fullName": "Lavínia Velasco Braga",
+    "cpf": "017.213.354-80",
+    "totalAmount": 417.89,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_348",
+    "number": "25/045",
+    "warName": "LANES",
+    "fullName": "João Lucas Oliveira Lanes",
+    "cpf": "116.799.776-01",
+    "totalAmount": 636.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_349",
+    "number": "25/046",
+    "warName": "SALES",
+    "fullName": "Bruna Vitória Sabino Sales",
+    "cpf": "128.661.594-11",
+    "totalAmount": 295.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_350",
+    "number": "25/047",
+    "warName": "ANDRÉ MOURA",
+    "fullName": "André Luiz Magalhães Moura",
+    "cpf": "056.312.311-74",
+    "totalAmount": 423,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_351",
+    "number": "25/048",
+    "warName": "NUENES",
+    "fullName": "Raphael William Nuenes Velozo",
+    "cpf": "197.892.917-01",
+    "totalAmount": 440.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_352",
+    "number": "25/049",
+    "warName": "AIF",
+    "fullName": "Mateus Aif Nascimento de Lima",
+    "cpf": "153.181.074-86",
+    "totalAmount": 430.65,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_353",
+    "number": "25/050",
+    "warName": "COUTO",
+    "fullName": "Mariana Couto Raimundo Pontes",
+    "cpf": "176.999.157-39",
+    "totalAmount": 480.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_354",
+    "number": "25/051",
+    "warName": "APOLO",
+    "fullName": "Apolo Pereira Longo",
+    "cpf": "450.622.128-12",
+    "totalAmount": 492.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_355",
+    "number": "25/052",
+    "warName": "GIUSEPPE",
+    "fullName": "Tawan Giuseppe Pereira",
+    "cpf": "535.642.548-11",
+    "totalAmount": 734.43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_356",
+    "number": "25/053",
+    "warName": "AMANDA",
+    "fullName": "Amanda Aragão de Azevedo",
+    "cpf": "158.813.227-70",
+    "totalAmount": 405.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_357",
+    "number": "25/054",
+    "warName": "ANDREY",
+    "fullName": "Andrey Lucas Dos Santos de Araújo",
+    "cpf": "143.134.384-67",
+    "totalAmount": 403.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_358",
+    "number": "25/055",
+    "warName": "L. MIRANDA",
+    "fullName": "Lucas Adriano Dias Miranda",
+    "cpf": "146.630.476-61",
+    "totalAmount": 639.51,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_359",
+    "number": "25/056",
+    "warName": "HENRI",
+    "fullName": "Vinicius Henri Moreira Costa",
+    "cpf": "144.304.616-78",
+    "totalAmount": 503.66,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_360",
+    "number": "25/057",
+    "warName": "SOUTO",
+    "fullName": "KALEB RODRIGUES SOUTO",
+    "cpf": "037.091.251-97",
+    "totalAmount": 500.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_361",
+    "number": "25/058",
+    "warName": "COLLYER",
+    "fullName": "Lorena Neves Collyer",
+    "cpf": "132.761.437-55",
+    "totalAmount": 520.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_362",
+    "number": "25/059",
+    "warName": "FELIPE",
+    "fullName": "Felipe Silva Encarnação",
+    "cpf": "195.569.537-79",
+    "totalAmount": 624.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_363",
+    "number": "25/060",
+    "warName": "JOÃO",
+    "fullName": "João Pedro Ferreira",
+    "cpf": "444.897.088-40",
+    "totalAmount": 847.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_364",
+    "number": "25/061",
+    "warName": "REINOLD",
+    "fullName": "Patrick Reinold Teles",
+    "cpf": "151.898.157-73",
+    "totalAmount": 535.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_365",
+    "number": "25/063",
+    "warName": "MARIANO",
+    "fullName": "Pedro Mariano da Silva Santos",
+    "cpf": "199.044.637-00",
+    "totalAmount": 347.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_366",
+    "number": "25/064",
+    "warName": "AIRES",
+    "fullName": "Igor Aires Palmeira",
+    "cpf": "700.505.806-20",
+    "totalAmount": 362.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_367",
+    "number": "25/065",
+    "warName": "BARRA",
+    "fullName": "Raphael Kayque Guimarães Barra",
+    "cpf": "171.960.766-48",
+    "totalAmount": 494.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_368",
+    "number": "25/067",
+    "warName": "IURI",
+    "fullName": "Iuri Rodrigues dos Santos",
+    "cpf": "122.422.814-61",
+    "totalAmount": 508.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_369",
+    "number": "25/068",
+    "warName": "TEIXEIRA",
+    "fullName": "Júlio Eduardo Teixeira Goes",
+    "cpf": "034.688.610-44",
+    "totalAmount": 481.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_370",
+    "number": "25/070",
+    "warName": "FARIA",
+    "fullName": "Humberto de Faria Teixeira",
+    "cpf": "144.676.206-80",
+    "totalAmount": 586.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_371",
+    "number": "25/072",
+    "warName": "SAMARAH",
+    "fullName": "Samarah Bernardes de Lima",
+    "cpf": "198.013.377-88",
+    "totalAmount": 437.43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_372",
+    "number": "25/073",
+    "warName": "LUÍZ FELIPE",
+    "fullName": "Luíz Felipe Barbosa de Oliveira",
+    "cpf": "174.421.267-82",
+    "totalAmount": 641.19,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_373",
+    "number": "25/074",
+    "warName": "LELIS",
+    "fullName": "Alan Junior Joviano Lelis",
+    "cpf": "177.380.797-89",
+    "totalAmount": 441.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_374",
+    "number": "25/075",
+    "warName": "LIRA",
+    "fullName": "Gustavo Martins Lira",
+    "cpf": "448.435.808-56",
+    "totalAmount": 534.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_375",
+    "number": "25/076",
+    "warName": "SAMUEL",
+    "fullName": "Samuel Victor Martins",
+    "cpf": "159.339.726-73",
+    "totalAmount": 404.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_376",
+    "number": "25/077",
+    "warName": "FERREIRA",
+    "fullName": "Pedro Luís Ferreira dos Santos",
+    "cpf": "150.861.117-30",
+    "totalAmount": 525.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_377",
+    "number": "25/078",
+    "warName": "LISBOA",
+    "fullName": "Pedro Henrique Gonçalves Lisboa",
+    "cpf": "700.397.916-02",
+    "totalAmount": 693.63,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_378",
+    "number": "25/080",
+    "warName": "SALGUEIRO",
+    "fullName": "Gabriel Rodrigues da Silva Salgueiro",
+    "cpf": "185.846.507-92",
+    "totalAmount": 499.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_379",
+    "number": "25/081",
+    "warName": "HUGO",
+    "fullName": "Vítor Hugo Maia Rodrigues",
+    "cpf": "072.128.802-21",
+    "totalAmount": 656.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_380",
+    "number": "25/082",
+    "warName": "VINÍCIUS",
+    "fullName": "Vinícius Moreira Costa",
+    "cpf": "163.966.606-01",
+    "totalAmount": 417.43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_381",
+    "number": "25/083",
+    "warName": "BERTO",
+    "fullName": "Wylder Silva Berto",
+    "cpf": "121.996.387-90",
+    "totalAmount": 518.89,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_382",
+    "number": "25/084",
+    "warName": "POSSENTI",
+    "fullName": "Gustavo Henrique Possenti",
+    "cpf": "074.912.849-65",
+    "totalAmount": 762.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_383",
+    "number": "25/085",
+    "warName": "ELIABE",
+    "fullName": "Eliabe Matheus de Sousa Miranda",
+    "cpf": "079.376.301-08",
+    "totalAmount": 380.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_384",
+    "number": "25/086",
+    "warName": "LUDGERIO",
+    "fullName": "Fabio Vieira Ludgerio",
+    "cpf": "214.395.767-00",
+    "totalAmount": 488.52,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_385",
+    "number": "25/087",
+    "warName": "FONTENELE",
+    "fullName": "Renie Fontenele Zonzin Junior",
+    "cpf": "135.026.026-62",
+    "totalAmount": 712.03,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_386",
+    "number": "25/089",
+    "warName": "SCHMIDT",
+    "fullName": "Eduardo Schmidt Moreira",
+    "cpf": "375.018.188-86",
+    "totalAmount": 425.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_387",
+    "number": "25/090",
+    "warName": "HENRIQUE",
+    "fullName": "Pedro Henrique de Lima Zilberberg",
+    "cpf": "197.943.837-40",
+    "totalAmount": 537.21,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_388",
+    "number": "25/091",
+    "warName": "SOARES",
+    "fullName": "Artur Magalhães Soares de Oliveira",
+    "cpf": "150.841.927-25",
+    "totalAmount": 645.03,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_389",
+    "number": "25/094",
+    "warName": "PEREIRA",
+    "fullName": "Marcos Henrique Pereira Bruno",
+    "cpf": "158.293.777-05",
+    "totalAmount": 438.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_390",
+    "number": "25/095",
+    "warName": "FRANK",
+    "fullName": "Miguel Frank Nascimento Vasconcelos",
+    "cpf": "180.724.017-77",
+    "totalAmount": 417.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_391",
+    "number": "25/098",
+    "warName": "DOMINGUES",
+    "fullName": "José Gabriel Batista Domingues",
+    "cpf": "111.029.215-56",
+    "totalAmount": 327.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_392",
+    "number": "25/101",
+    "warName": "CAPISTRANO",
+    "fullName": "Gabriel Capistrano de Souza Martins",
+    "cpf": "704.775.954-99",
+    "totalAmount": 358.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_393",
+    "number": "25/103",
+    "warName": "SILVA",
+    "fullName": "Pedro Henrique da Silva Viana",
+    "cpf": "028.687.452-02",
+    "totalAmount": 371.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_394",
+    "number": "25/104",
+    "warName": "OTTERO",
+    "fullName": "Bruno Zanini Ottero",
+    "cpf": "032.897.540-06",
+    "totalAmount": 402.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_395",
+    "number": "25/105",
+    "warName": "CAROLINA",
+    "fullName": "Carolina Vilela Santa Rosa",
+    "cpf": "171.007.137-06",
+    "totalAmount": 737.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_396",
+    "number": "25/107",
+    "warName": "MARCELE",
+    "fullName": "Marcele Pereira Machado",
+    "cpf": "144.442.977-94",
+    "totalAmount": 576.61,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_397",
+    "number": "25/108",
+    "warName": "YURI FARIAS",
+    "fullName": "Yuri Farias de Siqueira",
+    "cpf": "716.767.554-70",
+    "totalAmount": 544.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_398",
+    "number": "25/109",
+    "warName": "CLAERBOUT",
+    "fullName": "João Marcello Claerbout Pinto",
+    "cpf": "066.317.655-79",
+    "totalAmount": 492.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_399",
+    "number": "25/201",
+    "warName": "VALITUTTI",
+    "fullName": "Giulia Alves Valitutti",
+    "cpf": "081.676.521-90",
+    "totalAmount": 448.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_400",
+    "number": "25/204",
+    "warName": "COZIUC",
+    "fullName": "Karen Pessoa Coziuc",
+    "cpf": "080.046.953-45",
+    "totalAmount": 476.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_401",
+    "number": "25/205",
+    "warName": "ANA PINHEIRO",
+    "fullName": "Ana Clara Pinheiro Martins",
+    "cpf": "061.983.441-26",
+    "totalAmount": 410.29,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_402",
+    "number": "25/207",
+    "warName": "KALILA",
+    "fullName": "Kalila Oliveira Porto",
+    "cpf": "063.423.673-37",
+    "totalAmount": 503.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_403",
+    "number": "25/208",
+    "warName": "ALBERTO",
+    "fullName": "José Alberto Rodrigues da Rosa Júnior",
+    "cpf": "141.167.774-98",
+    "totalAmount": 429.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_404",
+    "number": "25/209",
+    "warName": "MARIANE",
+    "fullName": "Mariane Clementino Barbosa",
+    "cpf": "704.849.904-46",
+    "totalAmount": 453.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_405",
+    "number": "25/210",
+    "warName": "NERY",
+    "fullName": "Taohan de Araujo Nery",
+    "cpf": "169.764.207-11",
+    "totalAmount": 425.36,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_406",
+    "number": "25/212",
+    "warName": "COUTINHO",
+    "fullName": "Gabriel da Silva Coutinho",
+    "cpf": "163.323.957-88",
+    "totalAmount": 412.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_407",
+    "number": "25/213",
+    "warName": "CAIO",
+    "fullName": "Caio Gomes da Silva Ferreira",
+    "cpf": "705.165.464-06",
+    "totalAmount": 459.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_408",
+    "number": "25/214",
+    "warName": "DANIEL",
+    "fullName": "Daniel Pires de Almeida",
+    "cpf": "130.658.329-25",
+    "totalAmount": 544.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_409",
+    "number": "25/215",
+    "warName": "BEDIM",
+    "fullName": "Kaiky Augusto Bedim",
+    "cpf": "379.368.258-78",
+    "totalAmount": 582.21,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_410",
+    "number": "25/217",
+    "warName": "LEONARDO",
+    "fullName": "Leonardo Fernandes Ribeiro",
+    "cpf": "143.520.357-77",
+    "totalAmount": 361,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_411",
+    "number": "25/219",
+    "warName": "ISABELA MAIA",
+    "fullName": "ISABELA MAIA SOUZA",
+    "cpf": "162.783.477-09",
+    "totalAmount": 575.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_412",
+    "number": "25/220",
+    "warName": "CAIO MIRANDA",
+    "fullName": "Caio Costa Miranda",
+    "cpf": "198.267.267-61",
+    "totalAmount": 410.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_413",
+    "number": "25/221",
+    "warName": "ANA MARQUES",
+    "fullName": "Ana Luiza Sannazzaro Marques",
+    "cpf": "463.815.428-02",
+    "totalAmount": 343.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_414",
+    "number": "25/222",
+    "warName": "PAMELA",
+    "fullName": "Pamela Kelly Silva Honório",
+    "cpf": "198.307.637-65",
+    "totalAmount": 475.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_415",
+    "number": "25/223",
+    "warName": "AFONSO",
+    "fullName": "Igor Afonso Borba",
+    "cpf": "345.561.488-47",
+    "totalAmount": 428,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_416",
+    "number": "25/301",
+    "warName": "PATRICK",
+    "fullName": "Patrick Xavier Fernandes",
+    "cpf": "193.621.347-80",
+    "totalAmount": 323.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_417",
+    "number": "25/303",
+    "warName": "FONSECA",
+    "fullName": "Diogo Pinho da Fonseca",
+    "cpf": "039.320.375-10",
+    "totalAmount": 410.55,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_418",
+    "number": "25/304",
+    "warName": "SALGADO",
+    "fullName": "José Lucas Salgado Ribeiro",
+    "cpf": "131.655.609-35",
+    "totalAmount": 583.03,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_419",
+    "number": "25/305",
+    "warName": "ALVES",
+    "fullName": "Leandro da Silva Alves",
+    "cpf": "167.165.847-73",
+    "totalAmount": 490.6,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_420",
+    "number": "25/306",
+    "warName": "MASCARENHAS",
+    "fullName": "Igor Mendonça Mascarenhas da Silva",
+    "cpf": "479.700.108-90",
+    "totalAmount": 450.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_421",
+    "number": "25/308",
+    "warName": "MORETTO",
+    "fullName": "Guilherme Moretto Dias",
+    "cpf": "084.057.739-75",
+    "totalAmount": 428.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_422",
+    "number": "25/309",
+    "warName": "GUERREIRO",
+    "fullName": "Denis Guerreiro Tomiazzi",
+    "cpf": "485.299.758-63",
+    "totalAmount": 401.17,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_423",
+    "number": "25/310",
+    "warName": "MATEUS",
+    "fullName": "Mateus Siqueira Moura",
+    "cpf": "083.075.521-76",
+    "totalAmount": 403.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_424",
+    "number": "25/311",
+    "warName": "BATISTA",
+    "fullName": "Caio André Batista de jesus",
+    "cpf": "209.910.667-31",
+    "totalAmount": 420.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_425",
+    "number": "25/312",
+    "warName": "SOUZA",
+    "fullName": "VICTOR PEREIRA DOS SANTOS E SOUZA",
+    "cpf": "156.162.067-09",
+    "totalAmount": 551.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_426",
+    "number": "25/313",
+    "warName": "L. DIAS",
+    "fullName": "Lucas Rodrigues Dias dos Santos",
+    "cpf": "176.832.277-57",
+    "totalAmount": 488.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_427",
+    "number": "25/314",
+    "warName": "EDUARDO",
+    "fullName": "Eduardo Augusto Marques Henriques",
+    "cpf": "177.418.877-50",
+    "totalAmount": 582.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_428",
+    "number": "25/316",
+    "warName": "RABELLO",
+    "fullName": "Arthur Felipe Miranda Rabello",
+    "cpf": "121.908.544-82",
+    "totalAmount": 621.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_429",
+    "number": "25/317",
+    "warName": "MEIRELES",
+    "fullName": "Giovanni Meireles da Silva",
+    "cpf": "154.611.637-00",
+    "totalAmount": 398.68,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_430",
+    "number": "25/319",
+    "warName": "PASSOS",
+    "fullName": "Antony Martins da Costa Passos",
+    "cpf": "088.855.389-75",
+    "totalAmount": 408,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_431",
+    "number": "25/320",
+    "warName": "GONDIM",
+    "fullName": "Renan Vitor Pinheiro Gondim",
+    "cpf": "183.568.757-14",
+    "totalAmount": 683.01,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_432",
+    "number": "25/321",
+    "warName": "GALETTI",
+    "fullName": "Paulo Henrique Galetti Faustino",
+    "cpf": "420.105.298-20",
+    "totalAmount": 345.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_433",
+    "number": "25/401",
+    "warName": "VIZCAÍNO",
+    "fullName": "Juan José Vizcaíno Peñafiel",
+    "cpf": "123.291.101-11",
+    "totalAmount": 405.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_434",
+    "number": "25/402",
+    "warName": "MAGUIÑA",
+    "fullName": "Joaquin Alejandro Maguiña Barrantes",
+    "cpf": "064.478.438-56",
+    "totalAmount": 439.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_435",
+    "number": "25/403",
+    "warName": "PARAPO",
+    "fullName": "MIGUEL ANGEL MAMANI PARAPO",
+    "cpf": "123.363.241-80",
+    "totalAmount": 344.73,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_436",
+    "number": "25/071",
+    "warName": "MARLON",
+    "fullName": "Kaique Marlon Souza Leite",
+    "cpf": "126.355.346-08",
+    "totalAmount": 401.55,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_437",
+    "number": "25/224",
+    "warName": "LUIS",
+    "fullName": "Alexandre Luis Oliveira Leite Da Silva",
+    "cpf": "199.148.467-42",
+    "totalAmount": 329.82,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_438",
+    "number": "25/225",
+    "warName": "WANZELER",
+    "fullName": "Gustavo De Oliveira Rodrigues Wanzeler",
+    "cpf": "110.990.537-81",
+    "totalAmount": 504.37,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_439",
+    "number": "25/226",
+    "warName": "LORENA",
+    "fullName": "Lorena Oliveira Brito",
+    "cpf": "099.031.396-40",
+    "totalAmount": 562.87,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_440",
+    "number": "25/227",
+    "warName": "CAPUZZO",
+    "fullName": "Rafael Roman Capuzzo",
+    "cpf": "525.501.108-89",
+    "totalAmount": 367.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_441",
+    "number": "25/228",
+    "warName": "IZABELA",
+    "fullName": "Izabela Maria Severiano Medeiros",
+    "cpf": "120.648.274-55",
+    "totalAmount": 389.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_442",
+    "number": "25/229",
+    "warName": "LARISSA",
+    "fullName": "Larissa Costa Nascimento",
+    "cpf": "183.695.197-33",
+    "totalAmount": 458.53,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_443",
+    "number": "25/230",
+    "warName": "DANIEL SILVA",
+    "fullName": "Daniel Menezes Da Silva",
+    "cpf": "178.397.737-02",
+    "totalAmount": 362.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_444",
+    "number": "25/231",
+    "warName": "MARCOS",
+    "fullName": "Marcos Vinicius Gomes Barros",
+    "cpf": "152.211.637-05",
+    "totalAmount": 379.12,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_445",
+    "number": "25/232",
+    "warName": "ALEXANDRE",
+    "fullName": "Matheus Alexandre Silva Da Costa",
+    "cpf": "175.613.577-02",
+    "totalAmount": 522.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_446",
+    "number": "25/233",
+    "warName": "DO CARMO",
+    "fullName": "Victor Alessandro Pereira Do Carmo",
+    "cpf": "186.561.547-10",
+    "totalAmount": 422.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_447",
+    "number": "25/234",
+    "warName": "CHICARINO",
+    "fullName": "Vinicius Chicarino Vieira",
+    "cpf": "169.616.637-37",
+    "totalAmount": 393.73,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_448",
+    "number": "25/322",
+    "warName": "CAVALCANTE",
+    "fullName": "Gustavo Pinto Cavalcante",
+    "cpf": "184.539.237-01",
+    "totalAmount": 505.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_449",
+    "number": "25/323",
+    "warName": "CHRISTIAN",
+    "fullName": "Lucas Christian Neves Rodrigues",
+    "cpf": "181.779.697-65",
+    "totalAmount": 318,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_450",
+    "number": "25/324",
+    "warName": "ALEX",
+    "fullName": "Alex Bichoff",
+    "cpf": "446.243.638-50",
+    "totalAmount": 308,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_451",
+    "number": "26/001",
+    "warName": "LUCAS",
+    "fullName": "Lucas Leite Silva",
+    "cpf": "151.748.367-02",
+    "totalAmount": 332.97,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_452",
+    "number": "26/002",
+    "warName": "CAMILLA",
+    "fullName": "Camilla Sales Coelho",
+    "cpf": "087.443.094-14",
+    "totalAmount": 308.4,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_453",
+    "number": "26/003",
+    "warName": "JESUS",
+    "fullName": "Samuel Azeredo De Jesus Nascimento",
+    "cpf": "204.290.317-50",
+    "totalAmount": 417.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_454",
+    "number": "26/004",
+    "warName": "BUZATI",
+    "fullName": "Alexsander Roger Buzati",
+    "cpf": "703.117.726-09",
+    "totalAmount": 238.08,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_455",
+    "number": "26/005",
+    "warName": "MARABOTTI",
+    "fullName": "Willian Vitor Borges Marabotti",
+    "cpf": "168.889.197-81",
+    "totalAmount": 264.28,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_456",
+    "number": "26/006",
+    "warName": "BARRETO",
+    "fullName": "Matheus Barreto Ferreira Dos Santos",
+    "cpf": "112.275.566-08",
+    "totalAmount": 255.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_457",
+    "number": "26/007",
+    "warName": "UCHÔA",
+    "fullName": "Carlos Vinícius Silveira Uchôa",
+    "cpf": "041.285.843-63",
+    "totalAmount": 505.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_458",
+    "number": "26/008",
+    "warName": "ESTEVÃO",
+    "fullName": "João Estevão De Oliveira França",
+    "cpf": "196.690.797-48",
+    "totalAmount": 401.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_459",
+    "number": "26/009",
+    "warName": "DUARTE",
+    "fullName": "Gustavo Marciano Duarte",
+    "cpf": "206.455.057-73",
+    "totalAmount": 412.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_460",
+    "number": "26/010",
+    "warName": "FÉRES",
+    "fullName": "João Paulo De Oliveira Féres",
+    "cpf": "038.901.231-98",
+    "totalAmount": 254.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_461",
+    "number": "26/011",
+    "warName": "BELLI",
+    "fullName": "Vitor Belli Garcia",
+    "cpf": "396.006.718-69",
+    "totalAmount": 414.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_462",
+    "number": "26/012",
+    "warName": "KEN",
+    "fullName": "Guilherme Ken Brito Tanabe",
+    "cpf": "038.185.962-20",
+    "totalAmount": 326.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_463",
+    "number": "26/013",
+    "warName": "FERNANDES",
+    "fullName": "Carolina Maria Toledo Fernandes",
+    "cpf": "751.435.501-49",
+    "totalAmount": 161,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_464",
+    "number": "26/014",
+    "warName": "KRAUSE",
+    "fullName": "Guilherme Krause Pinto Nogueira",
+    "cpf": "123.660.379-61",
+    "totalAmount": 333.18,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_465",
+    "number": "26/015",
+    "warName": "MAZUR",
+    "fullName": "Fernando Pasquali Mazur",
+    "cpf": "033.231.622-00",
+    "totalAmount": 219.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_466",
+    "number": "26/017",
+    "warName": "ROMANI",
+    "fullName": "Gabriel De Almeida Romani",
+    "cpf": "126.808.816-13",
+    "totalAmount": 263.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_467",
+    "number": "26/018",
+    "warName": "SALGADO",
+    "fullName": "Danillo Henrique Gonçalves Mendes Salgado",
+    "cpf": "189.296.667-01",
+    "totalAmount": 386.53,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_468",
+    "number": "26/019",
+    "warName": "COSTALONGA",
+    "fullName": "Guilherme Machado Costalonga",
+    "cpf": "112.389.996-70",
+    "totalAmount": 313.7,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_469",
+    "number": "26/020",
+    "warName": "DANIEL",
+    "fullName": "Daniel Lanne Garcia De Oliveira",
+    "cpf": "156.206.256-56",
+    "totalAmount": 195.39,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_470",
+    "number": "26/021",
+    "warName": "ANDRADE",
+    "fullName": "Leonardo Garutti De Andrade",
+    "cpf": "523.611.248-66",
+    "totalAmount": 315.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_471",
+    "number": "26/022",
+    "warName": "THARSIS",
+    "fullName": "Tharsis Gonçalves De Macedo",
+    "cpf": "102.868.409-60",
+    "totalAmount": 308.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_472",
+    "number": "26/023",
+    "warName": "MOULIN",
+    "fullName": "Luiz Gustavo Moulin Curti",
+    "cpf": "134.127.187-00",
+    "totalAmount": 188,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_473",
+    "number": "26/024",
+    "warName": "ERNANI",
+    "fullName": "Ernani Gomes De Andrade Freitas",
+    "cpf": "706.130.141-46",
+    "totalAmount": 277.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_474",
+    "number": "26/025",
+    "warName": "PEDRO",
+    "fullName": "Pedro Henrique Borges Do Nascimento",
+    "cpf": "151.152.507-05",
+    "totalAmount": 317.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_475",
+    "number": "26/026",
+    "warName": "SILVEIRA",
+    "fullName": "Leonardo Silveira Ferreira Da Rosa",
+    "cpf": "187.434.827-83",
+    "totalAmount": 251.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_476",
+    "number": "26/027",
+    "warName": "MACHADO",
+    "fullName": "Igor Fuhr Machado",
+    "cpf": "034.221.740-28",
+    "totalAmount": 295.27,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_477",
+    "number": "26/028",
+    "warName": "MATHEUS",
+    "fullName": "Matheus Castro Campos",
+    "cpf": "501.810.658-19",
+    "totalAmount": 359.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_478",
+    "number": "26/029",
+    "warName": "PASCOAL",
+    "fullName": "Luany Carvalho Pascoal Dos Santos",
+    "cpf": "190.135.957-31",
+    "totalAmount": 346.56,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_479",
+    "number": "26/030",
+    "warName": "APOLINÁRIO",
+    "fullName": "Pedro Henrique Apolinário Santos",
+    "cpf": "168.133.646-42",
+    "totalAmount": 213,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_480",
+    "number": "26/031",
+    "warName": "AGUIAR",
+    "fullName": "Pedro Eduardo Aguiar Fini",
+    "cpf": "161.524.737-80",
+    "totalAmount": 154,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_481",
+    "number": "26/032",
+    "warName": "LISBOA",
+    "fullName": "Carlos Emanuel Castanheira De Paiva Lisboa",
+    "cpf": "153.862.776-00",
+    "totalAmount": 297.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_482",
+    "number": "26/033",
+    "warName": "SANTOS",
+    "fullName": "Pablo Manoel Dantas Dos Santos",
+    "cpf": "703.256.124-12",
+    "totalAmount": 424.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_483",
+    "number": "26/034",
+    "warName": "RAMIRO",
+    "fullName": "Jonas De Castro Ramiro",
+    "cpf": "102.747.976-66",
+    "totalAmount": 193,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_484",
+    "number": "26/035",
+    "warName": "CAROLINA",
+    "fullName": "Ana Carolina Macedo Do Nascimento",
+    "cpf": "144.878.957-58",
+    "totalAmount": 257.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_485",
+    "number": "26/036",
+    "warName": "STAINKI",
+    "fullName": "Théo Monteiro Stainki",
+    "cpf": "033.229.540-05",
+    "totalAmount": 321,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_486",
+    "number": "26/037",
+    "warName": "OLIVEIRA",
+    "fullName": "João Victor Rodrigues Farias De Oliveira",
+    "cpf": "177.556.637-44",
+    "totalAmount": 403.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_487",
+    "number": "26/038",
+    "warName": "NETO",
+    "fullName": "João Medeiros Rodrigues Neto",
+    "cpf": "173.475.437-03",
+    "totalAmount": 297.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_488",
+    "number": "26/039",
+    "warName": "MARQUET",
+    "fullName": "Alexandre De Marquet Freitas",
+    "cpf": "172.517.197-03",
+    "totalAmount": 236.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_489",
+    "number": "26/040",
+    "warName": "RÔMULO",
+    "fullName": "Rômulo Soares Feijó Baptista",
+    "cpf": "215.451.657-26",
+    "totalAmount": 332.52,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_490",
+    "number": "26/041",
+    "warName": "VIANA",
+    "fullName": "Nicolas Viana Mendonça",
+    "cpf": "212.025.447-89",
+    "totalAmount": 208,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_491",
+    "number": "26/042",
+    "warName": "ZAGNE",
+    "fullName": "Caroline Zagne Martins",
+    "cpf": "177.981.127-66",
+    "totalAmount": 253.93,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_492",
+    "number": "26/043",
+    "warName": "PEÇANHA",
+    "fullName": "Eduardo Peçanha Witczak Celso",
+    "cpf": "161.998.667-11",
+    "totalAmount": 290.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_493",
+    "number": "26/044",
+    "warName": "SOARES",
+    "fullName": "Miguel Soares Costa",
+    "cpf": "215.278.807-96",
+    "totalAmount": 173,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_494",
+    "number": "26/045",
+    "warName": "JULIO CESAR",
+    "fullName": "Julio Cesar Barros Rodrigues",
+    "cpf": "170.646.577-75",
+    "totalAmount": 402.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_495",
+    "number": "26/046",
+    "warName": "BORGES",
+    "fullName": "Daniel Borges Fernandes Alves",
+    "cpf": "052.855.741-61",
+    "totalAmount": 226.16,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_496",
+    "number": "26/047",
+    "warName": "GONZAGA",
+    "fullName": "Bianca Gonzaga Ferreira Da Silva",
+    "cpf": "078.237.805-69",
+    "totalAmount": 280.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_497",
+    "number": "26/048",
+    "warName": "AZRIEL",
+    "fullName": "Azriel De Souza Barroso Anselmo",
+    "cpf": "190.227.367-25",
+    "totalAmount": 253.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_498",
+    "number": "26/049",
+    "warName": "SARDEIRO",
+    "fullName": "Mateus Sardeiro Araújo",
+    "cpf": "058.476.281-02",
+    "totalAmount": 275.94,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_499",
+    "number": "26/050",
+    "warName": "TAFUR",
+    "fullName": "Maria Eduarda Tafur De Oliveira",
+    "cpf": "153.646.556-95",
+    "totalAmount": 231.22,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_500",
+    "number": "26/051",
+    "warName": "RENAN",
+    "fullName": "Renan Martins Sisquim",
+    "cpf": "168.736.907-08",
+    "totalAmount": 176.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_501",
+    "number": "26/052",
+    "warName": "NASCIMENTO",
+    "fullName": "Caio Rodrigues Do Nascimento Silva",
+    "cpf": "187.059.327-85",
+    "totalAmount": 250.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_502",
+    "number": "26/053",
+    "warName": "GUIMARÃES",
+    "fullName": "Juan Guimarães Fernandes De Oliveira",
+    "cpf": "209.103.887-33",
+    "totalAmount": 191.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_503",
+    "number": "26/054",
+    "warName": "ARIELLO",
+    "fullName": "Bernardo Ariello",
+    "cpf": "115.091.169-74",
+    "totalAmount": 281.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_504",
+    "number": "26/055",
+    "warName": "PREVITALI",
+    "fullName": "Caroline Serrano Previtali",
+    "cpf": "205.080.417-24",
+    "totalAmount": 212.78,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_505",
+    "number": "26/056",
+    "warName": "TRIGO",
+    "fullName": "Geovanny Ronaldo Trigo Ribeiro",
+    "cpf": "132.561.257-00",
+    "totalAmount": 297.95,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_506",
+    "number": "26/057",
+    "warName": "PACHECO",
+    "fullName": "Arthur Pacheco Coutinho",
+    "cpf": "150.767.207-18",
+    "totalAmount": 284.84,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_507",
+    "number": "26/058",
+    "warName": "VITOR",
+    "fullName": "Vitor Hugo De Oliveira Leonardo De Araújo",
+    "cpf": "196.938.047-08",
+    "totalAmount": 207.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_508",
+    "number": "26/059",
+    "warName": "WILLAN",
+    "fullName": "Willan Gomes De Souza Flor",
+    "cpf": "201.352.777-28",
+    "totalAmount": 332.91,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_509",
+    "number": "26/060",
+    "warName": "LAÍS GUERREIRO",
+    "fullName": "Laís Karoline Coelho Guerreiro",
+    "cpf": "083.675.495-62",
+    "totalAmount": 286.15,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_510",
+    "number": "26/061",
+    "warName": "GUILHERME",
+    "fullName": "André Guilherme Pinto Da Silva",
+    "cpf": "087.883.654-33",
+    "totalAmount": 200.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_511",
+    "number": "26/062",
+    "warName": "DA COSTA",
+    "fullName": "Giovani Balbino Da Costa",
+    "cpf": "114.856.904-98",
+    "totalAmount": 277.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_512",
+    "number": "26/063",
+    "warName": "MARQUES",
+    "fullName": "Heitor Marques Araújo",
+    "cpf": "449.431.258-40",
+    "totalAmount": 158,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_513",
+    "number": "26/064",
+    "warName": "RAFAEL MENDES",
+    "fullName": "Rafael Mendes Pinto Carneiro",
+    "cpf": "094.138.589-26",
+    "totalAmount": 314.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_514",
+    "number": "26/065",
+    "warName": "COUTO",
+    "fullName": "Maria Luiza De Abreu E Silva Couto",
+    "cpf": "099.606.836-80",
+    "totalAmount": 533.52,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_515",
+    "number": "26/066",
+    "warName": "BAILLY",
+    "fullName": "Tiago Ribeiro Bailly",
+    "cpf": "185.055.997-05",
+    "totalAmount": 208.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_516",
+    "number": "26/067",
+    "warName": "MARÇULLO",
+    "fullName": "Thiago Luis Marçullo Borges Dos Santos",
+    "cpf": "206.816.947-93",
+    "totalAmount": 362.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_517",
+    "number": "26/068",
+    "warName": "PAES",
+    "fullName": "Guilherme Paes Barreto De Oliveira",
+    "cpf": "144.652.194-07",
+    "totalAmount": 220.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_518",
+    "number": "26/069",
+    "warName": "CASCARDO",
+    "fullName": "João Pedro Santos Cascardo",
+    "cpf": "162.378.657-64",
+    "totalAmount": 168.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_519",
+    "number": "26/070",
+    "warName": "CRUZ",
+    "fullName": "João Maurício Pereira E Souza Cruz",
+    "cpf": "130.620.296-50",
+    "totalAmount": 255.49,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_520",
+    "number": "26/071",
+    "warName": "MARUCCI",
+    "fullName": "Pierre Augusto Marucci Filho",
+    "cpf": "465.447.548-62",
+    "totalAmount": 198.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_521",
+    "number": "26/072",
+    "warName": "VALVERDE",
+    "fullName": "Henrique Valverde Marcio",
+    "cpf": "429.252.298-75",
+    "totalAmount": 564.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_522",
+    "number": "26/073",
+    "warName": "BASTOS",
+    "fullName": "Pedro Henrique Andrade Bastos De Souza",
+    "cpf": "134.505.997-39",
+    "totalAmount": 158.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_523",
+    "number": "26/074",
+    "warName": "LELO",
+    "fullName": "Miguel Procopio Lelo",
+    "cpf": "544.570.888-89",
+    "totalAmount": 324.63,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_524",
+    "number": "26/075",
+    "warName": "MENDONÇA",
+    "fullName": "José Ari De Lima De Mendonça",
+    "cpf": "034.272.992-60",
+    "totalAmount": 247.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_525",
+    "number": "26/076",
+    "warName": "RODRIGUES",
+    "fullName": "Bernardo Do Canto Rodrigues Pontes",
+    "cpf": "002.579.422-11",
+    "totalAmount": 286.58,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_526",
+    "number": "26/077",
+    "warName": "ARRUDA",
+    "fullName": "Breno Lima Dos Passos Arruda",
+    "cpf": "195.366.117-32",
+    "totalAmount": 150,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_527",
+    "number": "26/078",
+    "warName": "MAGNO",
+    "fullName": "Givaldo Magno Ferreira Da Silva Segundo",
+    "cpf": "040.393.081-23",
+    "totalAmount": 296.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_528",
+    "number": "26/079",
+    "warName": "GUSTAVO ALVES",
+    "fullName": "Gustavo Alves Ferreira",
+    "cpf": "182.591.297-10",
+    "totalAmount": 547.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_529",
+    "number": "26/080",
+    "warName": "URBANO",
+    "fullName": "João Pedro Ferreira Urbano Da Silva",
+    "cpf": "096.685.344-09",
+    "totalAmount": 214.29,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_530",
+    "number": "26/081",
+    "warName": "ARAÚJO",
+    "fullName": "Pedro Araújo Ferreira",
+    "cpf": "085.840.624-16",
+    "totalAmount": 347.44,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_531",
+    "number": "26/082",
+    "warName": "RAUL",
+    "fullName": "Raul Freitas Daniel",
+    "cpf": "172.982.307-60",
+    "totalAmount": 358.62,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_532",
+    "number": "26/083",
+    "warName": "ROCHA",
+    "fullName": "Gustavo Rocha Candido",
+    "cpf": "162.848.297-44",
+    "totalAmount": 217.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_533",
+    "number": "26/084",
+    "warName": "MARIA PAULA",
+    "fullName": "Maria Paula De Sant’Anna Farias",
+    "cpf": "148.551.117-83",
+    "totalAmount": 242.07,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_534",
+    "number": "26/085",
+    "warName": "ROSSINI",
+    "fullName": "João Víctor Rossini",
+    "cpf": "075.968.101-52",
+    "totalAmount": 119.5,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_535",
+    "number": "26/086",
+    "warName": "FRANCISCO",
+    "fullName": "Caio Lucas De Oliveira Francisco",
+    "cpf": "166.162.417-00",
+    "totalAmount": 199.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_536",
+    "number": "26/087",
+    "warName": "AMANCIO",
+    "fullName": "Pedro Gabriel Amancio Gomes",
+    "cpf": "704.826.016-55",
+    "totalAmount": 248.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_537",
+    "number": "26/088",
+    "warName": "ORESTES",
+    "fullName": "Carlos Eduardo Orestes Dos Santos",
+    "cpf": "504.894.738-06",
+    "totalAmount": 222,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_538",
+    "number": "26/089",
+    "warName": "TIAGO",
+    "fullName": "Tiago Gentil",
+    "cpf": "549.807.468-96",
+    "totalAmount": 273.69,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_539",
+    "number": "26/090",
+    "warName": "FIGUEIREDO",
+    "fullName": "Gustavo Figueiredo Fernandes",
+    "cpf": "152.771.747-02",
+    "totalAmount": 296,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_540",
+    "number": "26/091",
+    "warName": "CORDEIRO",
+    "fullName": "Raí Cordeiro Fernandes",
+    "cpf": "190.115.287-19",
+    "totalAmount": 293,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_541",
+    "number": "26/092",
+    "warName": "REIS",
+    "fullName": "Jonatha Reis De Almeida",
+    "cpf": "189.109.657-54",
+    "totalAmount": 193,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_542",
+    "number": "26/093",
+    "warName": "CAVALCANTI",
+    "fullName": "Miguel Lucas Martins Cavalcanti",
+    "cpf": "163.455.287-30",
+    "totalAmount": 167.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_543",
+    "number": "26/094",
+    "warName": "VICENTE",
+    "fullName": "Leonardo Vinicius Vicente Nunes",
+    "cpf": "145.705.367-51",
+    "totalAmount": 156.48,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_544",
+    "number": "26/095",
+    "warName": "CORREA",
+    "fullName": "Guilherme Ferreira Correa Dos Santos",
+    "cpf": "382.988.468-00",
+    "totalAmount": 204.58,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_545",
+    "number": "26/096",
+    "warName": "TROVÃO",
+    "fullName": "Guilherme Trovão Dos Santos",
+    "cpf": "182.936.057-40",
+    "totalAmount": 400.59,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_546",
+    "number": "26/097",
+    "warName": "RYAN ROCHA",
+    "fullName": "Ryan De Almeida Rocha",
+    "cpf": "198.108.867-99",
+    "totalAmount": 294.73,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_547",
+    "number": "26/098",
+    "warName": "WAILLER",
+    "fullName": "Rafael Andreas Wailler",
+    "cpf": "080.602.269-83",
+    "totalAmount": 434.35,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_548",
+    "number": "26/099",
+    "warName": "RUSCZYK",
+    "fullName": "Arthur Rusczyk Leal",
+    "cpf": "033.571.140-54",
+    "totalAmount": 497.2,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_549",
+    "number": "26/100",
+    "warName": "MANERA",
+    "fullName": "Pedro Manera Mandarino",
+    "cpf": "198.117.537-76",
+    "totalAmount": 422.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_550",
+    "number": "26/101",
+    "warName": "DO CARMO",
+    "fullName": "Otávio Vinicius Do Carmo Rodrigues",
+    "cpf": "095.753.741-77",
+    "totalAmount": 142.23,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_551",
+    "number": "26/102",
+    "warName": "PRADO",
+    "fullName": "Vitor Montalvão Prado",
+    "cpf": "424.950.668-10",
+    "totalAmount": 253.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_552",
+    "number": "26/104",
+    "warName": "ARTHUR",
+    "fullName": "Arthur Silva Gomes",
+    "cpf": "547.877.888-50",
+    "totalAmount": 349.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_553",
+    "number": "26/105",
+    "warName": "PAULA MATTOS",
+    "fullName": "Paula Mattos De Oliveira",
+    "cpf": "145.962.467-00",
+    "totalAmount": 346.15,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_554",
+    "number": "26/106",
+    "warName": "DAVID KAWÃ",
+    "fullName": "David Kawã Barroso Alves",
+    "cpf": "195.914.577-07",
+    "totalAmount": 387.9,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_555",
+    "number": "26/107",
+    "warName": "CORSINO",
+    "fullName": "João Pedro De Souza Neves Corsino",
+    "cpf": "135.651.727-70",
+    "totalAmount": 300.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_556",
+    "number": "26/108",
+    "warName": "MENEGUITE",
+    "fullName": "Ramon Meneguite",
+    "cpf": "099.145.836-28",
+    "totalAmount": 246.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_557",
+    "number": "26/109",
+    "warName": "MORGADO",
+    "fullName": "Eduardo Morgado Pereira",
+    "cpf": "189.652.867-86",
+    "totalAmount": 43,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_558",
+    "number": "26/110",
+    "warName": "ALLAN",
+    "fullName": "Allan De Moraes Medeiros",
+    "cpf": "620.704.683-80",
+    "totalAmount": 351.86,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_559",
+    "number": "26/111",
+    "warName": "JOÃO PEDRO",
+    "fullName": "João Pedro Andrade Silva",
+    "cpf": "018.370.126-79",
+    "totalAmount": 383.62,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_560",
+    "number": "26/112",
+    "warName": "SANTHIAGO",
+    "fullName": "Santhiago Rates Vieira",
+    "cpf": "705.604.751-36",
+    "totalAmount": 309.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_561",
+    "number": "26/113",
+    "warName": "FALCÃO",
+    "fullName": "Douglas dos Santos Falcao",
+    "cpf": "090.828.864-64",
+    "totalAmount": 307.67,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_562",
+    "number": "26/201",
+    "warName": "GAVA",
+    "fullName": "Lívia Maria Gava Santos",
+    "cpf": "154.149.596-92",
+    "totalAmount": 197.09,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_563",
+    "number": "26/202",
+    "warName": "MARTINS",
+    "fullName": "Júlia Martins Da Silva",
+    "cpf": "177.190.487-92",
+    "totalAmount": 247,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_564",
+    "number": "26/203",
+    "warName": "NOGUEIRA",
+    "fullName": "Bruna Busto Nogueira",
+    "cpf": "205.216.337-96",
+    "totalAmount": 290.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_565",
+    "number": "26/204",
+    "warName": "ALVES",
+    "fullName": "Mariana Moreira Dos Santos França Alves",
+    "cpf": "141.499.457-56",
+    "totalAmount": 75.88,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_566",
+    "number": "26/205",
+    "warName": "MARIANA",
+    "fullName": "Mariana De Oliveira Santos",
+    "cpf": "101.369.656-52",
+    "totalAmount": 186.65,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_567",
+    "number": "26/206",
+    "warName": "COSTA LIMA",
+    "fullName": "Guilherme Costa Lima Guimarães Cova",
+    "cpf": "173.510.167-20",
+    "totalAmount": 268.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_568",
+    "number": "26/208",
+    "warName": "GRAVINO",
+    "fullName": "Fernanda Gravino Lordeiro",
+    "cpf": "149.234.936-40",
+    "totalAmount": 173,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_569",
+    "number": "26/209",
+    "warName": "SILENE",
+    "fullName": "Camila Silene Melo Cavalcante",
+    "cpf": "716.795.154-46",
+    "totalAmount": 150.99,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_570",
+    "number": "26/210",
+    "warName": "MARINHO",
+    "fullName": "Matheus Armond Marinho",
+    "cpf": "176.229.707-86",
+    "totalAmount": 292.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_571",
+    "number": "26/211",
+    "warName": "SANTANA",
+    "fullName": "Matheus Santana Coelho",
+    "cpf": "154.187.167-78",
+    "totalAmount": 221.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_572",
+    "number": "26/212",
+    "warName": "RAEL",
+    "fullName": "Luciano Rael Ferreira Silva",
+    "cpf": "154.442.277-62",
+    "totalAmount": 337.09,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_573",
+    "number": "26/214",
+    "warName": "TIAGO BARROSO",
+    "fullName": "Tiago Barroso Da Silva",
+    "cpf": "544.915.538-74",
+    "totalAmount": 431.33,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_574",
+    "number": "26/215",
+    "warName": "MARINA",
+    "fullName": "Marina Vilanova Villela Queiroz De Oliveira",
+    "cpf": "191.748.527-10",
+    "totalAmount": 397.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_575",
+    "number": "26/216",
+    "warName": "GARCIA",
+    "fullName": "Jean Paulo Rossi Garcia",
+    "cpf": "120.062.906-06",
+    "totalAmount": 329.54,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_576",
+    "number": "26/218",
+    "warName": "DILKIN",
+    "fullName": "Felipe Augusto Da Silva Dilkin",
+    "cpf": "077.811.221-78",
+    "totalAmount": 335.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_577",
+    "number": "26/220",
+    "warName": "VARGAS",
+    "fullName": "Pedro Vargas Lima",
+    "cpf": "136.856.467-45",
+    "totalAmount": 319.06,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_578",
+    "number": "26/221",
+    "warName": "PEDRO LUZ",
+    "fullName": "Pedro Henrique Dos Santos Luz",
+    "cpf": "159.329.497-24",
+    "totalAmount": 297.13,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_579",
+    "number": "26/223",
+    "warName": "FONSECA",
+    "fullName": "Gabriel Felipe Da Fonseca Lima",
+    "cpf": "159.586.296-03",
+    "totalAmount": 367.05,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_580",
+    "number": "26/224",
+    "warName": "LUIZ",
+    "fullName": "Luiz Daniel De Carvalho Menezes",
+    "cpf": "166.811.607-35",
+    "totalAmount": 258.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_581",
+    "number": "26/225",
+    "warName": "MARIA",
+    "fullName": "Maria Isabella Da Silva Marques",
+    "cpf": "177.777.947-28",
+    "totalAmount": 318.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_582",
+    "number": "26/226",
+    "warName": "REBECA",
+    "fullName": "Rebeca De Moura Maciel",
+    "cpf": "168.543.887-32",
+    "totalAmount": 348.22,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_583",
+    "number": "26/228",
+    "warName": "HENRIQUE MACHADO",
+    "fullName": "Luiz Henrique De Souza Machado",
+    "cpf": "713.523.054-02",
+    "totalAmount": 511.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_584",
+    "number": "26/229",
+    "warName": "RIOS",
+    "fullName": "Isaac Rios Martins",
+    "cpf": "545.464.328-95",
+    "totalAmount": 570.03,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_585",
+    "number": "26/230",
+    "warName": "ANA BRATZ",
+    "fullName": "Ana Carolina Duarte Bratz",
+    "cpf": "019.774.020-03",
+    "totalAmount": 273.85,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_586",
+    "number": "26/231",
+    "warName": "DHEIN",
+    "fullName": "Bruno Giller Dhein",
+    "cpf": "116.625.849-11",
+    "totalAmount": 501.24,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_587",
+    "number": "26/232",
+    "warName": "LETÍCIA",
+    "fullName": "Letícia Leal De Oliveira",
+    "cpf": "180.857.057-02",
+    "totalAmount": 401.42,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_588",
+    "number": "26/233",
+    "warName": "LETÍCIA OLIVEIRA",
+    "fullName": "Letícia Oliveira De Jesus Almeida",
+    "cpf": "204.426.487-07",
+    "totalAmount": 255.73,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_589",
+    "number": "26/234",
+    "warName": "LIMA",
+    "fullName": "Maurício André Francisco Fernandes De Lima",
+    "cpf": "176.679.007-01",
+    "totalAmount": 211.25,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_590",
+    "number": "26/235",
+    "warName": "TRIGUEIRO",
+    "fullName": "Rafael Souza Trigueiro",
+    "cpf": "053.289.925-39",
+    "totalAmount": 252.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_591",
+    "number": "26/236",
+    "warName": "ANNA CARDOSO",
+    "fullName": "Anna Luiza Cardoso De Oliveira",
+    "cpf": "162.533.597-03",
+    "totalAmount": 471.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_592",
+    "number": "26/237",
+    "warName": "VIEIRA",
+    "fullName": "Kauã Gabriel Vieira Santos",
+    "cpf": "156.547.857-61",
+    "totalAmount": 315.81,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_593",
+    "number": "26/238",
+    "warName": "ÉRICA",
+    "fullName": "Érica Freitas de Paula Pardal",
+    "cpf": "151.002.817-07",
+    "totalAmount": 436.11,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_594",
+    "number": "26/301",
+    "warName": "HASEGAWA",
+    "fullName": "Hugo Yukio Hasegawa",
+    "cpf": "076.105.369-70",
+    "totalAmount": 267.47,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_595",
+    "number": "26/302",
+    "warName": "LOPES",
+    "fullName": "Sávio Lopes Da Silva",
+    "cpf": "076.200.249-21",
+    "totalAmount": 361.98,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_596",
+    "number": "26/304",
+    "warName": "ESTANISLAU",
+    "fullName": "Daniel Estanislau",
+    "cpf": "109.951.064-36",
+    "totalAmount": 508.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_597",
+    "number": "26/305",
+    "warName": "ARTHUR ARAÚJO",
+    "fullName": "Arthur Araújo Da Silva",
+    "cpf": "716.788.944-00",
+    "totalAmount": 319.36,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_598",
+    "number": "26/306",
+    "warName": "MATHEUS OLIVEIRA",
+    "fullName": "Matheus Henrique Oliveira Da Silva",
+    "cpf": "134.923.824-44",
+    "totalAmount": 411.29,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_599",
+    "number": "26/307",
+    "warName": "FRANÇA",
+    "fullName": "João Pedro Moura De França",
+    "cpf": "157.012.437-02",
+    "totalAmount": 281.26,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_600",
+    "number": "26/308",
+    "warName": "CARNEIRO",
+    "fullName": "Elder Fernandes Carneiro",
+    "cpf": "046.770.813-44",
+    "totalAmount": 255.92,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_601",
+    "number": "26/309",
+    "warName": "CHAVES",
+    "fullName": "Bernardo Monnerat Chaves",
+    "cpf": "093.153.935-89",
+    "totalAmount": 524.96,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_602",
+    "number": "26/310",
+    "warName": "NEGREIROS",
+    "fullName": "Renan Guimarães Negreiros",
+    "cpf": "159.988.237-02",
+    "totalAmount": 235.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_603",
+    "number": "26/311",
+    "warName": "MESQUITA",
+    "fullName": "Joabe Gabriel Santos Mesquita",
+    "cpf": "154.064.937-79",
+    "totalAmount": 392.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_604",
+    "number": "26/313",
+    "warName": "ANTONIETTI",
+    "fullName": "Samuel Andrade Antonietti",
+    "cpf": "416.243.918-42",
+    "totalAmount": 299.74,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_605",
+    "number": "26/314",
+    "warName": "ERIVAN JUNIOR",
+    "fullName": "Erivan Pereira Da Silva Costa Junior",
+    "cpf": "040.466.191-20",
+    "totalAmount": 230.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_606",
+    "number": "26/316",
+    "warName": "MARCUS RIOS",
+    "fullName": "Marcus Henrique Rios Marinho",
+    "cpf": "201.552.417-70",
+    "totalAmount": 486.03,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_607",
+    "number": "26/317",
+    "warName": "PONTES",
+    "fullName": "Victor Gabriel Da Cunha Marques Pontes",
+    "cpf": "148.425.087-79",
+    "totalAmount": 260.71,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_608",
+    "number": "26/318",
+    "warName": "DANIEL ALMEIDA",
+    "fullName": "Daniel Almeida Dos Santos",
+    "cpf": "054.191.292-56",
+    "totalAmount": 422.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_609",
+    "number": "26/319",
+    "warName": "NEVES",
+    "fullName": "Diogo Neves Carvalho",
+    "cpf": "145.551.516-74",
+    "totalAmount": 318.77,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_610",
+    "number": "26/320",
+    "warName": "MENDES",
+    "fullName": "Felipe Mendes De Souza",
+    "cpf": "141.867.047-24",
+    "totalAmount": 258.76,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_611",
+    "number": "26/324",
+    "warName": "PAULICH",
+    "fullName": "Sara Teixeira Pinto Paulich",
+    "cpf": "195.910.547-77",
+    "totalAmount": 485.19,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_612",
+    "number": "26/325",
+    "warName": "MARNÊ",
+    "fullName": "Marcio Regis Marnê Júnior",
+    "cpf": "167.797.377-39",
+    "totalAmount": 279.14,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_613",
+    "number": "26/326",
+    "warName": "AGATHA",
+    "fullName": "Agatha Mendonça da Silva",
+    "cpf": "161.480.447-81",
+    "totalAmount": 410.46,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_614",
+    "number": "26/327",
+    "warName": "JÚLIA",
+    "fullName": "Júlia De Carvalho Lins",
+    "cpf": "049.939.011-35",
+    "totalAmount": 303.75,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_615",
+    "number": "26/401",
+    "warName": "MINGA",
+    "fullName": "Andrew Omner Minga Diaz",
+    "cpf": "141.734.508-00",
+    "totalAmount": 322.38,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_616",
+    "number": "26/402",
+    "warName": "C. ANDRADE",
+    "fullName": "Caio Júnior Gomes Andrade",
+    "cpf": "128.306.321-25",
+    "totalAmount": 187.3,
+    "billingPeriod": "2026-08"
+  },
+  {
+    "id": "cnt_617",
+    "number": "26/403",
+    "warName": "ATOEMNE",
+    "fullName": "Jacob Jonas Atoemne",
+    "cpf": "128.424.991-31",
+    "totalAmount": 286.42,
+    "billingPeriod": "2026-08"
+  }
+]
