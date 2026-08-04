@@ -121,3 +121,35 @@ export interface DesligadoItem {
   clubName: string;
   description: string;
 }
+
+// Interfaces da Cédula Digital - Consulta Liquid Glass
+export const Esquadrao = {
+  PRIMEIRO: '1º Esquadrão',
+  SEGUNDO: '2º Esquadrão',
+  TERCEIRO: '3º Esquadrão',
+  QUARTO: '4º Esquadrão'
+} as const;
+
+export type Esquadrao = (typeof Esquadrao)[keyof typeof Esquadrao];
+
+
+export interface ItemCompra {
+  id: string;
+  descricao: string;
+  valor: number;
+  data: string;
+  categoria: string;
+}
+
+export interface Cadete {
+  id: string;
+  nome: string;
+  numero: string; 
+  esquadrao: Esquadrao;
+  itens: ItemCompra[];
+}
+
+export interface LinhaPlanilha {
+  [key: string]: any;
+}
+
