@@ -244,7 +244,6 @@ export function App() {
               clubs={clubs}
               memberships={memberships}
               reports={reports}
-              allUsers={allUsers}
               onSaveReport={handleSaveReport}
               theme={theme}
               onRefreshData={loadData}
