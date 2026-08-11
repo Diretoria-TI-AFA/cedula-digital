@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import type { Club, ClubMembership, DirectorReport, Expense, User } from '../../types';
@@ -7,8 +7,6 @@ import { ReportVerificationModal } from './ReportVerificationModal';
 import { QRCodeExpenseScanner } from '../common/QRCodeExpenseScanner';
 import { LaunchExpenseModal } from '../scaer/LaunchExpenseModal';
 import { BeautifulSealBadge } from './BeautifulSealBadge';
-import contadorDataImport from '../../data/contador_data.json';
-import repasseDataImport from '../../data/repasse_data.json';
 import {
   FileCheck,
   Download,
@@ -34,6 +32,7 @@ interface DirectorDashboardProps {
   clubs: Club[];
   memberships: ClubMembership[];
   reports: DirectorReport[];
+  allUsers?: User[];
   onSaveReport: (report: Omit<DirectorReport, 'id'>) => Promise<DirectorReport>;
   theme?: 'dark' | 'light';
   onRefreshData?: () => void;
@@ -45,6 +44,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   clubs,
   memberships,
   reports,
+  allUsers = [],
   onSaveReport,
   theme = 'dark',
   onRefreshData,
@@ -75,27 +75,58 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   const [lastHash, setLastHash] = useState<string | null>(null);
   const isDark = theme === 'dark';
 
-  // --- DADOS DO CONTADOR E REPASSE IMPORTADOS DA PLANILHA ---
-  const contadorData = contadorDataImport as Array<{
-    id: string;
-    number: string;
-    warName: string;
-    fullName: string;
-    cpf: string;
-    totalAmount: number;
-    billingPeriod: string;
-  }>;
-
-  const repasseData = repasseDataImport as Array<{
-    id: string;
-    clubName: string;
-    amount: number;
-    billingPeriod: string;
-    category: string;
-  }>;
-
   // Lançamentos do Período (Auditoria)
   const periodExpenses = expenses.filter((e) => selectedPeriod === 'all' || e.billingPeriod === selectedPeriod);
+
+  // --- DADOS DO CONTADOR CALCULADOS DINAMICAMENTE DO POCKETBASE ---
+  const contadorData = useMemo(() => {
+    const map = new Map<string, { id: string; number: string; warName: string; fullName: string; cpf: string; totalAmount: number; billingPeriod: string }>();
+
+    periodExpenses.forEach((exp) => {
+      const key = exp.cadetNumber || exp.userId || exp.userName;
+      const existing = map.get(key);
+      if (existing) {
+        existing.totalAmount += exp.amount;
+      } else {
+        const uMatch = allUsers.find((u) => u.cadetNumber === exp.cadetNumber || u.id === exp.userId || (u.warName && u.warName.toUpperCase() === exp.userName.toUpperCase()));
+        map.set(key, {
+          id: exp.id || key,
+          number: exp.cadetNumber || '---',
+          warName: exp.userName || '---',
+          fullName: uMatch?.name || exp.userName || '---',
+          cpf: uMatch?.cpf || '---',
+          totalAmount: exp.amount,
+          billingPeriod: selectedPeriod,
+        });
+      }
+    });
+
+    return Array.from(map.values()).sort((a, b) => a.number.localeCompare(b.number));
+  }, [periodExpenses, allUsers, selectedPeriod]);
+
+  // --- DADOS DO REPASSE CALCULADOS DINAMICAMENTE DO POCKETBASE ---
+  const repasseData = useMemo(() => {
+    const map = new Map<string, { id: string; clubName: string; amount: number; billingPeriod: string; category: string }>();
+
+    periodExpenses.forEach((exp) => {
+      const key = exp.clubName || exp.clubId;
+      const existing = map.get(key);
+      if (existing) {
+        existing.amount += exp.amount;
+      } else {
+        const clubMatch = clubs.find((c) => c.id === exp.clubId || c.name.toUpperCase() === exp.clubName.toUpperCase());
+        map.set(key, {
+          id: exp.clubId || key,
+          clubName: exp.clubName || 'SCAER',
+          amount: exp.amount,
+          billingPeriod: selectedPeriod,
+          category: clubMatch?.category || 'Clube / Diretoria',
+        });
+      }
+    });
+
+    return Array.from(map.values()).sort((a, b) => b.amount - a.amount);
+  }, [periodExpenses, clubs, selectedPeriod]);
   
   const filteredExpenses = periodExpenses.filter((e) => {
     const matchesClub = selectedClubFilter === 'all' || e.clubId === selectedClubFilter;

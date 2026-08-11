@@ -14,13 +14,18 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({ user, expens
   const isDark = theme === 'dark';
 
   const availablePeriods = [
+    { period: '2026-08', label: 'Agosto / 2026', status: 'open' },
     { period: '2026-07', label: 'Julho / 2026 (Atual)', status: 'open' },
     { period: '2026-06', label: 'Junho / 2026', status: 'closed' },
     { period: '2026-05', label: 'Maio / 2026', status: 'closed' },
+    { period: '2026-04', label: 'Abril / 2026', status: 'closed' },
+    { period: '2026-03', label: 'Março / 2026', status: 'closed' },
+    { period: '2026-02', label: 'Fevereiro / 2026', status: 'closed' },
+    { period: '2026-01', label: 'Janeiro / 2026', status: 'closed' },
   ];
 
   const cadetExpenses = expenses.filter(
-    (e) => e.userId === user.id && e.billingPeriod === selectedPeriod
+    (e) => (e.userId === user.id || (user.cadetNumber && e.cadetNumber === user.cadetNumber)) && e.billingPeriod === selectedPeriod
   );
 
   const totalAmount = cadetExpenses.reduce((acc, curr) => acc + curr.amount, 0);
