@@ -135,13 +135,15 @@ export function App() {
   if (isLoading) {
     return (
       <div className={`min-h-screen flex items-center justify-center ${
-        theme === 'dark' ? 'bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'
+        theme === 'dark' ? 'bg-zinc-950 text-zinc-100' : 'bg-zinc-50 text-zinc-900'
       }`}>
-        <div className="text-center space-y-4">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-500 border border-cyan-500/30 flex items-center justify-center mx-auto animate-bounce">
-            <Shield className="w-6 h-6" />
+        <div className="text-center space-y-3">
+          <div className={`w-10 h-10 rounded-lg border flex items-center justify-center mx-auto ${
+            theme === 'dark' ? 'bg-zinc-900 border-zinc-800 text-white' : 'bg-white border-zinc-200 text-zinc-900'
+          }`}>
+            <Shield className="w-5 h-5 animate-pulse" />
           </div>
-          <p className="text-sm font-bold">Conectando ao PocketBase SCAER...</p>
+          <p className="text-xs font-semibold">Conectando ao PocketBase SCAER...</p>
         </div>
       </div>
     );
@@ -168,10 +170,10 @@ export function App() {
   const cadetList = allUsers.filter(u => u.role === 'cadete' || !u.role || u.role === 'diretor');
 
   return (
-    <div className={`min-h-screen font-sans antialiased transition-colors duration-300 ${
+    <div className={`min-h-screen font-sans antialiased transition-colors duration-200 ${
       isDark
-        ? 'bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-slate-950'
-        : 'bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white'
+        ? 'bg-zinc-950 text-zinc-100 selection:bg-zinc-800 selection:text-white'
+        : 'bg-zinc-50 text-zinc-900 selection:bg-zinc-200 selection:text-zinc-900'
     }`}>
       
       {/* Header Principal */}
@@ -186,11 +188,11 @@ export function App() {
       />
 
       {/* Conteúdo Principal */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
         {/* ABA: Cartão & Cédula do Cadete */}
         {activeTab === 'card' && (
-          <div className="space-y-8 animate-in fade-in duration-300">
+          <div className="space-y-6">
             <CreditCard3D
               user={currentUser}
               invoiceTotal={invoiceTotal}
@@ -204,7 +206,7 @@ export function App() {
 
         {/* ABA: Clubes da SCAER */}
         {activeTab === 'clubs' && (
-          <div className="animate-in fade-in duration-300">
+          <div>
             <CadetClubsView
               user={currentUser}
               clubs={clubs}
@@ -217,7 +219,7 @@ export function App() {
 
         {/* ABA: Portal do Gestor SCAER / Presidente do Clube */}
         {activeTab === 'scaer' && (
-          <div className="animate-in fade-in duration-300">
+          <div>
             <ScaerManagerView
               user={currentUser}
               clubs={clubs}
@@ -235,7 +237,7 @@ export function App() {
 
         {/* ABA: Diretoria de Cédula */}
         {activeTab === 'director' && (
-          <div className="animate-in fade-in duration-300">
+          <div>
             <DirectorDashboard
               directorUser={currentUser}
               expenses={expenses}
@@ -252,11 +254,11 @@ export function App() {
       </main>
 
       {/* Rodapé da Aplicação Simplificado */}
-      <footer className={`border-t py-8 mt-16 transition-colors ${
-        isDark ? 'border-slate-900 bg-slate-950/90 text-slate-400' : 'border-slate-200 bg-white text-slate-600'
+      <footer className={`border-t py-6 mt-12 transition-colors ${
+        isDark ? 'border-zinc-900 bg-zinc-950 text-zinc-500' : 'border-zinc-200 bg-white text-zinc-400'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 text-center text-xs font-semibold">
-          <p>Academia da Força Aérea • Diretoria de Cédula • © 2026 SCAER</p>
+        <div className="max-w-7xl mx-auto px-4 text-center text-[11px] font-medium">
+          <p>Academia da Força Aérea • Diretoria de Cédula • SCAER 2026</p>
         </div>
       </footer>
 

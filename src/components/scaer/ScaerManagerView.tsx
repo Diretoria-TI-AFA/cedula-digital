@@ -3,7 +3,6 @@ import type { Club, ClubMembership, Expense, User } from '../../types';
 import { LaunchExpenseModal } from './LaunchExpenseModal';
 import { QRCodeExpenseScanner } from '../common/QRCodeExpenseScanner';
 import {
-  Shield,
   Users,
   PlusCircle,
   CheckCircle2,
@@ -21,7 +20,6 @@ import {
   X,
   Award,
   Wallet,
-  ArrowUpRight,
   DollarSign
 } from 'lucide-react';
 
@@ -175,26 +173,27 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
     <div className="space-y-6">
       
       {/* Banner Principal do Clube Administrado */}
-      <div className={`relative overflow-hidden rounded-3xl p-6 sm:p-8 border shadow-2xl backdrop-blur-xl transition-colors ${
+      <div className={`p-5 sm:p-6 rounded-xl border transition-colors ${
         isDark
-          ? 'bg-gradient-to-r from-slate-900 via-amber-950/40 to-slate-950 border-amber-500/30'
-          : 'bg-gradient-to-r from-amber-900 via-red-900 to-slate-900 border-amber-400 text-white'
+          ? 'bg-zinc-900 border-zinc-800 text-zinc-100'
+          : 'bg-white border-zinc-200 text-zinc-900 shadow-sm'
       }`}>
-        <div className="absolute -top-16 -right-16 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl" />
-
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="space-y-1">
             <div className="flex items-center space-x-2">
-              <span className="px-3 py-1 text-xs font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center space-x-1">
-                <Shield className="w-3.5 h-3.5" />
-                <span>GESTOR DO CLUBE SCAER</span>
+              <span className={`px-2 py-0.5 text-[10px] font-bold rounded border uppercase ${
+                isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-700'
+              }`}>
+                GESTOR DE CLUBE
               </span>
 
               {/* Seletor do Clube Administrado */}
               <select
                 value={managedClub.id}
                 onChange={(e) => setSelectedClubId(e.target.value)}
-                className="px-3 py-1 rounded-full text-xs font-extrabold bg-slate-950/90 text-amber-400 border border-amber-500/40 focus:outline-none cursor-pointer shadow-lg"
+                className={`px-2.5 py-1 rounded-lg text-xs font-semibold border focus:outline-none cursor-pointer ${
+                  isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-100' : 'bg-zinc-50 border-zinc-200 text-zinc-900'
+                }`}
               >
                 {clubs.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -204,23 +203,27 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
               </select>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+            <h2 className="text-xl font-bold tracking-tight">
               Gestão Financeira & Sócios: {managedClub.name}
             </h2>
-            <p className="text-xs text-slate-200 mt-1">
-              Presidente / Gestor Logado: <strong className="text-amber-300">{user.warName || user.name}</strong> • Mensalidade Base: R$ {managedClub.monthlyFee.toFixed(2)}
+            <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+              Gestor: <strong className="font-semibold">{user.warName || user.name}</strong> • Mensalidade: R$ {managedClub.monthlyFee.toFixed(2)}
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div className="flex flex-wrap items-center gap-2 w-full md:w-auto">
             {/* Botão de Leitor de QR Code */}
             <button
               onClick={() => setShowQrScanner(true)}
-              className="px-5 py-3.5 rounded-2xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-xl shadow-cyan-600/25 transition-all flex items-center space-x-2"
+              className={`px-4 py-2 rounded-lg font-semibold text-xs border transition-colors flex items-center space-x-1.5 ${
+                isDark
+                  ? 'bg-zinc-950 border-zinc-800 text-zinc-300 hover:text-white'
+                  : 'bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-zinc-900'
+              }`}
               title="Escanear QR Code do Cadete"
             >
-              <QrCode className="w-5 h-5" />
-              <span>Escanear QR Code</span>
+              <QrCode className="w-4 h-4" />
+              <span>Escanear QR ID</span>
             </button>
 
             {/* Botão Lançar Gasto */}
@@ -229,10 +232,14 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                 setScannedCadetInfo(null);
                 setShowLaunchModal(true);
               }}
-              className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-red-600 hover:from-amber-400 hover:to-red-500 text-white font-bold text-xs shadow-xl shadow-amber-500/25 transition-all flex items-center space-x-2"
+              className={`px-4 py-2 rounded-lg font-semibold text-xs transition-colors flex items-center space-x-1.5 ${
+                isDark
+                  ? 'bg-zinc-100 text-zinc-950 hover:bg-white'
+                  : 'bg-zinc-900 text-white hover:bg-zinc-800'
+              }`}
             >
-              <PlusCircle className="w-5 h-5" />
-              <span>Lançar Gasto na Cédula</span>
+              <PlusCircle className="w-4 h-4" />
+              <span>Lançar na Cédula</span>
             </button>
           </div>
         </div>
@@ -240,18 +247,20 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
 
       {/* BANNER RECORRENTE E PEDIDOS PENDENTES */}
       {pendingRequests.length > 0 && (
-        <div className={`p-4 rounded-2xl border flex items-center justify-between transition-colors ${
-          isDark ? 'bg-amber-500/10 border-amber-500/30 text-amber-300' : 'bg-amber-50 border-amber-300 text-amber-900'
+        <div className={`p-3.5 rounded-xl border flex items-center justify-between transition-colors ${
+          isDark ? 'bg-zinc-900 border-zinc-800 text-amber-400' : 'bg-amber-50 border-amber-200 text-amber-900'
         }`}>
-          <div className="flex items-center space-x-3">
-            <Bell className="w-5 h-5 animate-bounce shrink-0 text-amber-400" />
-            <span className="text-xs font-bold">
-              Você possui {pendingRequests.length} solicitação(ões) pendente(s) de entrada/saída de sócios no clube.
+          <div className="flex items-center space-x-2.5">
+            <Bell className="w-4 h-4 shrink-0" />
+            <span className="text-xs font-semibold">
+              Você possui {pendingRequests.length} solicitação(ões) pendente(s) de entrada/saída de sócios.
             </span>
           </div>
           <button
             onClick={() => setActiveTab('requests')}
-            className="px-3.5 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-extrabold text-xs transition-all hover:bg-amber-400"
+            className={`px-3 py-1 rounded-lg font-semibold text-xs border transition-colors ${
+              isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-200 hover:text-white' : 'bg-white border-zinc-300 text-zinc-800'
+            }`}
           >
             Ver Pedidos
           </button>
@@ -259,128 +268,134 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
       )}
 
       {/* Cards de Métricas Principais de Caixa do Clube */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         
-        <div className={`p-5 rounded-2xl border shadow-lg backdrop-blur-xl transition-colors ${
-          isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'
+        <div className={`p-4 rounded-xl border transition-colors ${
+          isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
         }`}>
-          <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Caixa Total no Mês ({selectedPeriod})</span>
-            <Wallet className="w-4 h-4 text-emerald-500" />
+          <div className={`flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1 ${
+            isDark ? 'text-zinc-400' : 'text-zinc-500'
+          }`}>
+            <span>Caixa Total Mês ({selectedPeriod})</span>
+            <Wallet className="w-4 h-4" />
           </div>
-          <div className="text-2xl font-bold text-emerald-500 font-mono">
+          <div className="text-xl font-bold font-mono">
             R$ {totalPeriodRevenue.toFixed(2)}
           </div>
-          <div className="mt-2 text-[10px] text-slate-400 flex items-center space-x-1">
-            <ArrowUpRight className="w-3 h-3 text-emerald-400" />
-            <span>Arrecadação total no período</span>
+          <div className={`mt-1 text-[10px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+            Arrecadação total do clube
           </div>
         </div>
 
-        <div className={`p-5 rounded-2xl border backdrop-blur-xl transition-colors ${
-          isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'
+        <div className={`p-4 rounded-xl border transition-colors ${
+          isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
         }`}>
-          <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
+          <div className={`flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1 ${
+            isDark ? 'text-zinc-400' : 'text-zinc-500'
+          }`}>
             <span>Mensalidades Recorrentes</span>
-            <Receipt className="w-4 h-4 text-cyan-500" />
+            <Receipt className="w-4 h-4" />
           </div>
-          <div className="text-2xl font-bold text-cyan-400 font-mono">
+          <div className="text-xl font-bold font-mono">
             R$ {recurringRevenue.toFixed(2)}
           </div>
-          <div className="mt-2 text-[10px] text-slate-400">
+          <div className={`mt-1 text-[10px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
             {activeMembers.length} sócios ativos (R$ {managedClub.monthlyFee}/mês)
           </div>
         </div>
 
-        <div className={`p-5 rounded-2xl border backdrop-blur-xl transition-colors ${
-          isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'
+        <div className={`p-4 rounded-xl border transition-colors ${
+          isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
         }`}>
-          <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Consumos & Taxas Avulsas</span>
-            <DollarSign className="w-4 h-4 text-amber-500" />
+          <div className={`flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1 ${
+            isDark ? 'text-zinc-400' : 'text-zinc-500'
+          }`}>
+            <span>Consumos & Avulsos</span>
+            <DollarSign className="w-4 h-4" />
           </div>
-          <div className="text-2xl font-bold text-amber-400 font-mono">
+          <div className="text-xl font-bold font-mono">
             R$ {consumptionRevenue.toFixed(2)}
           </div>
-          <div className="mt-2 text-[10px] text-slate-400">
-            Gastos extras e eventos especiais
+          <div className={`mt-1 text-[10px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+            Gastos extras e materiais
           </div>
         </div>
 
-        <div className={`p-5 rounded-2xl border backdrop-blur-xl transition-colors ${
-          isDark ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200'
+        <div className={`p-4 rounded-xl border transition-colors ${
+          isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
         }`}>
-          <div className="flex items-center justify-between text-xs text-slate-400 mb-1">
-            <span>Ação Rápida: Mensalidades</span>
-            <Calendar className="w-4 h-4 text-indigo-500" />
+          <div className={`flex items-center justify-between text-xs font-semibold uppercase tracking-wider mb-1 ${
+            isDark ? 'text-zinc-400' : 'text-zinc-500'
+          }`}>
+            <span>Mensalidades em Lote</span>
+            <Calendar className="w-4 h-4" />
           </div>
           <button
             onClick={async () => {
               const count = await onTriggerRecurring(managedClub.id, selectedPeriod === 'all' ? '2026-07' : selectedPeriod);
               alert(`${count} mensalidade(s) de R$ ${managedClub.monthlyFee.toFixed(2)} gerada(s) para os sócios ativos!`);
             }}
-            className="w-full mt-1 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-all shadow-md flex items-center justify-center space-x-1.5"
+            className={`w-full mt-1 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center justify-center space-x-1.5 ${
+              isDark ? 'bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-100' : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-900 border border-zinc-300'
+            }`}
           >
             <Calendar className="w-3.5 h-3.5" />
-            <span>Lançar Mensalidades do Mês</span>
+            <span>Gerar Mensalidades</span>
           </button>
         </div>
 
       </div>
 
       {/* Menu Superior de Abas do Presidente */}
-      <div className={`flex items-center space-x-2 border-b pb-2 overflow-x-auto ${
-        isDark ? 'border-slate-800' : 'border-slate-200'
+      <div className={`flex items-center space-x-1.5 border-b pb-1 overflow-x-auto ${
+        isDark ? 'border-zinc-800' : 'border-zinc-200'
       }`}>
         <button
           onClick={() => setActiveTab('members')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 shrink-0 ${
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center space-x-1.5 shrink-0 ${
             activeTab === 'members'
-              ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20'
-              : isDark ? 'bg-slate-900 text-slate-400 hover:text-slate-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+              : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
-          <Users className="w-4 h-4" />
-          <span>Gestão de Sócios ({activeMembers.length})</span>
+          <Users className="w-3.5 h-3.5" />
+          <span>Sócios ({activeMembers.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('cashflow')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 shrink-0 ${
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center space-x-1.5 shrink-0 ${
             activeTab === 'cashflow'
-              ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20'
-              : isDark ? 'bg-slate-900 text-slate-400 hover:text-slate-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+              : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
-          <Wallet className="w-4 h-4" />
-          <span>Caixa & Extrato do Clube ({periodExpenses.length})</span>
+          <Wallet className="w-3.5 h-3.5" />
+          <span>Caixa & Extrato ({periodExpenses.length})</span>
         </button>
 
         <button
           onClick={() => setActiveTab('charts')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 shrink-0 ${
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center space-x-1.5 shrink-0 ${
             activeTab === 'charts'
-              ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20'
-              : isDark ? 'bg-slate-900 text-slate-400 hover:text-slate-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+              : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
-          <BarChart3 className="w-4 h-4" />
-          <span>Gráficos & Evolução</span>
+          <BarChart3 className="w-3.5 h-3.5" />
+          <span>Evolução</span>
         </button>
 
         <button
           onClick={() => setActiveTab('requests')}
-          className={`px-4 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center space-x-2 shrink-0 relative ${
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center space-x-1.5 shrink-0 ${
             activeTab === 'requests'
-              ? 'bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20'
-              : isDark ? 'bg-slate-900 text-slate-400 hover:text-slate-200' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+              ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+              : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
           }`}
         >
-          <Bell className="w-4 h-4" />
-          <span>Caixa de Pedidos ({pendingRequests.length})</span>
-          {pendingRequests.length > 0 && (
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping absolute top-1 right-1" />
-          )}
+          <Bell className="w-3.5 h-3.5" />
+          <span>Pedidos ({pendingRequests.length})</span>
         </button>
       </div>
 

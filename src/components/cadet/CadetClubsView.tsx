@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Club, ClubMembership, User } from '../../types';
-import { Users, PlusCircle, LogOut, Clock, CheckCircle2, Sparkles, Plane, Target, Crown, Cpu } from 'lucide-react';
+import { Users, PlusCircle, LogOut, Clock, CheckCircle2, Shield, Loader2 } from 'lucide-react';
 
 interface CadetClubsViewProps {
   user: User;
@@ -21,17 +21,6 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
   const [filterCategory, setFilterCategory] = useState<string>('all');
   const isDark = theme === 'dark';
 
-  const renderIcon = (iconName: string) => {
-    switch (iconName) {
-      case 'Plane': return <Plane className="w-6 h-6 text-cyan-500" />;
-      case 'Target': return <Target className="w-6 h-6 text-amber-500" />;
-      case 'Sparkles': return <Sparkles className="w-6 h-6 text-purple-500" />;
-      case 'Crown': return <Crown className="w-6 h-6 text-emerald-500" />;
-      case 'Cpu': return <Cpu className="w-6 h-6 text-blue-500" />;
-      default: return <Users className="w-6 h-6 text-cyan-500" />;
-    }
-  };
-
   const handleAction = async (clubId: string, action: 'join' | 'leave') => {
     setLoadingClubId(clubId);
     try {
@@ -46,52 +35,48 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
     : clubs.filter(c => (c.category || '').toLowerCase() === filterCategory.toLowerCase());
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-5xl mx-auto">
       
-      {/* Banner Principal dos Clubes */}
-      <div className={`relative overflow-hidden rounded-3xl p-6 sm:p-8 border shadow-2xl backdrop-blur-xl transition-colors ${
-        isDark
-          ? 'bg-gradient-to-r from-slate-900 via-slate-950 to-indigo-950 border-slate-800'
-          : 'bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 border-slate-700 text-white'
+      {/* Header Banner */}
+      <div className={`p-6 rounded-xl border transition-colors ${
+        isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
       }`}>
-        <div className="absolute -top-16 -right-16 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
-        
-        <div className="relative z-10 max-w-2xl">
-          <span className="px-3 py-1 text-xs font-bold rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
-            SOCIEDADE ACADÊMICA DOS CADETES DA AERONÁUTICA
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white mt-3">
-            Clubes da SCAER
+        <div className="max-w-2xl space-y-1.5">
+          <div className={`inline-block px-2 py-0.5 text-[10px] font-bold rounded border uppercase ${
+            isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-400' : 'bg-zinc-100 border-zinc-200 text-zinc-600'
+          }`}>
+            SCAER • Sociedade Acadêmica dos Cadetes da Aeronáutica
+          </div>
+          <h2 className="text-xl font-bold tracking-tight">
+            Clubes Acadêmicos
           </h2>
-          <p className="text-sm text-slate-200 mt-2 leading-relaxed">
-            Navegue e associe-se aos 14 clubes oficiais da SCAER. As mensalidades dos clubes em que você é membro ativo são computadas na sua Cédula Digital.
+          <p className={`text-xs leading-relaxed ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+            Associe-se aos clubes oficiais da SCAER. As mensalidades dos clubes em que você for membro ativo serão lançadas na sua Cédula Digital.
           </p>
         </div>
       </div>
 
-      {/* Filtros por Categoria */}
-      <div className={`flex items-center space-x-2 overflow-x-auto pb-2 border-b ${
-        isDark ? 'border-slate-800' : 'border-slate-200'
+      {/* Filter Tabs */}
+      <div className={`flex items-center space-x-1.5 overflow-x-auto pb-1 border-b ${
+        isDark ? 'border-zinc-800' : 'border-zinc-200'
       }`}>
         {['all', 'Militar', 'Esporte', 'Social', 'Cultura', 'Tecnologia'].map((cat) => (
           <button
             key={cat}
             onClick={() => setFilterCategory(cat)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 shrink-0 ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors shrink-0 ${
               filterCategory === cat
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
-                : isDark
-                ? 'bg-slate-900/80 text-slate-400 hover:text-slate-200'
-                : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+                : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
             }`}
           >
-            {cat === 'all' ? 'Todos os 14 Clubes' : cat}
+            {cat === 'all' ? 'Todos os Clubes' : cat}
           </button>
         ))}
       </div>
 
-      {/* Grid dos 14 Clubes da SCAER */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Clubs Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredClubs.map((club) => {
           const userMem = memberships.find((m) => m.userId === user.id && m.clubId === club.id);
           const isApproved = userMem?.status === 'approved';
@@ -101,81 +86,72 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
           return (
             <div
               key={club.id}
-              className={`flex flex-col justify-between rounded-3xl border p-6 backdrop-blur-xl transition-all duration-300 hover:shadow-xl group ${
-                isDark
-                  ? 'bg-slate-900/80 border-slate-800 hover:border-slate-700'
-                  : 'bg-white border-slate-200 hover:border-blue-300'
+              className={`flex flex-col justify-between rounded-xl border p-5 transition-all ${
+                isDark ? 'bg-zinc-900 border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
               }`}
             >
               <div>
                 <div className="flex items-start justify-between">
-                  <div className={`p-3.5 rounded-2xl border ${
-                    isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
+                  <div className={`p-2 rounded-lg border ${
+                    isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-700'
                   }`}>
-                    {renderIcon(club.icon || 'shield')}
+                    <Shield className="w-5 h-5" />
                   </div>
 
-                  <span className={`px-3 py-1 rounded-full text-[10px] font-bold border ${
-                    isDark ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-slate-100 text-slate-700 border-slate-300'
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold border uppercase ${
+                    isDark ? 'bg-zinc-950 border-zinc-800 text-zinc-400' : 'bg-zinc-100 border-zinc-200 text-zinc-600'
                   }`}>
                     {club.category}
                   </span>
                 </div>
 
-                <div className="mt-4">
-                  <div className="text-[10px] font-bold text-cyan-500 tracking-wider uppercase font-mono">
+                <div className="mt-3 space-y-1">
+                  <div className="text-[10px] font-mono font-semibold text-zinc-400 uppercase">
                     {club.code}
                   </div>
-                  <h3 className={`text-lg font-bold mt-0.5 transition-colors group-hover:text-cyan-500 ${
-                    isDark ? 'text-slate-100' : 'text-slate-900'
-                  }`}>
+                  <h3 className="text-base font-bold">
                     {club.name}
                   </h3>
-                  <p className={`text-xs mt-2 line-clamp-2 leading-relaxed ${
-                    isDark ? 'text-slate-400' : 'text-slate-600'
-                  }`}>
+                  <p className={`text-xs line-clamp-2 ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     {club.description}
                   </p>
                 </div>
               </div>
 
-              <div className={`mt-6 pt-4 border-t space-y-4 ${
-                isDark ? 'border-slate-800/80' : 'border-slate-200'
+              <div className={`mt-5 pt-3 border-t space-y-3 ${
+                isDark ? 'border-zinc-800' : 'border-zinc-200'
               }`}>
                 <div className="flex items-center justify-between text-xs">
                   <div>
-                    <span className="text-[10px] text-slate-400 uppercase block">Mensalidade</span>
-                    <span className="text-base font-extrabold text-cyan-500 font-mono">
-                      R$ {club.monthlyFee.toFixed(2)}
-                      <span className="text-[10px] font-normal text-slate-400">/mês</span>
+                    <span className="text-[10px] text-zinc-400 uppercase block">Mensalidade</span>
+                    <span className="text-sm font-bold font-mono">
+                      R$ {club.monthlyFee.toFixed(2)}/mês
                     </span>
                   </div>
 
                   <div className="text-right">
-                    <span className="text-[10px] text-slate-400 uppercase block">Associados</span>
-                    <span className={`text-sm font-bold flex items-center justify-end space-x-1 ${
-                      isDark ? 'text-slate-200' : 'text-slate-800'
-                    }`}>
-                      <Users className="w-3.5 h-3.5 text-slate-400" />
-                      <span>{club.memberCount} cadetes</span>
+                    <span className="text-[10px] text-zinc-400 uppercase block">Membros</span>
+                    <span className="text-xs font-semibold flex items-center justify-end space-x-1">
+                      <Users className="w-3.5 h-3.5 text-zinc-400" />
+                      <span>{club.memberCount}</span>
                     </span>
                   </div>
                 </div>
 
                 <div>
                   {isApproved && (
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-center space-x-1.5 p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-xs font-bold">
-                        <CheckCircle2 className="w-4 h-4" />
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-center space-x-1.5 p-2 rounded-lg bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 text-xs font-semibold">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
                         <span>Membro Ativo</span>
                       </div>
                       <button
                         disabled={loadingClubId === club.id}
                         onClick={() => handleAction(club.id, 'leave')}
-                        className={`w-full py-2.5 rounded-xl border text-xs font-bold transition-all flex items-center justify-center space-x-2 ${
+                        className={`w-full py-2 rounded-lg border text-xs font-semibold transition-colors flex items-center justify-center space-x-1.5 ${
                           isDark
-                            ? 'bg-slate-950 hover:bg-red-500/10 text-slate-400 hover:text-red-400 border-slate-800 hover:border-red-500/30'
-                            : 'bg-slate-100 hover:bg-red-50 text-slate-600 hover:text-red-600 border-slate-300'
+                            ? 'bg-zinc-950 hover:bg-red-950/30 text-zinc-400 hover:text-red-400 border-zinc-800'
+                            : 'bg-zinc-100 hover:bg-red-50 text-zinc-600 hover:text-red-600 border-zinc-200'
                         }`}
                       >
                         <LogOut className="w-3.5 h-3.5" />
@@ -185,16 +161,16 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
                   )}
 
                   {isPendingEntry && (
-                    <div className="p-3 rounded-xl bg-amber-500/10 text-amber-500 border border-amber-500/20 text-xs font-bold text-center flex items-center justify-center space-x-2">
-                      <Clock className="w-4 h-4 animate-spin-slow" />
-                      <span>Pedido de Entrada Pendente</span>
+                    <div className="p-2 rounded-lg bg-amber-500/10 text-amber-500 border border-amber-500/20 text-xs font-semibold text-center flex items-center justify-center space-x-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>Entrada Pendente</span>
                     </div>
                   )}
 
                   {isPendingExit && (
-                    <div className="p-3 rounded-xl bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-bold text-center flex items-center justify-center space-x-2">
-                      <Clock className="w-4 h-4 animate-spin-slow" />
-                      <span>Aguardando Aprovação de Saída</span>
+                    <div className="p-2 rounded-lg bg-red-500/10 text-red-500 border border-red-500/20 text-xs font-semibold text-center flex items-center justify-center space-x-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      <span>Saída Pendente</span>
                     </div>
                   )}
 
@@ -202,10 +178,18 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
                     <button
                       disabled={loadingClubId === club.id}
                       onClick={() => handleAction(club.id, 'join')}
-                      className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-xs font-bold shadow-lg shadow-cyan-500/20 transition-all flex items-center justify-center space-x-2"
+                      className={`w-full py-2 rounded-lg text-xs font-semibold transition-all flex items-center justify-center space-x-1.5 ${
+                        isDark
+                          ? 'bg-zinc-100 text-zinc-950 hover:bg-white'
+                          : 'bg-zinc-900 text-white hover:bg-zinc-800'
+                      }`}
                     >
-                      <PlusCircle className="w-4 h-4" />
-                      <span>{loadingClubId === club.id ? 'Enviando...' : 'Solicitar Entrada'}</span>
+                      {loadingClubId === club.id ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      ) : (
+                        <PlusCircle className="w-3.5 h-3.5" />
+                      )}
+                      <span>Solicitar Entrada</span>
                     </button>
                   )}
                 </div>
