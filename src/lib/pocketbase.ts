@@ -149,7 +149,7 @@ export class DatabaseService {
     if (cached && cached.length > 0) return cached;
 
     try {
-      const records = await pb.collection('expenses').getFullList<Expense>({ sort: '-created' });
+      const records = await pb.collection('expenses').getFullList<Expense>({ sort: '-id' });
       queryCache.set(cacheKey, records || []);
       return records || [];
     } catch (err) {
@@ -225,7 +225,7 @@ export class DatabaseService {
   // Obter Relatórios Emitidos no PocketBase
   static async getDirectorReports(): Promise<DirectorReport[]> {
     try {
-      const records = await pb.collection('director_reports').getFullList<DirectorReport>({ sort: '-created' });
+      const records = await pb.collection('director_reports').getFullList<DirectorReport>({ sort: '-id' });
       return records || [];
     } catch {
       return [];
