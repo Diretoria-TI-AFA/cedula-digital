@@ -240,6 +240,7 @@ export function App() {
           <div>
             <DirectorDashboard
               directorUser={currentUser}
+              allUsers={allUsers}
               expenses={expenses}
               clubs={clubs}
               memberships={memberships}
