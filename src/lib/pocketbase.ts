@@ -1,6 +1,7 @@
 import PocketBase from 'pocketbase';
 import type { User, Club, ClubMembership, Expense, DirectorReport, CadetRosterItem, PendingExemption, DesligadoItem } from '../types';
 import { queryCache } from './queryCache';
+import { INITIAL_CLUBS } from './mockData';
 
 export const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://cedula-scaer.pockethost.io';
 export const pb = new PocketBase(POCKETBASE_URL);
@@ -58,7 +59,7 @@ export class DatabaseService {
     localStorage.setItem(CURRENT_USER_ID_KEY, userId);
   }
 
-  // Obter Lista Real dos 14 Clubes da SCAER
+  // Obter Lista de Clubes da SCAER (incluindo Lavanderia e Entidades Religiosas)
   static async getClubs(): Promise<Club[]> {
     const cacheKey = 'pb_clubs_list';
     const cached = queryCache.get<Club[]>(cacheKey);
@@ -67,13 +68,20 @@ export class DatabaseService {
     try {
       const records = await pb.collection('clubs').getFullList<Club>({ sort: 'name' });
       if (records && records.length > 0) {
-        queryCache.set(cacheKey, records);
-        return records;
+        // Garantir que Lavanderia e Entidades Religiosas existam na lista
+        const merged = [...records];
+        INITIAL_CLUBS.forEach(initClub => {
+          if (!merged.some(c => c.name.toUpperCase().trim() === initClub.name.toUpperCase().trim() || c.id === initClub.id)) {
+            merged.push(initClub);
+          }
+        });
+        queryCache.set(cacheKey, merged);
+        return merged;
       }
     } catch (err) {
-      console.error('Erro ao buscar clubes no PocketBase:', err);
+      console.error('Erro ao buscar clubes no PocketBase (usando lista base):', err);
     }
-    return [];
+    return INITIAL_CLUBS;
   }
 
   // Obter Adesões aos Clubes
@@ -259,6 +267,104 @@ export class DatabaseService {
     }
 
     if (onProgress) onProgress(100, 'Importação para o PocketBase concluída!');
+    queryCache.clear();
+  }
+
+  // Definir Doação Recorrente de Culto Religioso / Ação Social
+  static async setCadetReligiousDonation(
+    userId: string,
+    clubId: string,
+    clubName: string,
+    amount: number,
+    billingPeriod: string = '2026-08'
+  ): Promise<void> {
+    const users = await this.getUsers();
+    const user = users.find(u => u.id === userId);
+    if (!user) throw new Error('Usuário não encontrado');
+
+    const now = new Date().toISOString().split('T')[0];
+    const memberships = await this.getMemberships();
+    const existingMem = memberships.find(m => m.userId === userId && (m.clubId === clubId || (m.clubName && m.clubName.toLowerCase() === clubName.toLowerCase())));
+
+    if (existingMem) {
+      await pb.collection('club_memberships').update(existingMem.id, {
+        status: 'approved',
+        approvedAt: now,
+        notes: `Doação Mensal: R$ ${amount.toFixed(2)}`,
+      }).catch(() => null);
+    } else {
+      await pb.collection('club_memberships').create({
+        userId: user.id,
+        userName: user.warName || user.name,
+        cadetNumber: user.cadetNumber,
+        squadron: user.squadron || '1º Esquadrão',
+        clubId,
+        clubName,
+        status: 'approved',
+        requestedAt: now,
+        approvedAt: now,
+        notes: `Doação Mensal: R$ ${amount.toFixed(2)}`,
+      }).catch(() => null);
+    }
+
+    // Atualizar ou criar o lançamento da doação no período
+    const expenses = await this.getExpenses();
+    const existingExp = expenses.find(
+      e => (e.userId === userId || e.cadetNumber === user.cadetNumber) &&
+           e.billingPeriod === billingPeriod &&
+           (e.clubId === clubId || (e.description && e.description.toLowerCase().includes(clubName.toLowerCase())))
+    );
+
+    if (existingExp) {
+      await pb.collection('expenses').update(existingExp.id, {
+        amount,
+        description: `Doação Mensal - ${clubName}`,
+        category: 'Mensalidade',
+      }).catch(() => null);
+    } else {
+      await pb.collection('expenses').create({
+        userId: user.id,
+        userName: user.warName || user.name,
+        cadetNumber: user.cadetNumber,
+        clubId,
+        clubName,
+        description: `Doação Mensal - ${clubName}`,
+        amount,
+        category: 'Mensalidade',
+        billingPeriod,
+        launchType: 'recurring',
+        createdBy: user.id,
+        createdByName: user.warName || user.name,
+        createdAt: new Date().toISOString().replace('T', ' ').substring(0, 19),
+        status: 'pending',
+      }).catch(() => null);
+    }
+
+    queryCache.clear();
+  }
+
+  // Cancelar Doação de Culto
+  static async cancelCadetReligiousDonation(
+    userId: string,
+    clubId: string,
+    billingPeriod: string = '2026-08'
+  ): Promise<void> {
+    const memberships = await this.getMemberships();
+    const existingMem = memberships.find(m => m.userId === userId && m.clubId === clubId);
+    if (existingMem) {
+      await pb.collection('club_memberships').update(existingMem.id, {
+        status: 'inactive',
+      }).catch(() => null);
+    }
+
+    const expenses = await this.getExpenses();
+    const existingExp = expenses.find(
+      e => (e.userId === userId || e.cadetNumber) && e.billingPeriod === billingPeriod && e.clubId === clubId
+    );
+    if (existingExp) {
+      await pb.collection('expenses').delete(existingExp.id).catch(() => null);
+    }
+
     queryCache.clear();
   }
 }

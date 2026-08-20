@@ -7,6 +7,7 @@ import { LoginView } from './components/auth/LoginView';
 import { CreditCard3D } from './components/cadet/CreditCard3D';
 import { CadetInvoiceView } from './components/cadet/CadetInvoiceView';
 import { CadetClubsView } from './components/cadet/CadetClubsView';
+import { CadetReligiousView } from './components/cadet/CadetReligiousView';
 import { ScaerManagerView } from './components/scaer/ScaerManagerView';
 import { DirectorDashboard } from './components/director/DirectorDashboard';
 import { Shield } from 'lucide-react';
@@ -26,7 +27,7 @@ export function App() {
     return (localStorage.getItem('cedula_theme') as 'dark' | 'light') || 'dark';
   });
 
-  const [activeTab, setActiveTab] = useState<'card' | 'clubs' | 'scaer' | 'director'>('card');
+  const [activeTab, setActiveTab] = useState<'card' | 'clubs' | 'religious' | 'scaer' | 'director'>('card');
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -132,6 +133,18 @@ export function App() {
     return saved;
   };
 
+  const handleSetReligiousDonation = async (clubId: string, clubName: string, amount: number) => {
+    if (!currentUser) return;
+    await DatabaseService.setCadetReligiousDonation(currentUser.id, clubId, clubName, amount);
+    await loadData();
+  };
+
+  const handleCancelReligiousDonation = async (clubId: string) => {
+    if (!currentUser) return;
+    await DatabaseService.cancelCadetReligiousDonation(currentUser.id, clubId);
+    await loadData();
+  };
+
   if (isLoading) {
     return (
       <div className={`min-h-screen flex items-center justify-center ${
@@ -212,6 +225,21 @@ export function App() {
               clubs={clubs}
               memberships={memberships}
               onRequestMembership={handleRequestMembership}
+              theme={theme}
+            />
+          </div>
+        )}
+
+        {/* ABA: Cultos Religiosos & Ação Social */}
+        {activeTab === 'religious' && (
+          <div>
+            <CadetReligiousView
+              user={currentUser}
+              clubs={clubs}
+              memberships={memberships}
+              expenses={expenses}
+              onSetDonation={handleSetReligiousDonation}
+              onCancelDonation={handleCancelReligiousDonation}
               theme={theme}
             />
           </div>

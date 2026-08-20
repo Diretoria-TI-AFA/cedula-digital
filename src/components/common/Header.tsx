@@ -1,13 +1,13 @@
 import React from 'react';
 import type { User } from '../../types';
 import { pb } from '../../lib/pocketbase';
-import { Shield, CreditCard, Users, FileCheck, Server, Sun, Moon, LogOut } from 'lucide-react';
+import { Shield, CreditCard, Users, FileCheck, Server, Sun, Moon, LogOut, Heart } from 'lucide-react';
 
 interface HeaderProps {
   currentUser: User;
   onLogout: () => void;
-  activeTab: 'card' | 'clubs' | 'scaer' | 'director';
-  setActiveTab: (tab: 'card' | 'clubs' | 'scaer' | 'director') => void;
+  activeTab: 'card' | 'clubs' | 'religious' | 'scaer' | 'director';
+  setActiveTab: (tab: 'card' | 'clubs' | 'religious' | 'scaer' | 'director') => void;
   isPbConnected: boolean;
   theme: 'dark' | 'light';
   onToggleTheme: () => void;
@@ -83,6 +83,18 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <Users className="w-3.5 h-3.5" />
                   <span>Clubes SCAER</span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab('religious')}
+                  className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md text-xs font-semibold transition-all ${
+                    activeTab === 'religious'
+                      ? isDark ? 'bg-zinc-100 text-zinc-950 shadow-sm' : 'bg-zinc-900 text-white shadow-sm'
+                      : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
+                  }`}
+                >
+                  <Heart className="w-3.5 h-3.5" />
+                  <span>Cultos Religiosos</span>
                 </button>
               </>
             )}
