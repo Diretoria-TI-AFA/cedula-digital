@@ -67,7 +67,10 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
 
   // Contagem de clubes ativos do cadete e total mensal
   const myApprovedClubs = useMemo(() => {
-    return clubs.filter((c) => userMembershipsMap.get(c.id)?.status === 'approved');
+    return clubs.filter((c) => {
+      const s = userMembershipsMap.get(c.id)?.status;
+      return s === 'approved' || s === 'active';
+    });
   }, [clubs, userMembershipsMap]);
 
   const totalMonthlyClubFees = useMemo(() => {
@@ -78,7 +81,7 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
   const filteredClubs = useMemo(() => {
     return clubs.filter((club) => {
       const mem = userMembershipsMap.get(club.id);
-      const isApproved = mem?.status === 'approved';
+      const isApproved = mem?.status === 'approved' || mem?.status === 'active';
       const isPending = mem?.status === 'pending_entry' || mem?.status === 'pending_exit';
 
       // Filtro de Status
@@ -138,6 +141,20 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
               {myApprovedClubs.length} {myApprovedClubs.length === 1 ? 'clube ativo' : 'clubes ativos'}
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Banner Informativo da Regra do Dia 20 */}
+      <div className={`p-4 rounded-xl border flex items-start space-x-3 transition-colors ${
+        isDark ? 'bg-amber-950/20 border-amber-800/40 text-amber-300' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`}>
+        <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+        <div className="text-xs space-y-0.5">
+          <p className="font-bold">Regra de Cobrança e Adesões (Dia 20 de cada mês):</p>
+          <p className={isDark ? 'text-amber-300/80' : 'text-amber-800'}>
+            Solicitações de entrada ou saída feitas até o <strong>dia 20</strong> vigoram no mês corrente.
+            Solicitações feitas <strong>após o dia 20</strong> entram em vigor e passam a ser cobradas a partir do <strong>dia 1º do próximo mês</strong>.
+          </p>
         </div>
       </div>
 
@@ -261,7 +278,7 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
                 ) : (
                   filteredClubs.map((club) => {
                     const userMem = userMembershipsMap.get(club.id);
-                    const isApproved = userMem?.status === 'approved';
+                    const isApproved = userMem?.status === 'approved' || userMem?.status === 'active';
                     const isPendingEntry = userMem?.status === 'pending_entry';
                     const isPendingExit = userMem?.status === 'pending_exit';
                     const isLoading = loadingClubId === club.id;
@@ -420,7 +437,7 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredClubs.map((club) => {
             const userMem = userMembershipsMap.get(club.id);
-            const isApproved = userMem?.status === 'approved';
+            const isApproved = userMem?.status === 'approved' || userMem?.status === 'active';
             const isPendingEntry = userMem?.status === 'pending_entry';
             const isPendingExit = userMem?.status === 'pending_exit';
             const isLoading = loadingClubId === club.id;

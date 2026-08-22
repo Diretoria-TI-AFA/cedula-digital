@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import type { User } from '../../types';
 import { pb } from '../../lib/pocketbase';
+import { queryCache } from '../../lib/queryCache';
 import { CreditCard, Lock, Mail, ArrowRight, AlertCircle, Sun, Moon, Loader2 } from 'lucide-react';
 
 interface LoginViewProps {
@@ -44,6 +45,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess, theme, onT
         }
       }
 
+      queryCache.clear();
       onLoginSuccess(authRecord);
     } catch (err: any) {
       console.error('Erro na autenticação:', err);

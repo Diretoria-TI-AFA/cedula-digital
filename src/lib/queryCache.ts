@@ -21,15 +21,30 @@ class QueryCache {
     return entry.data as T;
   }
 
-  set<T>(key: string, data: T, ttlMs?: number): void {
+  set<T>(key: string, data: T): void {
     this.cache.set(key, {
       data,
-      timestamp: Date.now() + (ttlMs || 0)
+      timestamp: Date.now()
     });
   }
 
-  clear(): void {
-    this.cache.clear();
+  // Fetch com cache automático: retorna do cache se disponível, senão executa o fetcher
+  async fetch<T>(key: string, fetcher: () => Promise<T>): Promise<T> {
+    const cached = this.get<T>(key);
+    if (cached !== null) return cached;
+
+    const data = await fetcher();
+    this.set(key, data);
+    return data;
+  }
+
+  // Limpar cache: sem parâmetro limpa tudo, com key limpa apenas aquela chave
+  clear(key?: string): void {
+    if (key) {
+      this.cache.delete(key);
+    } else {
+      this.cache.clear();
+    }
   }
 }
 

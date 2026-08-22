@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { Club, ClubMembership, Expense, User } from '../../types';
+import React, { useState, useEffect } from 'react';
+import type { Club, ClubMembership, Expense, User, ScaerConfig } from '../../types';
 import { LaunchExpenseModal } from './LaunchExpenseModal';
 import { QRCodeExpenseScanner } from '../common/QRCodeExpenseScanner';
 import {
@@ -20,7 +20,11 @@ import {
   X,
   Award,
   Wallet,
-  DollarSign
+  DollarSign,
+  Settings,
+  Zap,
+  Clock,
+  Shield
 } from 'lucide-react';
 
 interface ScaerManagerViewProps {
@@ -29,6 +33,9 @@ interface ScaerManagerViewProps {
   memberships: ClubMembership[];
   expenses: Expense[];
   allCadets: User[];
+  scaerConfig?: ScaerConfig | null;
+  onUpdateScaerConfig?: (config: Partial<ScaerConfig>) => Promise<void>;
+  onTriggerMonthlyBilling?: (period: string) => Promise<boolean>;
   onUpdateMembershipStatus: (membershipId: string, status: 'approved' | 'rejected' | 'inactive') => Promise<void>;
   onLaunchIndividual: (launch: Omit<Expense, 'id' | 'createdAt' | 'status'>) => Promise<void>;
   onLaunchBulk: (launches: Omit<Expense, 'id' | 'createdAt' | 'status'>[]) => Promise<void>;
@@ -42,16 +49,33 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   memberships,
   expenses,
   allCadets,
+  scaerConfig,
+  onUpdateScaerConfig,
+  onTriggerMonthlyBilling,
   onUpdateMembershipStatus,
   onLaunchIndividual,
   onLaunchBulk,
   onTriggerRecurring,
   theme = 'dark',
 }) => {
-  const [activeTab, setActiveTab] = useState<'members' | 'cashflow' | 'charts' | 'requests'>('members');
+  const [activeTab, setActiveTab] = useState<'members' | 'cashflow' | 'charts' | 'requests' | 'config'>('members');
   const [showLaunchModal, setShowLaunchModal] = useState<boolean>(false);
   const [showQrScanner, setShowQrScanner] = useState<boolean>(false);
   const [scannedCadetInfo, setScannedCadetInfo] = useState<{ cadetNumber: string; warName?: string } | null>(null);
+
+  // Estado de edição da configuração SCAER
+  const [monthlyFeeInput, setMonthlyFeeInput] = useState<string>(
+    scaerConfig ? String(scaerConfig.scaerMonthlyFee) : '100'
+  );
+  const [isSavingConfig, setIsSavingConfig] = useState<boolean>(false);
+  const [isTriggeringBilling, setIsTriggeringBilling] = useState<boolean>(false);
+  const [configSuccessMsg, setConfigSuccessMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (scaerConfig) {
+      setMonthlyFeeInput(String(scaerConfig.scaerMonthlyFee));
+    }
+  }, [scaerConfig]);
   
   // Filtros de Caixa e Busca
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -90,7 +114,7 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
 
   // Memberships do Clube
   const clubMemberships = memberships.filter((m) => m.clubId === managedClub.id);
-  const activeMembers = clubMemberships.filter((m) => m.status === 'approved');
+  const activeMembers = clubMemberships.filter((m) => m.status === 'approved' || m.status === 'active');
   const pendingRequests = clubMemberships.filter(
     (m) => m.status === 'pending_entry' || m.status === 'pending_exit'
   );
@@ -102,25 +126,26 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   const filteredExpenses = clubExpenses.filter((e) => {
     const matchPeriod = selectedPeriod === 'all' || e.billingPeriod === selectedPeriod;
     const matchCategory = selectedCategory === 'all' || e.category === selectedCategory;
-    const matchSearch =
-      e.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      e.cadetNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      e.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const cadetName = (e.userName || e.cadetName || '').toLowerCase();
+    const num = (e.cadetNumber || '').toLowerCase();
+    const desc = (e.description || '').toLowerCase();
+    const q = searchTerm.toLowerCase();
+    const matchSearch = cadetName.includes(q) || num.includes(q) || desc.includes(q);
     return matchPeriod && matchCategory && matchSearch;
   });
 
   // Métricas Financeiras
   const periodExpenses = clubExpenses.filter((e) => selectedPeriod === 'all' || e.billingPeriod === selectedPeriod);
   const totalPeriodRevenue = periodExpenses.reduce((acc, curr) => acc + curr.amount, 0);
-  const recurringRevenue = periodExpenses.filter(e => e.category === 'Mensalidade').reduce((acc, curr) => acc + curr.amount, 0);
-  const consumptionRevenue = periodExpenses.filter(e => e.category !== 'Mensalidade').reduce((acc, curr) => acc + curr.amount, 0);
+  const recurringRevenue = periodExpenses.filter(e => e.category === 'Mensalidade' || e.category === 'mensalidade_clube').reduce((acc, curr) => acc + curr.amount, 0);
+  const consumptionRevenue = periodExpenses.filter(e => e.category !== 'Mensalidade' && e.category !== 'mensalidade_clube').reduce((acc, curr) => acc + curr.amount, 0);
 
   // Filtro de Sócios para a Tabela de Membros
   const filteredMembers = activeMembers.filter(
     (m) =>
-      m.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.cadetNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      m.squadron.toLowerCase().includes(searchTerm.toLowerCase())
+      (m.userName || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.cadetNumber || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (m.squadron || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Handler ao escanear o QR Code do Cadete
@@ -133,15 +158,19 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   // Lançamentos por Sócios (Totais e por Período)
   const getCadetTotalSpent = (cadetNumber: string) => {
     return periodExpenses
-      .filter((e) => e.cadetNumber === cadetNumber || e.userName === cadetNumber)
+      .filter((e) => e.cadetNumber === cadetNumber || e.userName === cadetNumber || e.cadetName === cadetNumber)
       .reduce((acc, curr) => acc + curr.amount, 0);
   };
 
   // Ranking Top 5 Cadetes Consumidores
   const cadetConsumptionMap = new Map<string, { cadetNumber: string; userName: string; total: number }>();
   periodExpenses.forEach((exp) => {
-    const key = exp.cadetNumber || exp.userName;
-    const current = cadetConsumptionMap.get(key) || { cadetNumber: exp.cadetNumber, userName: exp.userName, total: 0 };
+    const key = exp.cadetNumber || exp.userName || exp.cadetName || exp.id || 'unknown';
+    const current = cadetConsumptionMap.get(key) || {
+      cadetNumber: exp.cadetNumber || '---',
+      userName: exp.userName || exp.cadetName || 'Cadete',
+      total: 0,
+    };
     current.total += exp.amount;
     cadetConsumptionMap.set(key, current);
   });
@@ -396,6 +425,18 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
         >
           <Bell className="w-3.5 h-3.5" />
           <span>Pedidos ({pendingRequests.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab('config')}
+          className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors flex items-center space-x-1.5 shrink-0 ${
+            activeTab === 'config'
+              ? isDark ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 text-white'
+              : isDark ? 'text-zinc-400 hover:text-zinc-200' : 'text-zinc-600 hover:text-zinc-900'
+          }`}
+        >
+          <Settings className="w-3.5 h-3.5" />
+          <span>Configurações SCAER</span>
         </button>
       </div>
 
@@ -804,6 +845,176 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
               ))}
             </div>
           )}
+        </div>
+      )}
+
+      {/* ABA 5: CONFIGURAÇÕES DA SCAER & MENSALIDADE OBRIGATÓRIA */}
+      {activeTab === 'config' && (
+        <div className="space-y-6">
+          <div
+            className={`p-6 rounded-2xl border transition-colors ${
+              isDark ? 'bg-zinc-900 border-zinc-800 text-zinc-100' : 'bg-white border-zinc-200 text-zinc-900 shadow-sm'
+            }`}
+          >
+            <div className="flex items-center space-x-3 mb-4">
+              <div
+                className={`p-2.5 rounded-xl border ${
+                  isDark ? 'bg-amber-950/40 border-amber-800 text-amber-400' : 'bg-amber-100 border-amber-300 text-amber-800'
+                }`}
+              >
+                <Settings className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold">Parâmetros Institucionais da SCAER</h3>
+                <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                  Defina o valor da mensalidade SCAER obrigatória e gerencie o faturamento automático.
+                </p>
+              </div>
+            </div>
+
+            {configSuccessMsg && (
+              <div className="mb-4 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs flex items-center space-x-2">
+                <CheckCircle2 className="w-4 h-4 shrink-0" />
+                <span>{configSuccessMsg}</span>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              {/* Card de Valor da Mensalidade */}
+              <div
+                className={`p-4 rounded-xl border space-y-3 ${
+                  isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-zinc-50 border-zinc-200'
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <Shield className="w-4 h-4 text-amber-500" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider">
+                    Valor da Mensalidade SCAER (Obrigatória)
+                  </h4>
+                </div>
+                <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  Este valor será cobrado automaticamente na cédula de todos os cadetes da AFA no dia 1º de cada mês.
+                </p>
+
+                <div className="flex items-center space-x-2 pt-2">
+                  <div className="relative flex-1">
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-zinc-400">R$</span>
+                    <input
+                      type="number"
+                      step="0.50"
+                      value={monthlyFeeInput}
+                      onChange={(e) => setMonthlyFeeInput(e.target.value)}
+                      className={`w-full pl-9 pr-3 py-2 text-sm font-bold font-mono rounded-lg border focus:outline-none ${
+                        isDark ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-white border-zinc-300 text-zinc-900'
+                      }`}
+                    />
+                  </div>
+
+                  <button
+                    disabled={isSavingConfig}
+                    onClick={async () => {
+                      if (!onUpdateScaerConfig) return;
+                      setIsSavingConfig(true);
+                      try {
+                        const fee = parseFloat(monthlyFeeInput) || 100;
+                        await onUpdateScaerConfig({ scaerMonthlyFee: fee });
+                        setConfigSuccessMsg('Valor da mensalidade SCAER atualizado com sucesso!');
+                        setTimeout(() => setConfigSuccessMsg(null), 4000);
+                      } catch (err) {
+                        alert('Erro ao salvar configuração: ' + err);
+                      } finally {
+                        setIsSavingConfig(false);
+                      }
+                    }}
+                    className={`px-4 py-2 rounded-lg font-bold text-xs transition-colors shrink-0 ${
+                      isDark ? 'bg-amber-500 hover:bg-amber-400 text-zinc-950' : 'bg-amber-500 hover:bg-amber-600 text-white'
+                    }`}
+                  >
+                    {isSavingConfig ? 'Salvando...' : 'Salvar Valor'}
+                  </button>
+                </div>
+              </div>
+
+              {/* Card de Faturamento Geral */}
+              <div
+                className={`p-4 rounded-xl border space-y-3 ${
+                  isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-zinc-50 border-zinc-200'
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <Zap className="w-4 h-4 text-emerald-500" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider">
+                    Faturamento Mensal Geral
+                  </h4>
+                </div>
+                <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  Executa o cálculo de cobrança de mensalidade SCAER para todos os cadetes ativos no período selecionado.
+                </p>
+
+                <div className="pt-2">
+                  <button
+                    disabled={isTriggeringBilling}
+                    onClick={async () => {
+                      if (!onTriggerMonthlyBilling) return;
+                      const period = scaerConfig?.currentBillingPeriod || '2026-08';
+                      const confirm = window.confirm(
+                        `Deseja executar a geração automática de mensalidades SCAER para o período ${period}?`
+                      );
+                      if (!confirm) return;
+
+                      setIsTriggeringBilling(true);
+                      try {
+                        await onTriggerMonthlyBilling(period);
+                        setConfigSuccessMsg(`Faturamento do período ${period} executado com sucesso!`);
+                        setTimeout(() => setConfigSuccessMsg(null), 4000);
+                      } catch (err) {
+                        alert('Erro ao executar faturamento: ' + err);
+                      } finally {
+                        setIsTriggeringBilling(false);
+                      }
+                    }}
+                    className={`w-full py-2.5 rounded-lg font-bold text-xs transition-colors flex items-center justify-center space-x-2 ${
+                      isDark
+                        ? 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                        : 'bg-emerald-600 hover:bg-emerald-700 text-white'
+                    }`}
+                  >
+                    <Zap className="w-4 h-4" />
+                    <span>
+                      {isTriggeringBilling
+                        ? 'Processando cobranças...'
+                        : `Executar Cobrança Automática (${scaerConfig?.currentBillingPeriod || '2026-08'})`}
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Regras Institucionais Fixas */}
+            <div
+              className={`mt-6 p-4 rounded-xl border space-y-2 ${
+                isDark ? 'bg-zinc-950/50 border-zinc-800 text-zinc-300' : 'bg-zinc-50 border-zinc-200 text-zinc-700'
+              }`}
+            >
+              <h5 className="text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5">
+                <Clock className="w-3.5 h-3.5 text-amber-500" />
+                <span>Regras de Negócio e Calendário Operacional</span>
+              </h5>
+              <ul className="text-xs space-y-1 text-zinc-400 list-disc list-inside">
+                <li>
+                  <strong className="text-zinc-200">Dia 20 de cada mês:</strong> Data limite para entrada e saída de clubes.
+                  Solicitações feitas após o dia 20 vigoram apenas a partir do dia 1º do próximo mês.
+                </li>
+                <li>
+                  <strong className="text-zinc-200">Dia 1º de cada mês (00:05h):</strong> O servidor executa o Cron Hook
+                  automático gerando as mensalidades SCAER, mensalidades de clubes ativos e doações religiosas.
+                </li>
+                <li>
+                  <strong className="text-zinc-200">Dia 10 de cada mês:</strong> Data de vencimento da cédula digital do cadete.
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
 

@@ -231,7 +231,7 @@ export const CadetReligiousView: React.FC<CadetReligiousViewProps> = ({
           const activeMem = memberships.find(
             (m) =>
               m.userId === user.id &&
-              m.status === 'approved' &&
+              (m.status === 'approved' || m.status === 'active') &&
               ((m.clubName || '').toLowerCase().includes(entity.code.toLowerCase()) ||
                 (m.clubName || '').toLowerCase().includes(entity.tradition.toLowerCase()))
           );

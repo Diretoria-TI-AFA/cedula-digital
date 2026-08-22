@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import type { Club, ClubMembership, DirectorReport, Expense, User } from '../../types';
@@ -26,7 +26,7 @@ import {
   Layers,
   ArrowUpDown
 } from 'lucide-react';
-import { pb } from '../../lib/pocketbase';
+import { DatabaseService } from '../../lib/pocketbase';
 
 interface DirectorDashboardProps {
   directorUser: User;
@@ -67,6 +67,37 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   // Filtros Globais de Período
   const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-08');
 
+  // Transações do período carregadas dinamicamente
+  const [periodExpenses, setPeriodExpenses] = useState<Expense[]>(
+    expenses.filter((e) => selectedPeriod === 'all' || e.billingPeriod === selectedPeriod)
+  );
+
+  useEffect(() => {
+    let isMounted = true;
+    const fetchTxs = async () => {
+      if (selectedPeriod === 'all') {
+        setPeriodExpenses(expenses);
+        return;
+      }
+      try {
+        const txs = await DatabaseService.getTransactionsByPeriod(selectedPeriod);
+        if (isMounted) {
+          setPeriodExpenses(txs as unknown as Expense[]);
+        }
+      } catch (err) {
+        console.error('Erro ao buscar transações do período na Diretoria:', err);
+        if (isMounted) {
+          setPeriodExpenses(expenses.filter((e) => e.billingPeriod === selectedPeriod));
+        }
+      }
+    };
+
+    fetchTxs();
+    return () => {
+      isMounted = false;
+    };
+  }, [selectedPeriod, expenses]);
+
   // --- ABA 1: EXTRATO DO MÊS (POR CADETE) ---
   const [extratoSearchQuery, setExtratoSearchQuery] = useState<string>('');
   const [extratoSquadronFilter, setExtratoSquadronFilter] = useState<string>('all');
@@ -95,60 +126,73 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
 
   const isDark = theme === 'dark';
 
-  // Lançamentos do Período Selecionado (100% PocketBase)
-  const periodExpenses = useMemo(() => {
-    return expenses.filter((e) => selectedPeriod === 'all' || e.billingPeriod === selectedPeriod);
-  }, [expenses, selectedPeriod]);
-
   // --- CONSTRUÇÃO DO EXTRATO DO MÊS POR CADETE A PARTIR DOS USUÁRIOS REAIS DO POCKETBASE ---
   const cadetMonthlyList: CadetMonthlyExtractItem[] = useMemo(() => {
-    // 1. Obter todos os usuários com papel de cadete ou diretoria
     const baseCadets = allUsers.length > 0
       ? allUsers.filter((u) => u.role === 'cadete' || u.role === 'diretor' || !u.role)
       : [];
 
-    const map = new Map<string, CadetMonthlyExtractItem>();
+    const itemsMap = new Map<string, CadetMonthlyExtractItem>();
+    const lookupMap = new Map<string, CadetMonthlyExtractItem>();
 
-    // Registrar cadetes cadastrados no banco
     baseCadets.forEach((u) => {
-      const key = u.cadetNumber || u.id;
-      map.set(key, {
+      const cleanNum = (u.cadetNumber || '').replace(/\D/g, '');
+      const fmtNum = cleanNum.length === 5 ? `${cleanNum.slice(0, 2)}/${cleanNum.slice(2)}` : (u.cadetNumber || '---');
+      const itemKey = cleanNum || u.id;
+
+      const item: CadetMonthlyExtractItem = {
         id: u.id,
-        cadetNumber: u.cadetNumber || '---',
+        cadetNumber: fmtNum,
         warName: u.warName || u.name || 'CADETE',
         fullName: u.name || u.warName || 'Cadete AFA',
         squadron: u.squadron || '1º Esquadrão',
         expensesCount: 0,
         totalAmount: 0,
         expenses: [],
-      });
+      };
+
+      itemsMap.set(itemKey, item);
+      lookupMap.set(u.id, item);
+      if (u.cadetNumber) lookupMap.set(u.cadetNumber, item);
+      if (cleanNum) lookupMap.set(cleanNum, item);
+      if (fmtNum) lookupMap.set(fmtNum, item);
     });
 
-    // 2. Associar lançamentos reais do período aos cadetes
     periodExpenses.forEach((exp) => {
-      const key = exp.cadetNumber || exp.userId;
-      const existing = map.get(key);
+      const expCleanNum = (exp.cadetNumber || '').replace(/\D/g, '');
+      const expFmtNum = expCleanNum.length === 5 ? `${expCleanNum.slice(0, 2)}/${expCleanNum.slice(2)}` : exp.cadetNumber;
+      
+      const matched =
+        (exp.userId ? lookupMap.get(exp.userId) : null) ||
+        (exp.cadetId ? lookupMap.get(exp.cadetId) : null) ||
+        (expCleanNum ? lookupMap.get(expCleanNum) : null) ||
+        (expFmtNum ? lookupMap.get(expFmtNum) : null) ||
+        (exp.cadetNumber ? lookupMap.get(exp.cadetNumber) : null);
 
-      if (existing) {
-        existing.expensesCount += 1;
-        existing.totalAmount += exp.amount;
-        existing.expenses.push(exp);
+      if (matched) {
+        matched.expensesCount += 1;
+        matched.totalAmount += exp.amount;
+        matched.expenses.push(exp);
       } else {
-        // Caso haja lançamento para um cadete ainda não na lista de usuários
-        map.set(key, {
-          id: exp.userId || key,
-          cadetNumber: exp.cadetNumber || '---',
+        const fallbackKey = expCleanNum || exp.userId || exp.id || 'unknown';
+        const newItem: CadetMonthlyExtractItem = {
+          id: exp.userId || fallbackKey,
+          cadetNumber: expFmtNum || exp.cadetNumber || '---',
           warName: exp.userName || 'CADETE',
           fullName: exp.userName || 'Cadete AFA',
           squadron: '1º Esquadrão',
           expensesCount: 1,
           totalAmount: exp.amount,
           expenses: [exp],
-        });
+        };
+        itemsMap.set(fallbackKey, newItem);
+        lookupMap.set(fallbackKey, newItem);
+        if (expCleanNum) lookupMap.set(expCleanNum, newItem);
+        if (expFmtNum) lookupMap.set(expFmtNum, newItem);
       }
     });
 
-    return Array.from(map.values()).sort((a, b) => a.cadetNumber.localeCompare(b.cadetNumber, undefined, { numeric: true }));
+    return Array.from(itemsMap.values()).sort((a, b) => a.cadetNumber.localeCompare(b.cadetNumber, undefined, { numeric: true }));
   }, [allUsers, periodExpenses]);
 
   // Filtragem da Lista de Cadetes do Extrato
@@ -218,7 +262,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
 
   // --- ABA 3: SÓCIOS DOS CLUBES (100% POCKETBASE) ---
   const activeMemberships = useMemo(() => {
-    return memberships.filter((m) => m.status === 'approved');
+    return memberships.filter((m) => m.status === 'approved' || m.status === 'active');
   }, [memberships]);
 
   const filteredMemberships = useMemo(() => {
@@ -251,7 +295,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   const handleDeleteExpense = async (expenseId: string) => {
     if (!confirm('Tem certeza que deseja cancelar/excluir este lançamento da cédula?')) return;
     try {
-      await pb.collection('expenses').delete(expenseId);
+      await DatabaseService.deleteTransaction(expenseId);
       if (onRefreshData) onRefreshData();
     } catch (err) {
       console.error('Erro ao excluir lançamento:', err);
@@ -261,14 +305,12 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
 
   // Handler para Lançamentos da Diretoria
   const handleLaunchIndividual = async (launch: Omit<Expense, 'id' | 'createdAt' | 'status'>) => {
-    await pb.collection('expenses').create({ ...launch, createdAt: new Date().toISOString() });
+    await DatabaseService.createTransaction(launch);
     if (onRefreshData) onRefreshData();
   };
 
   const handleLaunchBulk = async (launches: Omit<Expense, 'id' | 'createdAt' | 'status'>[]) => {
-    for (const item of launches) {
-      await pb.collection('expenses').create({ ...item, createdAt: new Date().toISOString() });
-    }
+    await DatabaseService.createTransactions(launches);
     if (onRefreshData) onRefreshData();
   };
 

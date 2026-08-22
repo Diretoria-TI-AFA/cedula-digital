@@ -102,11 +102,12 @@ export async function generateDirectorPDFReport(options: GeneratePdfOptions): Pr
     const cadetTotalsMap: { [key: string]: { name: string; number: string; total: number; count: number } } = {};
 
     expenses.forEach((exp) => {
-      const key = `${exp.cadetNumber}_${exp.userName}`;
+      const cadetName = exp.userName || exp.cadetName || 'Cadete';
+      const key = `${exp.cadetNumber}_${cadetName}`;
       if (!cadetTotalsMap[key]) {
         cadetTotalsMap[key] = {
           number: exp.cadetNumber,
-          name: exp.userName,
+          name: cadetName,
           total: 0,
           count: 0
         };
