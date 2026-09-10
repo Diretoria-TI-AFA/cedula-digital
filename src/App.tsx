@@ -29,7 +29,22 @@ export function App() {
     return (localStorage.getItem('cedula_theme') as 'dark' | 'light') || 'dark';
   });
 
-  const [activeTab, setActiveTab] = useState<'card' | 'clubs' | 'religious' | 'scaer' | 'director'>('card');
+  const [activeTab, setActiveTabState] = useState<'card' | 'clubs' | 'religious' | 'scaer' | 'director'>(() => {
+    const saved = localStorage.getItem('cedula_active_tab') as 'card' | 'clubs' | 'religious' | 'scaer' | 'director';
+    if (pb.authStore.isValid && pb.authStore.record) {
+      const u = pb.authStore.record as unknown as User;
+      if (u.role === 'diretor') return 'director';
+      if (u.role === 'scaer' || u.role === 'presidente') return 'scaer';
+      if (saved && ['card', 'clubs', 'religious'].includes(saved)) return saved;
+      return 'card';
+    }
+    return saved || 'card';
+  });
+
+  const setActiveTab = (tab: 'card' | 'clubs' | 'religious' | 'scaer' | 'director') => {
+    setActiveTabState(tab);
+    localStorage.setItem('cedula_active_tab', tab);
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -48,10 +63,35 @@ export function App() {
         const user = pb.authStore.record as unknown as User;
         setCurrentUser(user);
 
+        // Garantir que a aba ativa seja coerente com o papel do usuário
+        const savedTab = localStorage.getItem('cedula_active_tab') as 'card' | 'clubs' | 'religious' | 'scaer' | 'director';
+        if (user.role === 'diretor') {
+          setActiveTab('director');
+        } else if (user.role === 'scaer' || user.role === 'presidente') {
+          setActiveTab('scaer');
+        } else {
+          setActiveTab(savedTab && ['card', 'clubs', 'religious'].includes(savedTab) ? savedTab : 'card');
+        }
+
         const isCadet = user.role === 'cadete' || !user.role;
+        if (isCadet) {
+          try {
+            await DatabaseService.ensureCadetPreviewTransactions(user);
+          } catch (e) {
+            console.error('Erro ao garantir prévia do cadete:', e);
+          }
+        } else {
+          try {
+            await DatabaseService.checkAndRunAutonomousBilling();
+          } catch (e) {
+            console.error('Erro na rotina de faturamento autônomo:', e);
+          }
+        }
+
+
         const txsPromise = isCadet
           ? DatabaseService.getTransactionsForCadet(user)
-          : DatabaseService.getTransactionsByPeriod('2026-08');
+          : DatabaseService.getTransactions();
 
         const [usersData, clubsData, memsData, txsData, repsData, configData, summariesData] = await Promise.all([
           DatabaseService.getUsers(),
@@ -95,14 +135,14 @@ export function App() {
   const handleLogout = () => {
     pb.authStore.clear();
     setCurrentUser(null);
+    localStorage.removeItem('cedula_active_tab');
     queryCache.clear();
   };
 
   const handleRequestMembership = async (clubId: string, action: 'join' | 'leave', notes?: string) => {
     if (!currentUser) return;
     await DatabaseService.requestClubMembership(currentUser.id, clubId, action, notes);
-    const updatedMems = await DatabaseService.getMemberships();
-    setMemberships(updatedMems);
+    await loadData();
   };
 
   const handleUpdateMembershipStatus = async (
@@ -110,10 +150,19 @@ export function App() {
     status: 'approved' | 'rejected' | 'inactive' | 'active'
   ) => {
     await DatabaseService.updateMembershipStatus(membershipId, status);
-    const updatedMems = await DatabaseService.getMemberships();
-    const updatedClubs = await DatabaseService.getClubs();
-    setMemberships(updatedMems);
-    setClubs(updatedClubs);
+    await loadData();
+  };
+
+  const handleConsolidateDay20 = async (targetPeriod?: string) => {
+    const result = await DatabaseService.consolidateBillingOnDay20(targetPeriod);
+    await loadData();
+    return result;
+  };
+
+  const handleGenerateAllPreviews = async (targetPeriod?: string) => {
+    const result = await DatabaseService.generateAllCadetsPreviews(targetPeriod);
+    await loadData();
+    return result;
   };
 
   const handleLaunchIndividual = async (launch: Omit<Transaction, 'id' | 'createdAt' | 'status' | 'created' | 'updated'>) => {
@@ -287,6 +336,7 @@ export function App() {
               clubs={clubs}
               memberships={memberships}
               expenses={transactions}
+              scaerConfig={scaerConfig}
               onSetDonation={handleSetReligiousDonation}
               onCancelDonation={handleCancelReligiousDonation}
               theme={theme}
@@ -306,6 +356,8 @@ export function App() {
               scaerConfig={scaerConfig}
               onUpdateScaerConfig={handleUpdateScaerConfig}
               onTriggerMonthlyBilling={handleTriggerMonthlyBilling}
+              onConsolidateDay20={handleConsolidateDay20}
+              onGenerateAllPreviews={handleGenerateAllPreviews}
               onUpdateMembershipStatus={handleUpdateMembershipStatus}
               onLaunchIndividual={handleLaunchIndividual}
               onLaunchBulk={handleLaunchBulk}

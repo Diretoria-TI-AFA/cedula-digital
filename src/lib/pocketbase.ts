@@ -21,19 +21,19 @@ export const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://ce
 export const pb = new PocketBase(POCKETBASE_URL);
 pb.autoCancellation(false);
 
-const getPeriodStr = (date: Date): string => {
+export const getPeriodStr = (date: Date): string => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0');
   return `${date.getFullYear()}-${month}`;
 };
 
-const getNextPeriod = (currentPeriod: string): string => {
+export const getNextPeriod = (currentPeriod: string): string => {
   const [year, month] = currentPeriod.split('-');
   const d = new Date(parseInt(year), parseInt(month) - 1, 1);
   d.setMonth(d.getMonth() + 1);
   return getPeriodStr(d);
 };
 
-const addMonths = (period: string, monthsToAdd: number): string => {
+export const addMonths = (period: string, monthsToAdd: number): string => {
   const [year, month] = period.split('-');
   const d = new Date(parseInt(year), parseInt(month) - 1, 1);
   d.setMonth(d.getMonth() + monthsToAdd);
@@ -138,6 +138,47 @@ class DatabaseServiceClass {
     });
   }
 
+  async syncCadetPreviewOnClubChange(
+    user: User,
+    club: Club,
+    action: 'join' | 'leave',
+    effectivePeriod: string
+  ): Promise<void> {
+    try {
+      const filter = `(userId="${user.id}" || cadetId="${user.id}" || cadetNumber="${user.cadetNumber}") && clubId="${club.id}" && billingPeriod="${effectivePeriod}" && status="preview"`;
+      const txs = await pb.collection('transactions').getFullList({ filter });
+
+      if (action === 'leave') {
+        for (const tx of txs) {
+          await pb.collection('transactions').delete(tx.id).catch(() => null);
+        }
+      } else if (action === 'join') {
+        if (txs.length === 0 && club.monthlyFee && club.monthlyFee > 0) {
+          await pb.collection('transactions').create({
+            userId: user.id,
+            cadetId: user.id,
+            cadetNumber: user.cadetNumber || '',
+            cadetName: user.warName || user.name || '',
+            userName: user.warName || user.name || '',
+            clubId: club.id,
+            clubName: club.name,
+            description: `Mensalidade ${club.name} (Prévia)`,
+            amount: club.monthlyFee,
+            category: 'mensalidade_clube',
+            billingPeriod: effectivePeriod,
+            type: 'automatic',
+            status: 'preview',
+            createdBy: 'system',
+            createdByName: 'Sistema (Prévia)',
+          }).catch(() => null);
+        }
+      }
+      queryCache.clear();
+    } catch (err) {
+      console.error('Erro ao sincronizar prévia de clube:', err);
+    }
+  }
+
   async requestClubMembership(
     userId: string,
     clubId: string,
@@ -146,8 +187,14 @@ class DatabaseServiceClass {
   ): Promise<ClubMembership | null> {
     try {
       const today = new Date();
-      const currentPeriod = getPeriodStr(today);
-      const effectiveFrom = today.getDate() <= 20 ? currentPeriod : getNextPeriod(currentPeriod);
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(today);
+      const isBeforeDeadline = today.getDate() <= (config?.clubChangeDeadlineDay || 20);
+
+      // Regra do dia 20: até dia 20 vigora para o mês seguinte (M+1); após dia 20 vigora para M+2
+      const effectiveFrom = isBeforeDeadline
+        ? getNextPeriod(currentPeriod)
+        : getNextPeriod(getNextPeriod(currentPeriod));
 
       const status = action === 'join' ? 'pending_entry' : 'pending_exit';
 
@@ -184,7 +231,13 @@ class DatabaseServiceClass {
         record = await pb.collection('club_memberships').create(data);
       }
 
+      // Sincronizar imediatamente a prévia do próximo mês se for antes do dia 20
+      if (isBeforeDeadline && user && club) {
+        await this.syncCadetPreviewOnClubChange(user, club, action, effectiveFrom);
+      }
+
       queryCache.clear('club_memberships');
+      queryCache.clear('transactions');
       return record as unknown as ClubMembership;
     } catch (error) {
       console.error('Erro ao solicitar associação:', error);
@@ -714,18 +767,79 @@ class DatabaseServiceClass {
     }
   }
 
+  // Sincronização de Doação na Prévia
+  async syncCadetPreviewOnDonationChange(
+    user: User,
+    clubId: string,
+    clubName: string,
+    amount: number,
+    effectivePeriod: string
+  ): Promise<void> {
+    try {
+      const filter = `(userId="${user.id}" || cadetId="${user.id}" || cadetNumber="${user.cadetNumber}") && (clubId="${clubId}" || category="doacao_religiosa") && billingPeriod="${effectivePeriod}" && status="preview"`;
+      const existingTxs = await pb.collection('transactions').getFullList({ filter });
+      const matched = existingTxs.find(
+        (tx) => tx.clubId === clubId || (clubName && tx.description.toLowerCase().includes(clubName.toLowerCase()))
+      );
+
+      if (amount <= 0) {
+        if (matched) {
+          await pb.collection('transactions').delete(matched.id).catch(() => null);
+        }
+      } else {
+        if (matched) {
+          await pb.collection('transactions').update(matched.id, {
+            amount,
+            description: `Doação Mensal - ${clubName || matched.clubName} (Prévia)`,
+          });
+        } else {
+          await pb.collection('transactions').create({
+            userId: user.id,
+            cadetId: user.id,
+            userName: user.warName || user.name,
+            cadetName: user.warName || user.name,
+            cadetNumber: user.cadetNumber,
+            clubId,
+            clubName,
+            description: `Doação Mensal - ${clubName} (Prévia)`,
+            amount,
+            category: 'doacao_religiosa',
+            billingPeriod: effectivePeriod,
+            type: 'recurring',
+            createdBy: user.id,
+            createdByName: user.warName || user.name,
+            status: 'preview',
+          });
+        }
+      }
+      queryCache.clear();
+    } catch (err) {
+      console.error('Erro ao sincronizar doação na prévia:', err);
+    }
+  }
+
   // Religious Donations
   async setCadetReligiousDonation(
     userId: string,
     clubId: string,
     clubName: string,
     amount: number,
-    billingPeriod: string = '2026-08'
+    billingPeriod?: string
   ): Promise<boolean> {
     try {
       const users = await this.getUsers();
       const user = users.find((u) => u.id === userId);
       if (!user) throw new Error('Usuário não encontrado');
+
+      const today = new Date();
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(today);
+      const isBeforeDeadline = today.getDate() <= (config?.clubChangeDeadlineDay || 20);
+
+      // Regra do dia 20: até dia 20 afeta a prévia de M+1; após dia 20 afeta M+2
+      const targetPeriod = billingPeriod || (isBeforeDeadline
+        ? getNextPeriod(currentPeriod)
+        : getNextPeriod(getNextPeriod(currentPeriod)));
 
       const now = new Date().toISOString().split('T')[0];
       const memberships = await this.getMemberships();
@@ -739,6 +853,7 @@ class DatabaseServiceClass {
         await pb.collection('club_memberships').update(existingMem.id, {
           status: 'approved',
           approvedAt: now,
+          effectiveFrom: targetPeriod,
           notes: `Doação Mensal: R$ ${amount.toFixed(2)}`,
         }).catch(() => null);
       } else {
@@ -752,43 +867,14 @@ class DatabaseServiceClass {
           status: 'approved',
           requestedAt: now,
           approvedAt: now,
+          effectiveFrom: targetPeriod,
           notes: `Doação Mensal: R$ ${amount.toFixed(2)}`,
         }).catch(() => null);
       }
 
-      // Criar ou atualizar transação de doação
-      const transactions = await this.getTransactions();
-      const existingTx = transactions.find(
-        (e) =>
-          (e.userId === userId || e.cadetNumber === user.cadetNumber) &&
-          e.billingPeriod === billingPeriod &&
-          (e.clubId === clubId || (e.description && e.description.toLowerCase().includes(clubName.toLowerCase())))
-      );
-
-      if (existingTx) {
-        await this.updateTransaction(existingTx.id, {
-          amount,
-          description: `Doação Mensal - ${clubName}`,
-          category: 'doacao_religiosa',
-        });
-      } else {
-        await this.createTransaction({
-          userId: user.id,
-          cadetId: user.id,
-          userName: user.warName || user.name,
-          cadetName: user.warName || user.name,
-          cadetNumber: user.cadetNumber,
-          clubId,
-          clubName,
-          description: `Doação Mensal - ${clubName}`,
-          amount,
-          category: 'doacao_religiosa',
-          billingPeriod,
-          type: 'recurring',
-          createdBy: user.id,
-          createdByName: user.warName || user.name,
-          status: 'pending',
-        });
+      // Sincronizar na prévia do próximo mês
+      if (isBeforeDeadline) {
+        await this.syncCadetPreviewOnDonationChange(user, clubId, clubName, amount, targetPeriod);
       }
 
       queryCache.clear();
@@ -802,23 +888,33 @@ class DatabaseServiceClass {
   async cancelCadetReligiousDonation(
     userId: string,
     clubId: string,
-    billingPeriod: string = '2026-08'
+    billingPeriod?: string
   ): Promise<boolean> {
     try {
+      const users = await this.getUsers();
+      const user = users.find((u) => u.id === userId);
+      if (!user) throw new Error('Usuário não encontrado');
+
+      const today = new Date();
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(today);
+      const isBeforeDeadline = today.getDate() <= (config?.clubChangeDeadlineDay || 20);
+
+      const targetPeriod = billingPeriod || (isBeforeDeadline
+        ? getNextPeriod(currentPeriod)
+        : getNextPeriod(getNextPeriod(currentPeriod)));
+
       const memberships = await this.getMemberships();
       const existingMem = memberships.find((m) => m.userId === userId && m.clubId === clubId);
       if (existingMem) {
         await pb.collection('club_memberships').update(existingMem.id, {
           status: 'inactive',
+          effectiveFrom: targetPeriod,
         }).catch(() => null);
       }
 
-      const transactions = await this.getTransactions();
-      const existingTx = transactions.find(
-        (e) => (e.userId === userId || e.cadetNumber) && e.billingPeriod === billingPeriod && e.clubId === clubId
-      );
-      if (existingTx) {
-        await this.deleteTransaction(existingTx.id);
+      if (isBeforeDeadline) {
+        await this.syncCadetPreviewOnDonationChange(user, clubId, '', 0, targetPeriod);
       }
 
       queryCache.clear();
@@ -829,7 +925,277 @@ class DatabaseServiceClass {
     }
   }
 
+  // Garantir prévia para um cadete
+  async ensureCadetPreviewTransactions(cadetUser: User, nextPeriod?: string): Promise<Transaction[]> {
+    try {
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(new Date());
+      const targetPeriod = nextPeriod || getNextPeriod(currentPeriod);
+
+      const existingTxs = (await pb.collection('transactions').getFullList({
+        filter: `(userId="${cadetUser.id}" || cadetId="${cadetUser.id}" || cadetNumber="${cadetUser.cadetNumber}") && billingPeriod="${targetPeriod}"`,
+      })) as unknown as Transaction[];
+
+      const txsToCreate: Partial<Transaction>[] = [];
+
+      // 1. Mensalidade SCAER na prévia
+      const hasScaer = existingTxs.some(
+        (t) => t.category === 'mensalidade_scaer' || t.description.includes('Mensalidade SCAER')
+      );
+      if (!hasScaer) {
+        const scaerFee = config?.scaerMonthlyFee || 50;
+        txsToCreate.push({
+          userId: cadetUser.id,
+          cadetId: cadetUser.id,
+          cadetNumber: cadetUser.cadetNumber,
+          cadetName: cadetUser.warName || cadetUser.name,
+          userName: cadetUser.warName || cadetUser.name,
+          clubId: 'SCAER',
+          clubName: 'SCAER',
+          description: 'Mensalidade SCAER (Prévia)',
+          amount: scaerFee,
+          category: 'mensalidade_scaer',
+          billingPeriod: targetPeriod,
+          type: 'automatic',
+          status: 'preview',
+          createdBy: 'system',
+          createdByName: 'Sistema (Prévia)',
+        });
+      }
+
+      // 2. Mensalidades dos Clubes na prévia
+      const memberships = await this.getMemberships();
+      const clubs = await this.getClubs();
+      const userMems = memberships.filter(
+        (m) =>
+          (m.userId === cadetUser.id || m.cadetNumber === cadetUser.cadetNumber) &&
+          (m.status === 'active' || m.status === 'approved' || m.status === 'pending_entry')
+      );
+
+      for (const mem of userMems) {
+        const club = clubs.find((c) => c.id === mem.clubId);
+        if (!club || !club.monthlyFee || club.monthlyFee <= 0) continue;
+
+        const hasClubTx = existingTxs.some(
+          (t) => t.clubId === club.id && (t.category === 'mensalidade_clube' || t.category === 'Mensalidade')
+        );
+
+        if (!hasClubTx) {
+          txsToCreate.push({
+            userId: cadetUser.id,
+            cadetId: cadetUser.id,
+            cadetNumber: cadetUser.cadetNumber,
+            cadetName: cadetUser.warName || cadetUser.name,
+            userName: cadetUser.warName || cadetUser.name,
+            clubId: club.id,
+            clubName: club.name,
+            description: `Mensalidade ${club.name} (Prévia)`,
+            amount: club.monthlyFee,
+            category: 'mensalidade_clube',
+            billingPeriod: targetPeriod,
+            type: 'automatic',
+            status: 'preview',
+            createdBy: 'system',
+            createdByName: 'Sistema (Prévia)',
+          });
+        }
+      }
+
+      // 3. Doações religiosas ativas
+      const activeDonationMems = memberships.filter(
+        (m) =>
+          (m.userId === cadetUser.id || m.cadetNumber === cadetUser.cadetNumber) &&
+          (m.status === 'active' || m.status === 'approved') &&
+          m.notes && m.notes.includes('Doação Mensal')
+      );
+
+      for (const donMem of activeDonationMems) {
+        const hasDonTx = existingTxs.some(
+          (t) => t.clubId === donMem.clubId && t.category === 'doacao_religiosa'
+        );
+        if (!hasDonTx) {
+          const match = donMem.notes?.match(/R\$\s*([\d,.]+)/);
+          const amount = match ? parseFloat(match[1].replace(',', '.')) : 10;
+          if (amount > 0) {
+            txsToCreate.push({
+              userId: cadetUser.id,
+              cadetId: cadetUser.id,
+              cadetNumber: cadetUser.cadetNumber,
+              cadetName: cadetUser.warName || cadetUser.name,
+              userName: cadetUser.warName || cadetUser.name,
+              clubId: donMem.clubId,
+              clubName: donMem.clubName,
+              description: `Doação Mensal - ${donMem.clubName} (Prévia)`,
+              amount,
+              category: 'doacao_religiosa',
+              billingPeriod: targetPeriod,
+              type: 'recurring',
+              status: 'preview',
+              createdBy: cadetUser.id,
+              createdByName: cadetUser.warName || cadetUser.name,
+            });
+          }
+        }
+      }
+
+      if (txsToCreate.length > 0) {
+        await Promise.all(
+          txsToCreate.map((t) => pb.collection('transactions').create(t).catch(() => null))
+        );
+        queryCache.clear();
+      }
+
+      return await this.getTransactionsForCadet(cadetUser);
+    } catch (err) {
+      console.error('Erro ao garantir prévia do cadete:', err);
+      return [];
+    }
+  }
+
+  // Gerar prévias de todos os cadetes ativos
+  async generateAllCadetsPreviews(targetPeriod?: string): Promise<{ cadetsProcessed: number }> {
+    try {
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(new Date());
+      const nextPeriod = targetPeriod || getNextPeriod(currentPeriod);
+
+      const users = await this.getUsers();
+      const cadets = users.filter((u) => u.role === 'cadete' || !u.role);
+
+      let cadetsProcessed = 0;
+      for (const cadet of cadets) {
+        await this.ensureCadetPreviewTransactions(cadet, nextPeriod);
+        cadetsProcessed++;
+      }
+
+      queryCache.clear();
+      return { cadetsProcessed };
+    } catch (err) {
+      console.error('Erro ao gerar prévias de todos os cadetes:', err);
+      throw err;
+    }
+  }
+
+  // Consolidação definitiva do Dia 20
+  async consolidateBillingOnDay20(targetPeriod?: string): Promise<{ convertedCount: number; period: string }> {
+    try {
+      const config = await this.getScaerConfig();
+      const currentPeriod = config?.currentBillingPeriod || getPeriodStr(new Date());
+      const period = targetPeriod || getNextPeriod(currentPeriod);
+
+      // 1. Processar transições de membership pendentes para o período
+      const memberships = await pb.collection('club_memberships').getFullList();
+      for (const m of memberships) {
+        if (m.status === 'pending_entry' && (!m.effectiveFrom || m.effectiveFrom <= period)) {
+          await pb.collection('club_memberships').update(m.id, { status: 'active' }).catch(() => null);
+        } else if (m.status === 'pending_exit' && (!m.effectiveFrom || m.effectiveFrom <= period)) {
+          await pb.collection('club_memberships').update(m.id, { status: 'exited' }).catch(() => null);
+        }
+      }
+
+      // 2. Converter todas as transações com status 'preview' para 'pending'
+      const previewTxs = await pb.collection('transactions').getFullList({
+        filter: `billingPeriod="${period}" && status="preview"`,
+      });
+
+      let convertedCount = 0;
+      for (const tx of previewTxs) {
+        const cleanDesc = (tx.description || '').replace(' (Prévia)', '');
+        await pb.collection('transactions').update(tx.id, {
+          status: 'pending',
+          description: cleanDesc,
+        }).catch(() => null);
+        convertedCount++;
+      }
+
+      // 3. Atualizar resumo mensal
+      await this.generateMonthlySummary(period);
+
+      queryCache.clear();
+      return { convertedCount, period };
+    } catch (err) {
+      console.error('Erro ao consolidar cobranças do dia 20:', err);
+      throw err;
+    }
+  }
+
+  // Verificação e Execução Autônoma de Faturamento (Self-healing e Gatilho do Dia 20)
+  async checkAndRunAutonomousBilling(): Promise<{
+    consolidated?: { convertedCount: number; period: string };
+    previewsGenerated?: number;
+    advancedPeriod?: string;
+  }> {
+    try {
+      const config = await this.getScaerConfig();
+      if (!config) return {};
+
+      const now = new Date();
+      const currentCalendarPeriod = getPeriodStr(now);
+      const currentConfigPeriod = config.currentBillingPeriod || currentCalendarPeriod;
+      const dayOfMonth = now.getDate();
+      const nextPeriod = getNextPeriod(currentConfigPeriod);
+
+      const result: {
+        consolidated?: { convertedCount: number; period: string };
+        previewsGenerated?: number;
+        advancedPeriod?: string;
+      } = {};
+
+      // 1. Se o calendário atual for posterior ao período configurado, avançar período no config
+      if (currentCalendarPeriod > currentConfigPeriod) {
+        console.log(`[AutoBilling] Avançando período de faturamento de ${currentConfigPeriod} para ${currentCalendarPeriod}`);
+        await pb.collection('scaer_config').update(config.id, {
+          currentBillingPeriod: currentCalendarPeriod,
+        }).catch(() => null);
+        result.advancedPeriod = currentCalendarPeriod;
+      }
+
+      // 2. Regra do Dia 20:
+      // Se dia do mês >= 20: consolidar cobranças de preview para definitivo ('pending') em nextPeriod
+      if (dayOfMonth >= 20) {
+        const previewCheck = await pb.collection('transactions').getList(1, 1, {
+          filter: `billingPeriod="${nextPeriod}" && status="preview"`,
+        }).catch(() => null);
+
+        if (previewCheck && previewCheck.totalItems > 0) {
+          console.log(`[AutoBilling] Dia 20 atingido. Consolidando ${previewCheck.totalItems} prévias do período ${nextPeriod}...`);
+          const consRes = await this.consolidateBillingOnDay20(nextPeriod);
+          result.consolidated = consRes;
+        }
+
+        // Uma vez consolidado o nextPeriod (M+1), preparar a prévia do mês seguinte (M+2)
+        const m2Period = getNextPeriod(nextPeriod);
+        const m2Check = await pb.collection('transactions').getList(1, 1, {
+          filter: `billingPeriod="${m2Period}"`,
+        }).catch(() => null);
+
+        if (m2Check && m2Check.totalItems === 0) {
+          console.log(`[AutoBilling] Gerando prévias provisórias para M+2 (${m2Period})...`);
+          const genRes = await this.generateAllCadetsPreviews(m2Period);
+          result.previewsGenerated = genRes.cadetsProcessed;
+        }
+      } else {
+        // Antes do dia 20: Garantir que o período de prévia (nextPeriod) já possui os lançamentos gerados
+        const octCheck = await pb.collection('transactions').getList(1, 1, {
+          filter: `billingPeriod="${nextPeriod}"`,
+        }).catch(() => null);
+
+        if (octCheck && octCheck.totalItems === 0) {
+          console.log(`[AutoBilling] Gerando prévias provisórias para ${nextPeriod}...`);
+          const genRes = await this.generateAllCadetsPreviews(nextPeriod);
+          result.previewsGenerated = genRes.cadetsProcessed;
+        }
+      }
+
+      return result;
+    } catch (err) {
+      console.error('Erro na rotina de faturamento autônomo:', err);
+      return {};
+    }
+  }
+
   // Importação em Lote Direta para o PocketBase
+
   async importBulkDataFromExcel(
     _newRoster: CadetRosterItem[],
     newTransactions: Partial<Transaction>[],

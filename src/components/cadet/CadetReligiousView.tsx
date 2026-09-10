@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import type { Club, ClubMembership, Expense, User } from '../../types';
+import type { Club, ClubMembership, Expense, User, ScaerConfig } from '../../types';
+import { getNextPeriod, getPeriodStr } from '../../lib/pocketbase';
 import {
   Heart,
   Church,
@@ -9,7 +10,8 @@ import {
   Calendar,
   XCircle,
   Loader2,
-  ShieldCheck
+  ShieldCheck,
+  Clock,
 } from 'lucide-react';
 
 interface CadetReligiousViewProps {
@@ -17,6 +19,7 @@ interface CadetReligiousViewProps {
   clubs: Club[];
   memberships: ClubMembership[];
   expenses: Expense[];
+  scaerConfig?: ScaerConfig | null;
   onSetDonation: (clubId: string, clubName: string, amount: number) => Promise<void>;
   onCancelDonation: (clubId: string) => Promise<void>;
   theme?: 'dark' | 'light';
@@ -78,23 +81,33 @@ export const CadetReligiousView: React.FC<CadetReligiousViewProps> = ({
   clubs,
   memberships,
   expenses,
+  scaerConfig,
   onSetDonation,
   onCancelDonation,
   theme = 'dark',
 }) => {
   const isDark = theme === 'dark';
-  const currentPeriod = '2026-08';
+  const today = new Date();
+  const currentPeriod = scaerConfig?.currentBillingPeriod || getPeriodStr(today);
+  const deadlineDay = scaerConfig?.clubChangeDeadlineDay || 20;
+  const isBeforeDeadline = today.getDate() <= deadlineDay;
+  const targetPeriod = isBeforeDeadline
+    ? getNextPeriod(currentPeriod)
+    : getNextPeriod(getNextPeriod(currentPeriod));
 
   const [loadingCode, setLoadingCode] = useState<string | null>(null);
   const [customInputs, setCustomInputs] = useState<Record<string, string>>({});
   const [selectedAmounts, setSelectedAmounts] = useState<Record<string, number>>({});
+  const [actionFeedback, setActionFeedback] = useState<string | null>(null);
 
-  // Obter doações ativas do cadete no período
+  // Obter doações ativas do cadete no período atual ou prévia do próximo mês
   const userDonationExpenses = expenses.filter(
     (e) =>
       (e.userId === user.id || e.cadetNumber === user.cadetNumber) &&
-      e.billingPeriod === currentPeriod &&
-      (e.description.toLowerCase().includes('doação') ||
+      (e.billingPeriod === currentPeriod || e.billingPeriod === targetPeriod) &&
+      e.status !== 'cancelled' &&
+      (e.category === 'doacao_religiosa' ||
+        e.description.toLowerCase().includes('doação') ||
         e.description.toLowerCase().includes('culto') ||
         e.clubName.toLowerCase().includes('acc') ||
         e.clubName.toLowerCase().includes('católico') ||
@@ -138,6 +151,12 @@ export const CadetReligiousView: React.FC<CadetReligiousViewProps> = ({
       const targetClubName = matchedClub?.name || entity.defaultName;
 
       await onSetDonation(targetClubId, targetClubName, amount);
+      if (isBeforeDeadline) {
+        setActionFeedback(`Doação de R$ ${amount.toFixed(2)} para ${entity.defaultName} registrada! A prévia da sua fatura de ${targetPeriod} foi atualizada imediatamente.`);
+      } else {
+        setActionFeedback(`Doação de R$ ${amount.toFixed(2)} registrada! Como o prazo do dia 20 encerrou para a próxima fatura, a vigência iniciará em ${targetPeriod}.`);
+      }
+      setTimeout(() => setActionFeedback(null), 6000);
     } catch (err) {
       console.error('Erro ao registrar doação:', err);
       alert('Erro ao registrar doação. Tente novamente.');
@@ -160,6 +179,12 @@ export const CadetReligiousView: React.FC<CadetReligiousViewProps> = ({
 
       const targetClubId = matchedClub?.id || `clb_${entity.code.toLowerCase()}`;
       await onCancelDonation(targetClubId);
+      if (isBeforeDeadline) {
+        setActionFeedback(`Contribuição para ${entity.defaultName} cancelada! A prévia da fatura de ${targetPeriod} foi atualizada.`);
+      } else {
+        setActionFeedback(`Cancelamento registrado com sucesso para vigorar a partir de ${targetPeriod}.`);
+      }
+      setTimeout(() => setActionFeedback(null), 6000);
     } catch (err) {
       console.error('Erro ao cancelar doação:', err);
       alert('Erro ao cancelar doação.');
@@ -209,6 +234,41 @@ export const CadetReligiousView: React.FC<CadetReligiousViewProps> = ({
               {userDonationExpenses.length} {userDonationExpenses.length === 1 ? 'culto apoiado' : 'cultos apoiados'} em {currentPeriod}
             </span>
           </div>
+        </div>
+      </div>
+
+      {/* Banner de Feedback de Doação */}
+      {actionFeedback && (
+        <div
+          className={`p-4 rounded-xl border flex items-center justify-between space-x-3 transition-colors ${
+            isDark ? 'bg-emerald-950/30 border-emerald-800/60 text-emerald-200' : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+          }`}
+        >
+          <div className="flex items-center space-x-2 text-xs">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            <span className="font-semibold">{actionFeedback}</span>
+          </div>
+          <button
+            onClick={() => setActionFeedback(null)}
+            className="text-xs text-zinc-400 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      {/* Banner Informativo da Regra do Dia 20 */}
+      <div className={`p-4 rounded-xl border flex items-start space-x-3 transition-colors ${
+        isDark ? 'bg-amber-950/20 border-amber-800/40 text-amber-300' : 'bg-amber-50 border-amber-200 text-amber-900'
+      }`}>
+        <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+        <div className="text-xs space-y-0.5">
+          <p className="font-bold">Regra de Doações Religiosas & Ação Social (Dia 20 de cada mês):</p>
+          <p className={isDark ? 'text-amber-300/80' : 'text-amber-800'}>
+            Doações definidas ou canceladas até o <strong>dia 20 às 23:59</strong> atualizam imediatamente a <strong>prévia da fatura do mês seguinte</strong>.
+            No dia 20 às 23:59, a doação é consolidada em definitivo na fatura do próximo mês.
+            Alterações feitas <strong>após o dia 20</strong> mantêm a fatura do próximo mês inalterada e entram em vigor a partir do <strong>mês subsequente (M+2)</strong>.
+          </p>
         </div>
       </div>
 

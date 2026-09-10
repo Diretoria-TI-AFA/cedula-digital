@@ -459,8 +459,10 @@ export const LaunchExpenseModal: React.FC<LaunchExpenseModalProps> = ({
                   isDark ? 'bg-slate-950 border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-300 text-slate-900'
                 }`}
               >
-                <option value="2026-07">Julho / 2026</option>
+                <option value="2026-10">Outubro / 2026 (Prévia)</option>
+                <option value="2026-09">Setembro / 2026</option>
                 <option value="2026-08">Agosto / 2026</option>
+                <option value="2026-07">Julho / 2026</option>
                 <option value="2026-06">Junho / 2026</option>
               </select>
             </div>

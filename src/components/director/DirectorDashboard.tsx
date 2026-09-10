@@ -64,8 +64,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
 }) => {
   const [directorSubTab, setDirectorSubTab] = useState<'extrato' | 'repasse' | 'members' | 'audit'>('extrato');
 
-  // Filtros Globais de Período
-  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-08');
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-09');
 
   // Transações do período carregadas dinamicamente
   const [periodExpenses, setPeriodExpenses] = useState<Expense[]>(
@@ -755,6 +754,8 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
                 }`}
               >
                 <option value="all">Consolidado Geral (Todos os Meses)</option>
+                <option value="2026-10">Outubro / 2026 (Prévia)</option>
+                <option value="2026-09">Setembro / 2026</option>
                 <option value="2026-08">Agosto / 2026</option>
                 <option value="2026-07">Julho / 2026</option>
                 <option value="2026-06">Junho / 2026</option>
@@ -1436,6 +1437,8 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
                 }`}
               >
                 <option value="all">Todos os Meses</option>
+                <option value="2026-10">Outubro / 2026 (Prévia)</option>
+                <option value="2026-09">Setembro / 2026</option>
                 <option value="2026-08">Agosto / 2026</option>
                 <option value="2026-07">Julho / 2026</option>
                 <option value="2026-06">Junho / 2026</option>
@@ -1579,7 +1582,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
       {/* Modal de Lançamento da Diretoria */}
       {showLaunchModal && (
         <LaunchExpenseModal
-          club={clubs[0] || { id: 'clb_geraes', name: 'SCAER DIRETORIA', monthlyFee: 0, category: 'Diretoria' }}
+          club={{ id: 'clb_diretoria', name: 'DIRETORIA DE CÉDULA', monthlyFee: 0, category: 'Diretoria' }}
           activeMembers={[]}
           allCadets={allUsers}
           managerUser={directorUser}

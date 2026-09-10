@@ -96,7 +96,7 @@ export type TransactionType =
   | 'event_non_member'
   | 'csv';
 
-export type TransactionStatus = 'pending' | 'paid' | 'cancelled' | 'deferred';
+export type TransactionStatus = 'pending' | 'paid' | 'cancelled' | 'deferred' | 'preview';
 
 export interface InstallmentInfo {
   total: number;

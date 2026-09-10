@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { Club, ClubMembership, Expense, User, ScaerConfig } from '../../types';
+import { getNextPeriod } from '../../lib/pocketbase';
 import { LaunchExpenseModal } from './LaunchExpenseModal';
 import { QRCodeExpenseScanner } from '../common/QRCodeExpenseScanner';
 import {
@@ -24,7 +25,9 @@ import {
   Settings,
   Zap,
   Clock,
-  Shield
+  Shield,
+  Sparkles,
+  Lock,
 } from 'lucide-react';
 
 interface ScaerManagerViewProps {
@@ -36,6 +39,8 @@ interface ScaerManagerViewProps {
   scaerConfig?: ScaerConfig | null;
   onUpdateScaerConfig?: (config: Partial<ScaerConfig>) => Promise<void>;
   onTriggerMonthlyBilling?: (period: string) => Promise<boolean>;
+  onConsolidateDay20?: (targetPeriod?: string) => Promise<{ convertedCount: number; period: string }>;
+  onGenerateAllPreviews?: (targetPeriod?: string) => Promise<{ cadetsProcessed: number }>;
   onUpdateMembershipStatus: (membershipId: string, status: 'approved' | 'rejected' | 'inactive') => Promise<void>;
   onLaunchIndividual: (launch: Omit<Expense, 'id' | 'createdAt' | 'status'>) => Promise<void>;
   onLaunchBulk: (launches: Omit<Expense, 'id' | 'createdAt' | 'status'>[]) => Promise<void>;
@@ -52,6 +57,8 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   scaerConfig,
   onUpdateScaerConfig,
   onTriggerMonthlyBilling,
+  onConsolidateDay20,
+  onGenerateAllPreviews,
   onUpdateMembershipStatus,
   onLaunchIndividual,
   onLaunchBulk,
@@ -69,6 +76,8 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   );
   const [isSavingConfig, setIsSavingConfig] = useState<boolean>(false);
   const [isTriggeringBilling, setIsTriggeringBilling] = useState<boolean>(false);
+  const [isConsolidatingDay20, setIsConsolidatingDay20] = useState<boolean>(false);
+  const [isGeneratingPreviews, setIsGeneratingPreviews] = useState<boolean>(false);
   const [configSuccessMsg, setConfigSuccessMsg] = useState<string | null>(null);
 
   useEffect(() => {
@@ -79,7 +88,7 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
   
   // Filtros de Caixa e Busca
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-07');
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-09');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   
   // Modal de Detalhamento do Cadete
@@ -179,7 +188,8 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
     .slice(0, 5);
 
   // Evolução Mensal do Caixa (Dados para o Gráfico de Barras)
-  const availablePeriods = ['2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08'];
+  const availablePeriods = ['2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10'];
+
   const monthlyRevenueData = availablePeriods.map((period) => {
     const periodSum = clubExpenses
       .filter((e) => e.billingPeriod === period)
@@ -551,8 +561,10 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                   }`}
                 >
                   <option value="all">Todos os Meses</option>
-                  <option value="2026-07">Julho / 2026</option>
+                  <option value="2026-10">Outubro / 2026 (Prévia)</option>
+                  <option value="2026-09">Setembro / 2026</option>
                   <option value="2026-08">Agosto / 2026</option>
+                  <option value="2026-07">Julho / 2026</option>
                   <option value="2026-06">Junho / 2026</option>
                   <option value="2026-05">Maio / 2026</option>
                 </select>
@@ -935,7 +947,111 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                 </div>
               </div>
 
-              {/* Card de Faturamento Geral */}
+              {/* Card de Consolidação Definitiva do Dia 20 */}
+              <div
+                className={`p-4 rounded-xl border space-y-3 ${
+                  isDark ? 'bg-zinc-950 border-amber-900/40' : 'bg-amber-50/50 border-amber-200'
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <Lock className="w-4 h-4 text-amber-500" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-amber-400">
+                    Consolidação Definitiva do Dia 20
+                  </h4>
+                </div>
+                <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  Converte todas as transações com status <strong>'preview'</strong> do próximo mês em cobranças definitivas (<strong>'pending'</strong>),
+                  efetiva as transições de clubes pendentes e atualiza o fechamento financeiro do período.
+                </p>
+
+                <div className="pt-2">
+                  <button
+                    disabled={isConsolidatingDay20}
+                    onClick={async () => {
+                      if (!onConsolidateDay20) return;
+                      const nextPer = getNextPeriod(scaerConfig?.currentBillingPeriod || '2026-09');
+                      const confirm = window.confirm(
+                        `Deseja executar a consolidação definitiva do Dia 20 para o período ${nextPer}? Todas as prévias desse período se tornarão lançamentos definitivos!`
+                      );
+                      if (!confirm) return;
+
+                      setIsConsolidatingDay20(true);
+                      try {
+                        const res = await onConsolidateDay20(nextPer);
+                        setConfigSuccessMsg(`Consolidação do Dia 20 executada! ${res.convertedCount} lançamentos convertidos para definitivo em ${res.period}.`);
+                        setTimeout(() => setConfigSuccessMsg(null), 5000);
+                      } catch (err) {
+                        alert('Erro ao consolidar cobranças: ' + err);
+                      } finally {
+                        setIsConsolidatingDay20(false);
+                      }
+                    }}
+                    className={`w-full py-2.5 rounded-lg font-bold text-xs transition-colors flex items-center justify-center space-x-2 ${
+                      isDark
+                        ? 'bg-amber-600 hover:bg-amber-500 text-zinc-950'
+                        : 'bg-amber-500 hover:bg-amber-600 text-zinc-950'
+                    }`}
+                  >
+                    <Lock className="w-4 h-4" />
+                    <span>
+                      {isConsolidatingDay20
+                        ? 'Consolidando lançamentos...'
+                        : `Consolidar em Definitivo (${getNextPeriod(scaerConfig?.currentBillingPeriod || '2026-09')})`}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Card de Geração de Prévias Globais */}
+              <div
+                className={`p-4 rounded-xl border space-y-3 ${
+                  isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-zinc-50 border-zinc-200'
+                }`}
+              >
+                <div className="flex items-center space-x-2">
+                  <Sparkles className="w-4 h-4 text-sky-400" />
+                  <h4 className="text-xs font-bold uppercase tracking-wider">
+                    Sincronizar Prévias de Todos os Cadetes
+                  </h4>
+                </div>
+                <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                  Garante que todos os cadetes ativos tenham lançamentos provisórios de prévia criados para o próximo mês (SCAER + Clubes + Doações).
+                </p>
+
+                <div className="pt-2">
+                  <button
+                    disabled={isGeneratingPreviews}
+                    onClick={async () => {
+                      if (!onGenerateAllPreviews) return;
+                      const nextPer = getNextPeriod(scaerConfig?.currentBillingPeriod || '2026-09');
+                      setIsGeneratingPreviews(true);
+                      try {
+                        const res = await onGenerateAllPreviews(nextPer);
+                        setConfigSuccessMsg(`Prévias sincronizadas com sucesso para ${res.cadetsProcessed} cadetes ativos no período ${nextPer}!`);
+                        setTimeout(() => setConfigSuccessMsg(null), 5000);
+                      } catch (err) {
+                        alert('Erro ao sincronizar prévias: ' + err);
+                      } finally {
+                        setIsGeneratingPreviews(false);
+                      }
+                    }}
+                    className={`w-full py-2.5 rounded-lg font-bold text-xs transition-colors flex items-center justify-center space-x-2 ${
+                      isDark
+                        ? 'bg-sky-600 hover:bg-sky-500 text-white'
+                        : 'bg-sky-600 hover:bg-sky-700 text-white'
+                    }`}
+                  >
+                    <Sparkles className="w-4 h-4" />
+                    <span>
+                      {isGeneratingPreviews
+                        ? 'Gerando prévias...'
+                        : `Gerar / Sincronizar Prévias (${getNextPeriod(scaerConfig?.currentBillingPeriod || '2026-09')})`}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Card de Faturamento Geral Manual */}
               <div
                 className={`p-4 rounded-xl border space-y-3 ${
                   isDark ? 'bg-zinc-950 border-zinc-800' : 'bg-zinc-50 border-zinc-200'
@@ -944,11 +1060,11 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                 <div className="flex items-center space-x-2">
                   <Zap className="w-4 h-4 text-emerald-500" />
                   <h4 className="text-xs font-bold uppercase tracking-wider">
-                    Faturamento Mensal Geral
+                    Faturamento Mensal Geral (Mês Corrente)
                   </h4>
                 </div>
                 <p className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                  Executa o cálculo de cobrança de mensalidade SCAER para todos os cadetes ativos no período selecionado.
+                  Executa a cobrança de mensalidade SCAER para o período corrente selecionado.
                 </p>
 
                 <div className="pt-2">
@@ -956,7 +1072,7 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                     disabled={isTriggeringBilling}
                     onClick={async () => {
                       if (!onTriggerMonthlyBilling) return;
-                      const period = scaerConfig?.currentBillingPeriod || '2026-08';
+                      const period = scaerConfig?.currentBillingPeriod || '2026-09';
                       const confirm = window.confirm(
                         `Deseja executar a geração automática de mensalidades SCAER para o período ${period}?`
                       );
@@ -983,7 +1099,7 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                     <span>
                       {isTriggeringBilling
                         ? 'Processando cobranças...'
-                        : `Executar Cobrança Automática (${scaerConfig?.currentBillingPeriod || '2026-08'})`}
+                        : `Executar Cobrança Mensal (${scaerConfig?.currentBillingPeriod || '2026-09'})`}
                     </span>
                   </button>
                 </div>
@@ -1000,17 +1116,15 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
                 <Clock className="w-3.5 h-3.5 text-amber-500" />
                 <span>Regras de Negócio e Calendário Operacional</span>
               </h5>
-              <ul className="text-xs space-y-1 text-zinc-400 list-disc list-inside">
+              <ul className="text-xs space-y-1.5 text-zinc-400 list-disc list-inside">
                 <li>
-                  <strong className="text-zinc-200">Dia 20 de cada mês:</strong> Data limite para entrada e saída de clubes.
-                  Solicitações feitas após o dia 20 vigoram apenas a partir do dia 1º do próximo mês.
+                  <strong className="text-zinc-200">Dia 20 de cada mês (23:59h):</strong> Prazo limite para cadetes entrarem/saírem de clubes e definirem doações religiosas para a fatura do mês seguinte. Às 23:59h, o Cron consolida os lançamentos de prévia em cobranças definitivas. Solicitações feitas após o dia 20 vigoram apenas para o mês subsequente (M+2).
                 </li>
                 <li>
-                  <strong className="text-zinc-200">Dia 1º de cada mês (00:05h):</strong> O servidor executa o Cron Hook
-                  automático gerando as mensalidades SCAER, mensalidades de clubes ativos e doações religiosas.
+                  <strong className="text-zinc-200">Dia 1º de cada mês (00:00h):</strong> Virada oficial do mês de competência da Cédula e abertura da nova prévia provisória.
                 </li>
                 <li>
-                  <strong className="text-zinc-200">Dia 10 de cada mês:</strong> Data de vencimento da cédula digital do cadete.
+                  <strong className="text-zinc-200">Dia 10 de cada mês:</strong> Data limite para vencimento/pagamento da cédula digital do cadete.
                 </li>
               </ul>
             </div>

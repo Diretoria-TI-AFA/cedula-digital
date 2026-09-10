@@ -250,3 +250,60 @@ cronAdd("generate_monthly_billing", "5 0 1 * *", () => {
         console.error("Erro no cron_monthly_billing:", err);
     }
 });
+
+function getNextPeriodStr(period) {
+    if (!period || !period.includes('-')) return period;
+    const parts = period.split('-');
+    let year = parseInt(parts[0], 10);
+    let month = parseInt(parts[1], 10);
+    month += 1;
+    if (month > 12) {
+        month = 1;
+        year += 1;
+    }
+    return `${year}-${month < 10 ? '0' + month : month}`;
+}
+
+// Cron para consolidação definitiva no dia 20 às 23:59
+cronAdd("consolidate_day20_billing", "59 23 20 * *", () => {
+    console.log("Iniciando consolidação definitiva do Dia 20 (Cron)...");
+
+    try {
+        const configs = $app.findRecordsByFilter("scaer_config", "id != ''", "id", 1, 0);
+        if (configs.length === 0) return;
+        const config = configs[0];
+        const currentPeriod = config.getString("currentBillingPeriod");
+        const nextPeriod = getNextPeriodStr(currentPeriod);
+
+        // 1. Processar transições de membership com vigência para o próximo período
+        const pendingEntry = $app.findRecordsByFilter("club_memberships", `status = 'pending_entry' && effectiveFrom <= '${nextPeriod}'`);
+        for (let m of pendingEntry) {
+            m.set("status", "active");
+            $app.save(m);
+        }
+
+        const pendingExit = $app.findRecordsByFilter("club_memberships", `status = 'pending_exit' && effectiveFrom <= '${nextPeriod}'`);
+        for (let m of pendingExit) {
+            m.set("status", "exited");
+            $app.save(m);
+        }
+
+        // 2. Converter todos os lançamentos com status 'preview' do próximo período em 'pending' (definitivos)
+        const previewTxs = $app.findRecordsByFilter("transactions", `billingPeriod = '${nextPeriod}' && status = 'preview'`);
+        let convertedCount = 0;
+        for (let tx of previewTxs) {
+            const desc = tx.getString("description") || "";
+            tx.set("status", "pending");
+            tx.set("description", desc.replace(" (Prévia)", ""));
+            $app.save(tx);
+            convertedCount++;
+        }
+
+        config.set("lastCronRun", new Date().toISOString());
+        $app.save(config);
+
+        console.log(`Consolidação do Dia 20 concluída. ${convertedCount} transações convertidas para definitivo no período ${nextPeriod}.`);
+    } catch (err) {
+        console.error("Erro na consolidação do Dia 20:", err);
+    }
+});

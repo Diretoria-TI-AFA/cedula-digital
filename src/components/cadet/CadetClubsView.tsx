@@ -39,6 +39,7 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'my_clubs' | 'available'>('all');
   const [loadingClubId, setLoadingClubId] = useState<string | null>(null);
+  const [actionFeedback, setActionFeedback] = useState<string | null>(null);
 
   const handleToggleView = (mode: 'list' | 'grid') => {
     setViewMode(mode);
@@ -49,6 +50,19 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
     setLoadingClubId(clubId);
     try {
       await onRequestMembership(clubId, action);
+      const isBefore20 = new Date().getDate() <= 20;
+      if (isBefore20) {
+        setActionFeedback(
+          action === 'leave'
+            ? 'Você solicitou a saída do clube. A prévia da sua fatura do próximo mês foi atualizada imediatamente e o valor foi removido!'
+            : 'Você solicitou a entrada no clube. A prévia da sua fatura do próximo mês foi atualizada com a mensalidade prevista!'
+        );
+      } else {
+        setActionFeedback(
+          'Solicitação registrada! Como o prazo do dia 20 já encerrou para a próxima fatura, a alteração entrará em vigor no mês subsequente.'
+        );
+      }
+      setTimeout(() => setActionFeedback(null), 6000);
     } finally {
       setLoadingClubId(null);
     }
@@ -144,6 +158,26 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
         </div>
       </div>
 
+      {/* Banner de Feedback de Ação */}
+      {actionFeedback && (
+        <div
+          className={`p-4 rounded-xl border flex items-center justify-between space-x-3 transition-colors ${
+            isDark ? 'bg-emerald-950/30 border-emerald-800/60 text-emerald-200' : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+          }`}
+        >
+          <div className="flex items-center space-x-2 text-xs">
+            <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+            <span className="font-semibold">{actionFeedback}</span>
+          </div>
+          <button
+            onClick={() => setActionFeedback(null)}
+            className="text-xs text-zinc-400 hover:text-white"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       {/* Banner Informativo da Regra do Dia 20 */}
       <div className={`p-4 rounded-xl border flex items-start space-x-3 transition-colors ${
         isDark ? 'bg-amber-950/20 border-amber-800/40 text-amber-300' : 'bg-amber-50 border-amber-200 text-amber-900'
@@ -152,8 +186,8 @@ export const CadetClubsView: React.FC<CadetClubsViewProps> = ({
         <div className="text-xs space-y-0.5">
           <p className="font-bold">Regra de Cobrança e Adesões (Dia 20 de cada mês):</p>
           <p className={isDark ? 'text-amber-300/80' : 'text-amber-800'}>
-            Solicitações de entrada ou saída feitas até o <strong>dia 20</strong> vigoram no mês corrente.
-            Solicitações feitas <strong>após o dia 20</strong> entram em vigor e passam a ser cobradas a partir do <strong>dia 1º do próximo mês</strong>.
+            Solicitações de entrada ou saída feitas até o <strong>dia 20 às 23:59</strong> atualizam imediatamente a <strong>prévia da fatura do mês seguinte</strong> e são consolidadas em definitivo no dia 20.
+            Solicitações feitas <strong>após o dia 20</strong> mantêm a fatura do próximo mês inalterada e entram em vigor na fatura do <strong>mês subsequente (M+2)</strong>.
           </p>
         </div>
       </div>

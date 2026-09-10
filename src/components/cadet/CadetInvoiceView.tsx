@@ -26,16 +26,23 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
   user,
   expenses = [],
   transactions = [],
-  scaerConfig: _scaerConfig,
+  scaerConfig,
   theme = 'dark',
 }) => {
   const allTxs = transactions.length > 0 ? transactions : expenses;
-  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-08');
+  const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-09');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
   const isDark = theme === 'dark';
 
+  const today = new Date();
+  const deadlineDay = scaerConfig?.clubChangeDeadlineDay || 20;
+  const isBeforeDeadline = today.getDate() <= deadlineDay;
+  const daysUntilDeadline = deadlineDay - today.getDate();
+
   const availablePeriods = [
-    { period: '2026-08', label: 'Agosto / 2026 (Atual)', shortName: 'Agosto', status: 'open' },
+    { period: '2026-10', label: 'Outubro / 2026 (Preview)', shortName: 'Outubro', status: 'preview' },
+    { period: '2026-09', label: 'Setembro / 2026 (Atual)', shortName: 'Setembro', status: 'open' },
+    { period: '2026-08', label: 'Agosto / 2026', shortName: 'Agosto', status: 'closed' },
     { period: '2026-07', label: 'Julho / 2026', shortName: 'Julho', status: 'closed' },
     { period: '2026-06', label: 'Junho / 2026', shortName: 'Junho', status: 'closed' },
     { period: '2026-05', label: 'Maio / 2026', shortName: 'Maio', status: 'closed' },
@@ -163,6 +170,40 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
         </div>
       </div>
 
+      {/* Banner Informativo da Prévia Provisória */}
+      {(currentPeriodObj?.status === 'preview' || cadetTransactions.some((t) => t.status === 'preview')) && (
+        <div
+          className={`p-4 rounded-xl border flex items-start space-x-3 transition-colors ${
+            isDark ? 'bg-amber-950/30 border-amber-800/60 text-amber-200' : 'bg-amber-50 border-amber-200 text-amber-900'
+          }`}
+        >
+          <Clock className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+          <div className="text-xs space-y-1">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-bold uppercase tracking-wider text-[10px] bg-amber-500/20 px-2 py-0.5 rounded border border-amber-500/40 text-amber-400">
+                Fatura em Prévia Provisória
+              </span>
+              {isBeforeDeadline ? (
+                <span className="text-[11px] font-semibold text-amber-400">
+                  {daysUntilDeadline === 0
+                    ? '⚠️ Atenção: Hoje é o último dia para alterações (prazo encerra às 23:59)!'
+                    : `Restam ${daysUntilDeadline} dia(s) para alterar clubes e doações`}
+                </span>
+              ) : (
+                <span className="text-[11px] font-semibold text-zinc-400">
+                  Prazo do dia 20 encerrado para este mês (lançamentos consolidados em definitivo).
+                </span>
+              )}
+            </div>
+            <p className={isDark ? 'text-amber-200/90' : 'text-amber-800'}>
+              Esta é a <strong>prévia da sua fatura do próximo mês</strong>. As mensalidades dos seus clubes ativos e doações religiosas
+              são projetadas aqui. Caso você solicite saída de clube ou altere/remova uma doação até o <strong>dia 20 às 23:59</strong>,
+              esta prévia é atualizada imediatamente. No dia 20 às 23:59, estes lançamentos são consolidados em definitivo.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Grid de 4 Métricas de Resumo */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {/* Total da Cédula */}
@@ -184,10 +225,18 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
           </div>
           <div
             className={`mt-1.5 text-[10px] font-medium ${
-              currentPeriodObj?.status === 'open' ? 'text-amber-500' : 'text-emerald-500'
+              currentPeriodObj?.status === 'preview'
+                ? 'text-amber-400 font-semibold'
+                : currentPeriodObj?.status === 'open'
+                ? 'text-amber-500'
+                : 'text-emerald-500'
             }`}
           >
-            {currentPeriodObj?.status === 'open' ? 'Cédula em Aberto' : 'Cédula Paga'} • {cadetTransactions.length} lançamentos
+            {currentPeriodObj?.status === 'preview'
+              ? 'Prévia Provisória (Consolida dia 20)'
+              : currentPeriodObj?.status === 'open'
+              ? 'Cédula em Aberto'
+              : 'Cédula Paga'} • {cadetTransactions.length} lançamentos
           </div>
         </div>
 
@@ -314,6 +363,11 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
                           SCAER
                         </span>
                       )}
+                      {tx.status === 'preview' && (
+                        <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 uppercase flex items-center gap-1">
+                          <Clock className="w-2.5 h-2.5" /> Prévia Provisória
+                        </span>
+                      )}
                     </div>
                     <div className="flex items-center space-x-2 mt-0.5">
                       <span className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
@@ -338,10 +392,18 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
                           ? 'text-emerald-500'
                           : tx.status === 'deferred'
                           ? 'text-sky-400'
+                          : tx.status === 'preview'
+                          ? 'text-amber-400 font-bold'
                           : 'text-amber-500'
                       }`}
                     >
-                      {tx.status === 'paid' ? 'Pago' : tx.status === 'deferred' ? 'Adiado' : 'Pendente'}
+                      {tx.status === 'paid'
+                        ? 'Pago'
+                        : tx.status === 'deferred'
+                        ? 'Adiado'
+                        : tx.status === 'preview'
+                        ? 'Prévia (Até Dia 20)'
+                        : 'Lançado'}
                     </span>
                   </div>
                   <ChevronRight className={`w-4 h-4 ${isDark ? 'text-zinc-600' : 'text-zinc-400'}`} />
@@ -430,12 +492,7 @@ export const CadetInvoiceView: React.FC<CadetInvoiceViewProps> = ({
                       <Clock className="w-3.5 h-3.5" />
                       <span>Adiado para {selectedTransaction.deferredTo}</span>
                     </span>
-                  ) : (
-                    <span className="inline-flex items-center space-x-1 text-xs font-bold text-amber-500">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>Pendente de Pagamento</span>
-                    </span>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
