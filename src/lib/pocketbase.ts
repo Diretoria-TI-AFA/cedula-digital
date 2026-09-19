@@ -14,6 +14,7 @@ import type {
   CadetRosterItem,
   PendingExemption,
   DesligadoItem,
+  EventCompany,
 } from '../types';
 import { queryCache } from './queryCache';
 
@@ -367,7 +368,7 @@ class DatabaseServiceClass {
         const record = await pb.collection('transactions').create(data);
         results.push(record as unknown as Transaction);
       }
-      queryCache.clear('transactions');
+      queryCache.clear(); // Clear all caches to ensure transactions_${period} is invalidated
       return results;
     } catch (error) {
       console.error('Erro ao criar múltiplas transações:', error);
@@ -1221,6 +1222,133 @@ class DatabaseServiceClass {
 
     if (onProgress) onProgress(100, 'Importação para o PocketBase concluída!');
     queryCache.clear();
+  }
+
+  // =============================================
+  // Event Companies CRUD
+  // =============================================
+
+  async ensureEventCompaniesCollection(): Promise<void> {
+    try {
+      await pb.collection('event_companies').getList(1, 1);
+    } catch {
+      // Collection doesn't exist yet — try to create it via the API
+      try {
+        await pb.send('/api/collections', {
+          method: 'POST',
+          body: {
+            name: 'event_companies',
+            type: 'base',
+            schema: [
+              { name: 'name', type: 'text', required: true },
+              { name: 'products', type: 'json', required: true },
+            ],
+            listRule: '',
+            viewRule: '',
+            createRule: '',
+            updateRule: '',
+            deleteRule: '',
+          },
+        });
+        console.log('[EventCompanies] Coleção criada com sucesso.');
+      } catch (createErr) {
+        console.error('[EventCompanies] Erro ao criar coleção (pode já existir):', createErr);
+      }
+    }
+  }
+
+  async getEventCompanies(): Promise<EventCompany[]> {
+    return queryCache.fetch('event_companies', async () => {
+      try {
+        await this.ensureEventCompaniesCollection();
+        const records = await pb.collection('event_companies').getFullList({ sort: 'name' });
+        return records.map((r) => ({
+          id: r.id,
+          name: r.name as string,
+          products: (typeof r.products === 'string' ? JSON.parse(r.products) : r.products) || [],
+          created: r.created as string,
+          updated: r.updated as string,
+        })) as EventCompany[];
+      } catch (error) {
+        console.error('Erro ao buscar empresas de evento:', error);
+        return [];
+      }
+    });
+  }
+
+  async createEventCompany(data: { name: string; products: { name: string; price: number; category: string }[] }): Promise<EventCompany | null> {
+    try {
+      await this.ensureEventCompaniesCollection();
+      const record = await pb.collection('event_companies').create({
+        name: data.name,
+        products: data.products,
+      });
+      queryCache.clear('event_companies');
+      return {
+        id: record.id,
+        name: record.name as string,
+        products: (typeof record.products === 'string' ? JSON.parse(record.products) : record.products) || [],
+        created: record.created as string,
+        updated: record.updated as string,
+      };
+    } catch (error) {
+      console.error('Erro ao criar empresa de evento:', error);
+      return null;
+    }
+  }
+
+  async updateEventCompany(id: string, data: { name?: string; products?: { name: string; price: number; category: string }[] }): Promise<EventCompany | null> {
+    try {
+      const record = await pb.collection('event_companies').update(id, data);
+      queryCache.clear('event_companies');
+      return {
+        id: record.id,
+        name: record.name as string,
+        products: (typeof record.products === 'string' ? JSON.parse(record.products) : record.products) || [],
+        created: record.created as string,
+        updated: record.updated as string,
+      };
+    } catch (error) {
+      console.error('Erro ao atualizar empresa de evento:', error);
+      return null;
+    }
+  }
+
+  async deleteEventCompany(id: string): Promise<boolean> {
+    try {
+      await pb.collection('event_companies').delete(id);
+      queryCache.clear('event_companies');
+      return true;
+    } catch (error) {
+      console.error('Erro ao excluir empresa de evento:', error);
+      return false;
+    }
+  }
+
+  // System Settings
+  async getSystemSetting(key: string, defaultValue: string = ''): Promise<string> {
+    try {
+      const records = await pb.collection('system_settings').getFullList({ filter: `key="${key}"` });
+      if (records.length > 0) return records[0].value;
+      return defaultValue;
+    } catch (err) {
+      return defaultValue;
+    }
+  }
+
+  async setSystemSetting(key: string, value: string): Promise<boolean> {
+    try {
+      const records = await pb.collection('system_settings').getFullList({ filter: `key="${key}"` });
+      if (records.length > 0) {
+        await pb.collection('system_settings').update(records[0].id, { value });
+      } else {
+        await pb.collection('system_settings').create({ key, value });
+      }
+      return true;
+    } catch (err) {
+      console.error('Erro ao salvar configuração:', err);
+      return false;
+    }
   }
 }
 

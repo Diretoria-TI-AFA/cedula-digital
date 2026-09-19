@@ -228,3 +228,17 @@ export interface DesligadoItem {
   clubName: string;
   description: string;
 }
+
+export interface EventProduct {
+  name: string;
+  price: number;
+  category: string; // Ex: "bebida", "salgado", "doces", "café"
+}
+
+export interface EventCompany {
+  id: string;
+  name: string;
+  products: EventProduct[];
+  created?: string;
+  updated?: string;
+}
