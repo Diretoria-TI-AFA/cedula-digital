@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import type { Club, User, Expense, LaunchType, ClubMembership } from '../../types';
-import { PlusCircle, Users, UserCheck, FileSpreadsheet, Upload, CheckCircle2, AlertCircle, QrCode } from 'lucide-react';
+import { PlusCircle, Users, UserCheck, FileSpreadsheet, Upload, CheckCircle2, AlertCircle, QrCode, Search, X } from 'lucide-react';
 
 interface LaunchExpenseModalProps {
   club: Club;
@@ -37,8 +37,33 @@ export const LaunchExpenseModal: React.FC<LaunchExpenseModalProps> = ({
   const [parsedCsvLaunches, setParsedCsvLaunches] = useState<Omit<Expense, 'id' | 'createdAt' | 'status'>[]>([]);
   const [csvError, setCsvError] = useState<string | null>(null);
 
+  // Estado para busca de cadetes (Individual)
+  const [cadetSearchQuery, setCadetSearchQuery] = useState<string>('');
+  const [isSearchDropdownOpen, setIsSearchDropdownOpen] = useState<boolean>(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const searchDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Estado para busca de cadetes (Em Lote)
+  const [bulkSearchQuery, setBulkSearchQuery] = useState<string>('');
+
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const isDark = theme === 'dark';
+
+  // Fechar dropdown ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchDropdownRef.current &&
+        !searchDropdownRef.current.contains(event.target as Node) &&
+        searchInputRef.current &&
+        !searchInputRef.current.contains(event.target as Node)
+      ) {
+        setIsSearchDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Pré-selecionar o cadete escaneado via QR Code
   useEffect(() => {
@@ -50,9 +75,25 @@ export const LaunchExpenseModal: React.FC<LaunchExpenseModalProps> = ({
       );
       if (found) {
         setSelectedCadetId(found.id);
+        setCadetSearchQuery(`${found.cadetNumber} ${found.warName}`);
       }
     }
   }, [scannedCadet, allCadets]);
+
+  // Função de filtro reutilizável
+  const filterCadets = (cadets: User[], query: string): User[] => {
+    if (!query.trim()) return cadets;
+    const normalizedQuery = query.toLowerCase().trim();
+    return cadets.filter(
+      (c) =>
+        (c.warName || '').toLowerCase().includes(normalizedQuery) ||
+        (c.name || '').toLowerCase().includes(normalizedQuery) ||
+        (c.cadetNumber || '').toLowerCase().includes(normalizedQuery)
+    );
+  };
+
+  const filteredCadetsIndividual = filterCadets(allCadets, cadetSearchQuery);
+  const filteredCadetsBulk = filterCadets(allCadets, bulkSearchQuery);
 
   // Parser Flexível de CSV
   const handleParseCsv = (text: string) => {
@@ -317,19 +358,98 @@ export const LaunchExpenseModal: React.FC<LaunchExpenseModalProps> = ({
           {launchType === 'individual' && (
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-300">Selecionar Cadete Target</label>
-              <select
-                value={selectedCadetId}
-                onChange={(e) => setSelectedCadetId(e.target.value)}
-                className={`w-full border rounded-2xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500/50 ${
-                  isDark ? 'bg-slate-950 border-slate-800 text-slate-100' : 'bg-slate-50 border-slate-300 text-slate-900'
-                }`}
-              >
-                {allCadets.map((c) => (
-                  <option key={c.id} value={c.id}>
-                    {c.cadetNumber} {c.warName} ({c.name})
-                  </option>
-                ))}
-              </select>
+              <div className="relative">
+                <div className={`flex items-center w-full border rounded-2xl overflow-hidden transition-all ${
+                  isSearchDropdownOpen ? 'ring-2 ring-amber-500/50' : ''
+                } ${
+                  isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'
+                }`}>
+                  <Search className={`w-4 h-4 ml-4 shrink-0 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    placeholder="Buscar por nome, nome de guerra ou número..."
+                    value={cadetSearchQuery}
+                    onChange={(e) => {
+                      setCadetSearchQuery(e.target.value);
+                      setIsSearchDropdownOpen(true);
+                    }}
+                    onFocus={() => setIsSearchDropdownOpen(true)}
+                    className={`w-full px-3 py-3 text-xs font-semibold focus:outline-none bg-transparent ${
+                      isDark ? 'text-slate-100 placeholder:text-slate-600' : 'text-slate-900 placeholder:text-slate-400'
+                    }`}
+                  />
+                  {cadetSearchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCadetSearchQuery('');
+                        setSelectedCadetId('');
+                        setIsSearchDropdownOpen(true);
+                        searchInputRef.current?.focus();
+                      }}
+                      className={`mr-2 p-1 rounded-lg transition-colors ${
+                        isDark ? 'hover:bg-slate-800 text-slate-500 hover:text-slate-300' : 'hover:bg-slate-200 text-slate-400 hover:text-slate-600'
+                      }`}
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  )}
+                </div>
+
+                {isSearchDropdownOpen && (
+                  <div
+                    ref={searchDropdownRef}
+                    className={`absolute z-50 w-full mt-1 max-h-48 overflow-y-auto border rounded-2xl shadow-xl ${
+                      isDark ? 'bg-slate-900 border-slate-700' : 'bg-white border-slate-200'
+                    }`}
+                  >
+                    {filteredCadetsIndividual.length === 0 ? (
+                      <div className={`px-4 py-3 text-xs font-medium ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                        Nenhum cadete encontrado para "{cadetSearchQuery}"
+                      </div>
+                    ) : (
+                      filteredCadetsIndividual.map((c) => (
+                        <button
+                          key={c.id}
+                          type="button"
+                          onClick={() => {
+                            setSelectedCadetId(c.id);
+                            setCadetSearchQuery(`${c.cadetNumber} ${c.warName}`);
+                            setIsSearchDropdownOpen(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-xs font-semibold transition-colors flex items-center space-x-2 ${
+                            selectedCadetId === c.id
+                              ? isDark
+                                ? 'bg-amber-500/15 text-amber-300'
+                                : 'bg-amber-50 text-amber-700'
+                              : isDark
+                                ? 'hover:bg-slate-800 text-slate-200'
+                                : 'hover:bg-slate-50 text-slate-800'
+                          }`}
+                        >
+                          <span className="font-mono text-amber-400 font-bold shrink-0">{c.cadetNumber}</span>
+                          <span className="font-bold">{c.warName}</span>
+                          <span className={`${isDark ? 'text-slate-500' : 'text-slate-400'}`}>({c.name})</span>
+                        </button>
+                      ))
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* Cadete selecionado indicator */}
+              {selectedCadetId && !isSearchDropdownOpen && (() => {
+                const sel = allCadets.find(c => c.id === selectedCadetId);
+                return sel ? (
+                  <div className={`flex items-center space-x-2 px-3 py-1.5 rounded-xl text-[11px] font-bold ${
+                    isDark ? 'bg-amber-500/10 text-amber-400 border border-amber-500/20' : 'bg-amber-50 text-amber-700 border border-amber-200'
+                  }`}>
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Selecionado: {sel.cadetNumber} {sel.warName}</span>
+                  </div>
+                ) : null;
+              })()}
             </div>
           )}
 
@@ -337,24 +457,49 @@ export const LaunchExpenseModal: React.FC<LaunchExpenseModalProps> = ({
           {launchType === 'bulk' && (
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-300">Selecionar Cadetes ({selectedCadetIds.length} selecionados)</label>
+              <div className={`flex items-center w-full border-b px-3 py-2 ${
+                isDark ? 'border-slate-800' : 'border-slate-200'
+              }`}>
+                <Search className={`w-3.5 h-3.5 mr-2 shrink-0 ${isDark ? 'text-slate-500' : 'text-slate-400'}`} />
+                <input
+                  type="text"
+                  placeholder="Filtrar cadetes..."
+                  value={bulkSearchQuery}
+                  onChange={(e) => setBulkSearchQuery(e.target.value)}
+                  className={`w-full text-xs font-semibold focus:outline-none bg-transparent ${
+                    isDark ? 'text-slate-100 placeholder:text-slate-600' : 'text-slate-900 placeholder:text-slate-400'
+                  }`}
+                />
+                {bulkSearchQuery && (
+                  <button type="button" onClick={() => setBulkSearchQuery('')} className={`p-0.5 rounded ${isDark ? 'text-slate-500 hover:text-slate-300' : 'text-slate-400 hover:text-slate-600'}`}>
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
               <div className={`max-h-40 overflow-y-auto border rounded-2xl p-3 space-y-2 text-xs ${
                 isDark ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-300'
               }`}>
-                {allCadets.map((c) => (
-                  <label key={c.id} className="flex items-center space-x-2 cursor-pointer hover:opacity-80">
-                    <input
-                      type="checkbox"
-                      checked={selectedCadetIds.includes(c.id)}
-                      onChange={(e) => {
-                        if (e.target.checked) setSelectedCadetIds([...selectedCadetIds, c.id]);
-                        else setSelectedCadetIds(selectedCadetIds.filter(id => id !== c.id));
-                      }}
-                      className="rounded border-slate-700 text-amber-500 focus:ring-amber-500"
-                    />
-                    <span className="font-mono text-amber-400 font-bold">{c.cadetNumber}</span>
-                    <span>{c.warName}</span>
-                  </label>
-                ))}
+                {filteredCadetsBulk.length === 0 ? (
+                  <div className={`text-center py-2 ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                    Nenhum cadete encontrado para "{bulkSearchQuery}"
+                  </div>
+                ) : (
+                  filteredCadetsBulk.map((c) => (
+                    <label key={c.id} className="flex items-center space-x-2 cursor-pointer hover:opacity-80">
+                      <input
+                        type="checkbox"
+                        checked={selectedCadetIds.includes(c.id)}
+                        onChange={(e) => {
+                          if (e.target.checked) setSelectedCadetIds([...selectedCadetIds, c.id]);
+                          else setSelectedCadetIds(selectedCadetIds.filter(id => id !== c.id));
+                        }}
+                        className="rounded border-slate-700 text-amber-500 focus:ring-amber-500"
+                      />
+                      <span className="font-mono text-amber-400 font-bold">{c.cadetNumber}</span>
+                      <span>{c.warName}</span>
+                    </label>
+                  ))
+                )}
               </div>
             </div>
           )}
