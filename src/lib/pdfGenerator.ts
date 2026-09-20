@@ -443,101 +443,112 @@ export async function generateEventReceiptPDF(options: EventReceiptOptions): Pro
 export async function generateThermalReceiptPDF(options: EventReceiptOptions): Promise<{ pdfBlob: Blob; pdfUrl: string }> {
   const { cadetNumber, cadetName, period, expenses, director } = options;
 
-  // Agrupar produtos iguais
-  const productMap = new Map<string, { count: number; unitPrice: number; company: string; category: string }>();
-  let grandTotal = 0;
+  // Agrupar por Empresa -> array de expenses (cada um é 1 unidade individual)
+  const companyMap = new Map<string, Expense[]>();
 
   expenses.forEach(exp => {
-    let desc = exp.description;
-    const match = desc.match(/(.+) - (.+) \((.+)\)/);
-    let productName = desc;
     let companyName = exp.clubName || 'Evento';
-
+    const match = exp.description.match(/(.+) - (.+) \((.+)\)/);
     if (match) {
-      productName = match[1].trim();
       companyName = match[2].trim();
     }
 
-    const key = `${productName}|${companyName}|${exp.amount}`;
-    if (!productMap.has(key)) {
-      productMap.set(key, { count: 0, unitPrice: exp.amount, company: companyName, category: exp.category });
+    if (!companyMap.has(companyName)) {
+      companyMap.set(companyName, []);
     }
-    productMap.get(key)!.count += 1;
-    grandTotal += exp.amount;
+    companyMap.get(companyName)!.push(exp);
   });
 
-  const groupedProducts = Array.from(productMap.entries()).map(([key, data]) => {
-    const [name] = key.split('|');
-    return { name, ...data };
+  const groupedByCompany = Array.from(companyMap.entries()).map(([company, exps]) => ({
+     company,
+     expenses: exps
+  }));
+
+  // Altura dinâmica da bobina
+  let docHeight = 15;
+  groupedByCompany.forEach(c => {
+     docHeight += 35; // Company header height (Loja + Data + Cad)
+     docHeight += (c.expenses.length * 16); // Each item height
   });
 
-  // Altura dinâmica da bobina: 80mm largura x Altura calculada
-  const docHeight = 75 + (groupedProducts.length * 10);
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
     format: [80, docHeight]
   });
 
-  // Fundo amarelado para tela (impressora térmica ignora cor)
-  doc.setFillColor(254, 252, 232); // Tailwind yellow-50
+  // Fundo amarelado para tela
+  doc.setFillColor(254, 252, 232);
   doc.rect(0, 0, 80, docHeight, 'F');
 
-  doc.setFont('courier', 'bold');
-  doc.setFontSize(10);
   doc.setTextColor(0, 0, 0); // Preto puro
   
-  // Header centralizado
-  doc.text('CEDULA DIGITAL SCAER', 40, 10, { align: 'center' });
-  doc.setFontSize(8);
-  doc.setFont('courier', 'normal');
-  doc.text('RECIBO DE EVENTO', 40, 14, { align: 'center' });
-  doc.text('----------------------------------', 40, 18, { align: 'center' });
-  
-  // Info
-  doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 5, 23);
-  doc.text(`Cadete: ${cadetNumber}`, 5, 27);
-  doc.text(`Nome: ${cadetName}`, 5, 31);
-  doc.text('----------------------------------', 40, 35, { align: 'center' });
+  let y = 8;
+  const shortCadetName = cadetName.substring(0, 16);
 
-  // Tabela
-  doc.text('QTD', 5, 40);
-  doc.text('DESCRICAO', 15, 40);
-  doc.text('VALOR', 75, 40, { align: 'right' });
-
-  let y = 45;
-  groupedProducts.forEach(item => {
-    doc.text(`${item.count.toString().padStart(2, '0')}`, 5, y);
+  groupedByCompany.forEach((group, groupIndex) => {
+    doc.setFont('courier', 'normal');
+    doc.setFontSize(10);
     
-    // Nome do produto sem acentos complexos ajuda na fonte courier
-    let name = item.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    if (name.length > 20) name = name.slice(0, 18) + '..';
-    doc.text(name, 15, y);
-    
-    const rowTotal = (item.unitPrice * item.count).toFixed(2);
-    doc.text(rowTotal, 75, y, { align: 'right' });
-    y += 4;
-    
-    // Empresa
-    doc.setFontSize(6);
-    doc.text(`> ${item.company.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}`, 15, y);
-    doc.setFontSize(8);
+    // Header da Empresa (Apenas 1x no topo)
+    doc.text('----------------------------------', 40, y, { align: 'center' });
     y += 5;
+    
+    doc.setFont('courier', 'bold');
+    doc.setFontSize(12);
+    let comp = group.company.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (comp.length > 20) comp = comp.substring(0, 19) + '..';
+    doc.text(`LOJA: ${comp}`, 40, y, { align: 'center' });
+    
+    y += 4;
+    doc.setFont('courier', 'normal');
+    doc.setFontSize(10);
+    doc.text('----------------------------------', 40, y, { align: 'center' });
+    
+    // Info Cadete/Data da Compra
+    y += 5;
+    doc.setFontSize(9);
+    doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 5, y);
+    y += 4;
+    doc.text(`Cad: ${cadetNumber} ${shortCadetName}`, 5, y);
+    
+    y += 4;
+    doc.setFontSize(10);
+    doc.text('----------------------------------', 40, y, { align: 'center' });
+    y += 6;
+
+    group.expenses.forEach((exp, expIndex) => {
+      let desc = exp.description;
+      const match = desc.match(/(.+) - (.+) \((.+)\)/);
+      let productName = desc;
+      if (match) productName = match[1].trim();
+
+      // Produto (Centralizado)
+      doc.setFont('courier', 'bold');
+      doc.setFontSize(12);
+      
+      let name = productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (name.length > 24) name = name.slice(0, 22) + '..';
+      doc.text(name, 40, y, { align: 'center' });
+      
+      // Corte
+      y += 8;
+      
+      doc.setFont('courier', 'normal');
+      if (expIndex < group.expenses.length - 1 || groupIndex < groupedByCompany.length - 1) {
+         doc.text('- - - - - - - - - - - - - - - - -', 40, y, { align: 'center' });
+         y += 4;
+         doc.setFontSize(8);
+         doc.text('-------- CORTE AQUI --------', 40, y, { align: 'center' });
+         y += 6; // Espaço antes do próximo vale
+      } else {
+         doc.text('----------------------------------', 40, y, { align: 'center' });
+         y += 4;
+         doc.setFontSize(8);
+         doc.text('*** FIM DOS VALES ***', 40, y, { align: 'center' });
+      }
+    });
   });
-
-  doc.text('----------------------------------', 40, y - 2, { align: 'center' });
-  y += 4;
-  
-  doc.setFont('courier', 'bold');
-  doc.setFontSize(10);
-  doc.text('TOTAL:', 5, y);
-  doc.text(`R$ ${grandTotal.toFixed(2)}`, 75, y, { align: 'right' });
-
-  y += 8;
-  doc.setFont('courier', 'normal');
-  doc.setFontSize(7);
-  doc.text('*** DOCUMENTO NAO FISCAL ***', 40, y, { align: 'center' });
-  doc.text(`Dir: ${director.cadetNumber} ${director.warName}`, 40, y + 4, { align: 'center' });
 
   const pdfBlob = doc.output('blob');
   const pdfUrl = URL.createObjectURL(pdfBlob);
