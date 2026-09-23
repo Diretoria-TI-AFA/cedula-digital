@@ -24,9 +24,13 @@ import {
   ChevronRight,
   Calendar,
   Layers,
-  ArrowUpDown
+  ArrowUpDown,
+  Store,
 } from 'lucide-react';
 import { DatabaseService } from '../../lib/pocketbase';
+import { EventCompanyRegistration } from './EventCompanyRegistration';
+import { LaunchEventExpenseModal } from './LaunchEventExpenseModal';
+import { EventLaunchQuery } from './EventLaunchQuery';
 
 interface DirectorDashboardProps {
   directorUser: User;
@@ -62,7 +66,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   theme = 'dark',
   onRefreshData,
 }) => {
-  const [directorSubTab, setDirectorSubTab] = useState<'extrato' | 'repasse' | 'members' | 'audit'>('extrato');
+  const [directorSubTab, setDirectorSubTab] = useState<'extrato' | 'repasse' | 'members' | 'audit' | 'events' | 'event_query'>('extrato');
 
   const [selectedPeriod, setSelectedPeriod] = useState<string>('2026-09');
 
@@ -121,6 +125,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
   const [showVerifyModal, setShowVerifyModal] = useState<boolean>(false);
   const [showQrScanner, setShowQrScanner] = useState<boolean>(false);
   const [showLaunchModal, setShowLaunchModal] = useState<boolean>(false);
+  const [showEventLaunchModal, setShowEventLaunchModal] = useState<boolean>(false);
   const [scannedCadetInfo, setScannedCadetInfo] = useState<{ cadetNumber: string; warName?: string } | null>(null);
 
   const isDark = theme === 'dark';
@@ -593,6 +598,33 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
             </button>
 
             <button
+              onClick={() => {
+                setScannedCadetInfo(null);
+                setShowEventLaunchModal(true);
+              }}
+              className={`px-3.5 py-2 rounded-lg font-semibold text-xs transition-colors flex items-center space-x-1.5 ${
+                isDark
+                  ? 'bg-slate-100 text-slate-950 hover:bg-white'
+                  : 'bg-slate-900 text-white hover:bg-slate-800'
+              }`}
+            >
+              <PlusCircle className="w-4 h-4" />
+              <span>Lançar Gasto EVENTO</span>
+            </button>
+
+            <button
+              onClick={() => setDirectorSubTab('events')}
+              className={`px-3.5 py-2 rounded-lg font-semibold text-xs border transition-colors flex items-center space-x-1.5 ${
+                isDark
+                  ? 'bg-slate-950 border-slate-800 text-amber-400 hover:bg-slate-800'
+                  : 'bg-white border-slate-300 text-amber-600 hover:bg-slate-100'
+              }`}
+            >
+              <Store className="w-4 h-4" />
+              <span>Cadastro Eventos</span>
+            </button>
+
+            <button
               onClick={handleExportSheets}
               className={`px-3.5 py-2 rounded-lg font-semibold text-xs border transition-colors flex items-center space-x-1.5 ${
                 isDark
@@ -711,6 +743,38 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
         >
           <FileCheck className="w-4 h-4" />
           <span>4. Lançamentos Detalhados ({periodExpenses.length})</span>
+        </button>
+
+        <button
+          onClick={() => setDirectorSubTab('events')}
+          className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center space-x-2 shrink-0 ${
+            directorSubTab === 'events'
+              ? isDark
+                ? 'bg-slate-800 text-slate-100 border border-slate-700 shadow-sm'
+                : 'bg-slate-900 text-white shadow-sm'
+              : isDark
+                ? 'bg-slate-950/60 text-slate-400 hover:text-slate-200 border border-slate-800/80 hover:bg-slate-900'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+          }`}
+        >
+          <Store className="w-4 h-4" />
+          <span>5. Cadastro Eventos</span>
+        </button>
+
+        <button
+          onClick={() => setDirectorSubTab('event_query')}
+          className={`px-4 py-2.5 rounded-xl text-xs font-semibold transition-all flex items-center space-x-2 shrink-0 ${
+            directorSubTab === 'event_query'
+              ? isDark
+                ? 'bg-slate-800 text-slate-100 border border-slate-700 shadow-sm'
+                : 'bg-slate-900 text-white shadow-sm'
+              : isDark
+                ? 'bg-slate-950/60 text-slate-400 hover:text-slate-200 border border-slate-800/80 hover:bg-slate-900'
+                : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+          }`}
+        >
+          <Search className="w-4 h-4" />
+          <span>6. Consulta Eventos</span>
         </button>
       </div>
 
@@ -1579,6 +1643,28 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
         <ReportVerificationModal reports={reports} onClose={() => setShowVerifyModal(false)} />
       )}
 
+      {/* ========================================================================= */}
+      {/* ABA 5: CADASTRO DE EVENTOS                                              */}
+      {/* ========================================================================= */}
+      {directorSubTab === 'events' && (
+        <div className="animate-in fade-in">
+          <EventCompanyRegistration theme={theme} />
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* ABA 6: CONSULTA EVENTOS                                                 */}
+      {/* ========================================================================= */}
+      {directorSubTab === 'event_query' && (
+        <EventLaunchQuery
+          periodExpenses={periodExpenses}
+          onRefreshData={onRefreshData}
+          directorUser={directorUser}
+          theme={theme}
+          selectedPeriod={selectedPeriod}
+        />
+      )}
+
       {/* Modal de Lançamento da Diretoria */}
       {showLaunchModal && (
         <LaunchExpenseModal
@@ -1606,6 +1692,17 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
             setShowLaunchModal(true);
           }}
           onClose={() => setShowQrScanner(false)}
+          theme={theme}
+        />
+      )}
+
+      {/* Modal de Lançamento EVENTO */}
+      {showEventLaunchModal && (
+        <LaunchEventExpenseModal
+          managerUser={directorUser}
+          allCadets={allUsers}
+          onLaunchBulk={handleLaunchBulk}
+          onClose={() => setShowEventLaunchModal(false)}
           theme={theme}
         />
       )}

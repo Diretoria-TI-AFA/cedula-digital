@@ -279,3 +279,279 @@ export async function generateDirectorPDFReport(options: GeneratePdfOptions): Pr
     hash: verificationHash
   };
 }
+
+// ==========================================
+// RECIBO DE EVENTO (INDIVIDUAL)
+// ==========================================
+
+export interface EventReceiptOptions {
+  cadetNumber: string;
+  cadetName: string;
+  period: string;
+  expenses: Expense[];
+  director: User;
+}
+
+export async function generateEventReceiptPDF(options: EventReceiptOptions): Promise<{ pdfBlob: Blob; pdfUrl: string }> {
+  const { cadetNumber, cadetName, period, expenses, director } = options;
+
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4'
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  
+  // Agrupar produtos iguais
+  const productMap = new Map<string, { count: number; unitPrice: number; company: string; category: string }>();
+  let grandTotal = 0;
+
+  expenses.forEach(exp => {
+    // A descrição do produto vem no formato: "Produto - Empresa (Evento) [1/3]" ou "Produto - Empresa (Evento)"
+    let desc = exp.description;
+    const match = desc.match(/(.+) - (.+) \(Evento\)/);
+    let productName = desc;
+    let companyName = exp.clubName || 'Evento';
+
+    if (match) {
+      productName = match[1].trim();
+      companyName = match[2].trim();
+    }
+
+    const key = `${productName}|${companyName}|${exp.amount}`;
+    
+    if (!productMap.has(key)) {
+      productMap.set(key, { count: 0, unitPrice: exp.amount, company: companyName, category: exp.category });
+    }
+    
+    productMap.get(key)!.count += 1;
+    grandTotal += exp.amount;
+  });
+
+  const groupedProducts = Array.from(productMap.entries()).map(([key, data]) => {
+    const [name] = key.split('|');
+    return { name, ...data };
+  });
+
+  // Estilos de Cabeçalho
+  doc.setFillColor(15, 23, 42); // Navy Dark
+  doc.rect(0, 0, pageWidth, 42, 'F');
+  
+  doc.setFillColor(249, 115, 22); // Orange (Evento)
+  doc.rect(0, 41, pageWidth, 1.5, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(14);
+  doc.text('CÉDULA DIGITAL SCAER', 14, 18);
+  
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('RECIBO DE EVENTO', 14, 25);
+  doc.text(`Período de Referência: ${period}`, 14, 31);
+  
+  doc.setFontSize(8);
+  doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, pageWidth - 14, 31, { align: 'right' });
+
+  // Dados do Cadete
+  let currentY = 55;
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(12);
+  doc.setTextColor(15, 23, 42);
+  doc.text(`Cadete: ${cadetNumber} ${cadetName}`, 14, currentY);
+  
+  currentY += 12;
+
+  // Cabeçalho da Tabela
+  doc.setFillColor(30, 41, 59);
+  doc.rect(14, currentY, 182, 8, 'F');
+  doc.setFontSize(9);
+  doc.setTextColor(255, 255, 255);
+  doc.text('Produto / Descrição', 18, currentY + 5.5);
+  doc.text('Empresa', 90, currentY + 5.5);
+  doc.text('Qtd.', 135, currentY + 5.5);
+  doc.text('Total', 165, currentY + 5.5);
+
+  currentY += 8;
+
+  // Itens da Tabela
+  groupedProducts.forEach((item, idx) => {
+    if (idx % 2 === 0) {
+      doc.setFillColor(248, 250, 252);
+      doc.rect(14, currentY, 182, 7, 'F');
+    }
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(51, 65, 85);
+    
+    // Nome com fallback se muito longo
+    let displayName = item.name;
+    if (displayName.length > 40) displayName = displayName.slice(0, 37) + '...';
+    doc.text(displayName, 18, currentY + 4.8);
+
+    doc.setFont('helvetica', 'normal');
+    doc.text(item.company, 90, currentY + 4.8);
+    doc.text(`${item.count}x`, 135, currentY + 4.8);
+
+    doc.setFont('helvetica', 'bold');
+    const rowTotal = item.unitPrice * item.count;
+    doc.text(`R$ ${rowTotal.toFixed(2)}`, 165, currentY + 4.8);
+
+    currentY += 7;
+  });
+
+  // Linha de Totalizador
+  currentY += 5;
+  doc.setFillColor(249, 115, 22);
+  doc.rect(14, currentY, 182, 10, 'F');
+  
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(11);
+  doc.setTextColor(255, 255, 255);
+  doc.text('VALOR TOTAL DO PEDIDO:', 18, currentY + 6.5);
+  doc.text(`R$ ${grandTotal.toFixed(2)}`, 165, currentY + 6.5);
+
+  // Assinatura do Diretor Responsável (Rodapé)
+  const stampY = 240;
+  
+  doc.setDrawColor(148, 163, 184);
+  doc.setLineWidth(0.3);
+  doc.line(52, stampY, 140, stampY);
+
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(8.5);
+  doc.setTextColor(15, 23, 42);
+  doc.text(`${director.cadetNumber} ${director.warName}`.toUpperCase(), 52, stampY + 5);
+
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7.5);
+  doc.setTextColor(100, 116, 139);
+  doc.text(`Diretor de Cédula (Resp. Evento)`, 52, stampY + 9);
+
+  const pdfBlob = doc.output('blob');
+  const pdfUrl = URL.createObjectURL(pdfBlob);
+
+  return { pdfBlob, pdfUrl };
+}
+
+// ==========================================
+// RECIBO TÉRMICO (BOBINA 80mm)
+// ==========================================
+
+export async function generateThermalReceiptPDF(options: EventReceiptOptions): Promise<{ pdfBlob: Blob; pdfUrl: string }> {
+  const { cadetNumber, cadetName, period, expenses, director } = options;
+
+  // Agrupar por Empresa -> array de expenses (cada um é 1 unidade individual)
+  const companyMap = new Map<string, Expense[]>();
+
+  expenses.forEach(exp => {
+    let companyName = exp.clubName || 'Evento';
+    const match = exp.description.match(/(.+) - (.+) \((.+)\)/);
+    if (match) {
+      companyName = match[2].trim();
+    }
+
+    if (!companyMap.has(companyName)) {
+      companyMap.set(companyName, []);
+    }
+    companyMap.get(companyName)!.push(exp);
+  });
+
+  const groupedByCompany = Array.from(companyMap.entries()).map(([company, exps]) => ({
+     company,
+     expenses: exps
+  }));
+
+  // Altura dinâmica da bobina
+  let docHeight = 15;
+  groupedByCompany.forEach(c => {
+     docHeight += 35; // Company header height (Loja + Data + Cad)
+     docHeight += (c.expenses.length * 16); // Each item height
+  });
+
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: [80, docHeight]
+  });
+
+  // Fundo amarelado para tela
+  doc.setFillColor(254, 252, 232);
+  doc.rect(0, 0, 80, docHeight, 'F');
+
+  doc.setTextColor(0, 0, 0); // Preto puro
+  
+  let y = 8;
+  const shortCadetName = cadetName.substring(0, 16);
+
+  groupedByCompany.forEach((group, groupIndex) => {
+    doc.setFont('courier', 'normal');
+    doc.setFontSize(10);
+    
+    // Header da Empresa (Apenas 1x no topo)
+    doc.text('----------------------------------', 40, y, { align: 'center' });
+    y += 5;
+    
+    doc.setFont('courier', 'bold');
+    doc.setFontSize(12);
+    let comp = group.company.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (comp.length > 20) comp = comp.substring(0, 19) + '..';
+    doc.text(`LOJA: ${comp}`, 40, y, { align: 'center' });
+    
+    y += 4;
+    doc.setFont('courier', 'normal');
+    doc.setFontSize(10);
+    doc.text('----------------------------------', 40, y, { align: 'center' });
+    
+    // Info Cadete/Data da Compra
+    y += 5;
+    doc.setFontSize(9);
+    doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 5, y);
+    y += 4;
+    doc.text(`Cad: ${cadetNumber} ${shortCadetName}`, 5, y);
+    
+    y += 4;
+    doc.setFontSize(10);
+    doc.text('----------------------------------', 40, y, { align: 'center' });
+    y += 6;
+
+    group.expenses.forEach((exp, expIndex) => {
+      let desc = exp.description;
+      const match = desc.match(/(.+) - (.+) \((.+)\)/);
+      let productName = desc;
+      if (match) productName = match[1].trim();
+
+      // Produto (Centralizado)
+      doc.setFont('courier', 'bold');
+      doc.setFontSize(12);
+      
+      let name = productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      if (name.length > 24) name = name.slice(0, 22) + '..';
+      doc.text(name, 40, y, { align: 'center' });
+      
+      // Corte
+      y += 8;
+      
+      doc.setFont('courier', 'normal');
+      if (expIndex < group.expenses.length - 1 || groupIndex < groupedByCompany.length - 1) {
+         doc.text('- - - - - - - - - - - - - - - - -', 40, y, { align: 'center' });
+         y += 4;
+         doc.setFontSize(8);
+         doc.text('-------- CORTE AQUI --------', 40, y, { align: 'center' });
+         y += 6; // Espaço antes do próximo vale
+      } else {
+         doc.text('----------------------------------', 40, y, { align: 'center' });
+         y += 4;
+         doc.setFontSize(8);
+         doc.text('*** FIM DOS VALES ***', 40, y, { align: 'center' });
+      }
+    });
+  });
+
+  const pdfBlob = doc.output('blob');
+  const pdfUrl = URL.createObjectURL(pdfBlob);
+
+  return { pdfBlob, pdfUrl };
+}
