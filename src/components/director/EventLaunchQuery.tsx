@@ -48,10 +48,10 @@ export const EventLaunchQuery: React.FC<EventLaunchQueryProps> = ({
     }>();
 
     eventExpenses.forEach((exp) => {
-      const key = exp.cadetNumber || exp.userId;
+      const key = exp.cadetNumber || exp.userId || exp.id || '';
       if (!map.has(key)) {
         map.set(key, {
-          cadetId: exp.userId,
+          cadetId: exp.userId || '',
           cadetNumber: exp.cadetNumber || '',
           cadetName: exp.userName || 'Cadete Desconhecido',
           totalAmount: 0,
@@ -177,24 +177,6 @@ export const EventLaunchQuery: React.FC<EventLaunchQueryProps> = ({
     }
   };
 
-  const handlePrintThermal = async (group: typeof groupedByCadet[0]) => {
-    setIsGeneratingPdf(group.cadetId + '-thermal');
-    try {
-      const { pdfUrl } = await generateThermalReceiptPDF({
-        cadetNumber: group.cadetNumber,
-        cadetName: group.cadetName,
-        period: selectedPeriod,
-        expenses: group.expenses,
-        director: directorUser,
-      });
-      window.open(pdfUrl, '_blank');
-    } catch (err) {
-      console.error(err);
-      alert('Erro ao gerar o PDF térmico.');
-    } finally {
-      setIsGeneratingPdf(null);
-    }
-  };
 
   const grandTotal = eventExpenses.reduce((acc, curr) => acc + curr.amount, 0);
 

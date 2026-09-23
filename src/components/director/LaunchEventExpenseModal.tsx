@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { User, Expense, EventCompany, EventProduct } from '../../types';
 import { DatabaseService } from '../../lib/pocketbase';
-import { ShoppingCart, PlusCircle, Trash2, Search, Calendar, ChevronDown, CheckCircle2, X, Store, Package } from 'lucide-react';
+import { ShoppingCart, Trash2, Search, CheckCircle2, X, Store, Package } from 'lucide-react';
 import { generateThermalReceiptPDF } from '../../lib/pdfGenerator';
 
 interface LaunchEventExpenseModalProps {

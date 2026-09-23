@@ -441,7 +441,7 @@ export async function generateEventReceiptPDF(options: EventReceiptOptions): Pro
 // ==========================================
 
 export async function generateThermalReceiptPDF(options: EventReceiptOptions): Promise<{ pdfBlob: Blob; pdfUrl: string }> {
-  const { cadetNumber, cadetName, period, expenses, director } = options;
+  const { cadetNumber, cadetName, expenses } = options;
 
   // Agrupar por Empresa -> array de expenses (cada um é 1 unidade individual)
   const companyMap = new Map<string, Expense[]>();
