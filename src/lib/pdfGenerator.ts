@@ -474,12 +474,12 @@ export async function generateThermalReceiptPDF(options: EventReceiptOptions): P
   const doc = new jsPDF({
     orientation: 'portrait',
     unit: 'mm',
-    format: [80, docHeight]
+    format: [58, docHeight]
   });
 
   // Fundo amarelado para tela
   doc.setFillColor(254, 252, 232);
-  doc.rect(0, 0, 80, docHeight, 'F');
+  doc.rect(0, 0, 58, docHeight, 'F');
 
   doc.setTextColor(0, 0, 0); // Preto puro
   
@@ -491,30 +491,30 @@ export async function generateThermalReceiptPDF(options: EventReceiptOptions): P
     doc.setFontSize(10);
     
     // Header da Empresa (Apenas 1x no topo)
-    doc.text('----------------------------------', 40, y, { align: 'center' });
+    doc.text('------------------------', 29, y, { align: 'center' });
     y += 5;
     
     doc.setFont('courier', 'bold');
     doc.setFontSize(12);
     let comp = group.company.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    if (comp.length > 20) comp = comp.substring(0, 19) + '..';
-    doc.text(`LOJA: ${comp}`, 40, y, { align: 'center' });
+    if (comp.length > 16) comp = comp.substring(0, 15) + '..';
+    doc.text(`LOJA: ${comp}`, 29, y, { align: 'center' });
     
     y += 4;
     doc.setFont('courier', 'normal');
     doc.setFontSize(10);
-    doc.text('----------------------------------', 40, y, { align: 'center' });
+    doc.text('------------------------', 29, y, { align: 'center' });
     
     // Info Cadete/Data da Compra
     y += 5;
-    doc.setFontSize(9);
-    doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 5, y);
+    doc.setFontSize(8);
+    doc.text(`Data: ${new Date().toLocaleString('pt-BR')}`, 3, y);
     y += 4;
-    doc.text(`Cad: ${cadetNumber} ${shortCadetName}`, 5, y);
+    doc.text(`Cad: ${cadetNumber} ${shortCadetName}`, 3, y);
     
     y += 4;
     doc.setFontSize(10);
-    doc.text('----------------------------------', 40, y, { align: 'center' });
+    doc.text('------------------------', 29, y, { align: 'center' });
     y += 6;
 
     group.expenses.forEach((exp, expIndex) => {
@@ -525,27 +525,27 @@ export async function generateThermalReceiptPDF(options: EventReceiptOptions): P
 
       // Produto (Centralizado)
       doc.setFont('courier', 'bold');
-      doc.setFontSize(12);
+      doc.setFontSize(11);
       
       let name = productName.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      if (name.length > 24) name = name.slice(0, 22) + '..';
-      doc.text(name, 40, y, { align: 'center' });
+      if (name.length > 18) name = name.slice(0, 16) + '..';
+      doc.text(name, 29, y, { align: 'center' });
       
       // Corte
       y += 8;
       
       doc.setFont('courier', 'normal');
       if (expIndex < group.expenses.length - 1 || groupIndex < groupedByCompany.length - 1) {
-         doc.text('- - - - - - - - - - - - - - - - -', 40, y, { align: 'center' });
+         doc.text('- - - - - - - - - - - -', 29, y, { align: 'center' });
          y += 4;
          doc.setFontSize(8);
-         doc.text('-------- CORTE AQUI --------', 40, y, { align: 'center' });
+         doc.text('---- CORTE AQUI ----', 29, y, { align: 'center' });
          y += 6; // Espaço antes do próximo vale
       } else {
-         doc.text('----------------------------------', 40, y, { align: 'center' });
+         doc.text('------------------------', 29, y, { align: 'center' });
          y += 4;
          doc.setFontSize(8);
-         doc.text('*** FIM DOS VALES ***', 40, y, { align: 'center' });
+         doc.text('*** FIM DOS VALES ***', 29, y, { align: 'center' });
       }
     });
   });
