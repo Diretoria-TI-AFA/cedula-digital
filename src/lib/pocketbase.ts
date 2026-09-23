@@ -18,7 +18,7 @@ import type {
 } from '../types';
 import { queryCache } from './queryCache';
 
-export const POCKETBASE_URL = import.meta.env.VITE_POCKETBASE_URL || 'https://cedula-scaer.pockethost.io';
+export const POCKETBASE_URL = import.meta.env.POCKETBASE_URL || 'https://cedula-scaer.pockethost.io';
 export const pb = new PocketBase(POCKETBASE_URL);
 pb.autoCancellation(false);
 
