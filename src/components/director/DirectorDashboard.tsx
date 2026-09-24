@@ -1669,6 +1669,7 @@ export const DirectorDashboard: React.FC<DirectorDashboardProps> = ({
       {showLaunchModal && (
         <LaunchExpenseModal
           club={{ id: 'clb_diretoria', name: 'DIRETORIA DE CÉDULA', monthlyFee: 0, category: 'Diretoria' }}
+          allClubs={clubs}
           activeMembers={[]}
           allCadets={allUsers}
           managerUser={directorUser}

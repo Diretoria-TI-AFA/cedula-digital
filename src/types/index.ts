@@ -94,7 +94,9 @@ export type TransactionType =
   | 'recurring'
   | 'individual'
   | 'event_non_member'
-  | 'csv';
+  | 'csv'
+  | 'xlsx'
+  | 'excel';
 
 export type TransactionStatus = 'pending' | 'paid' | 'cancelled' | 'deferred' | 'preview';
 

@@ -1200,6 +1200,7 @@ export const ScaerManagerView: React.FC<ScaerManagerViewProps> = ({
       {showLaunchModal && (
         <LaunchExpenseModal
           club={managedClub}
+          allClubs={clubs}
           activeMembers={activeMembers}
           allCadets={allCadets}
           managerUser={user}
